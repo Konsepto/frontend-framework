@@ -1,0 +1,77 @@
+/* Core component stylesheet: Button (keep or comment out this file) */
+
+
+/* Button */
+.button {
+	.background-color-fix(@button-color);
+	.border-color-fix(@button-border-color);
+	.color-fix(@button-text-color);
+	border-style: @button-border-style;
+	border-width: @button-border-width;
+	cursor: pointer;
+	display: inline-block;
+	font-family: @button-font-family;
+	font-weight: @button-font-weight;
+	font-size: @button-font-size;
+	height: @button-height;
+	line-height: @button-line-height;
+	margin: @button-line-fill 0px;
+	padding: @button-padding;
+	position: relative;
+	//vertical-align: middle;
+	//white-space: nowrap;
+	text-align: center;
+	&,
+	&:visited,
+	&:hover, 
+	&:focus, 
+	&:active,
+	&.active {
+		text-decoration: none;
+	}
+	&,
+	&:visited {
+		.background-color-fix(@button-color);
+		.border-color-fix(@button-border-color);
+		.color-fix(@button-text-color);
+	}
+	&:active, 
+	&.active {
+		.background-color-fix(@button-color-active);
+		.border-color-fix(@button-border-color-active);
+		.color-fix(@button-text-color-active);
+		border-style: @button-border-style-active;
+	}
+	&:hover, 
+	&:focus {
+		.background-color-fix(@button-color-hover);
+		.border-color-fix(@button-border-color-hover);
+		.color-fix(@button-text-color-hover);
+	}
+	&:disabled, 
+	&.disabled {
+		.background-color-fix(@button-color-disabled) !important;
+		.border-color-fix(@button-border-color-disabled) !important;
+		.color-fix(@button-text-color-disabled) !important;
+		border-style: @button-border-style !important;
+	}
+	* {
+		//vertical-align: middle;
+	}
+}
+.button-icon {
+	.text-hide;
+	.button;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.button-icon-text {
+	.button;
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 3 * @x;
+}
+
+/* Button group */
+.button-group {}
+

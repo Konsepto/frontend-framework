@@ -1,0 +1,54 @@
+/* Theme stylesheet: Document (keep or replace this file) */
+
+
+/* Page part theme settings */
+@body-background-color: @color-1;
+@page-background-color: transparent;
+@header-background-color: @color-1;
+@main-background-color: @color-1;
+@footer-background-color: @color-grayscale-2;
+@zone-padding-top: 3 * @y;
+@zone-padding-bottom: 3 * @y;
+@block-margin: 3 * @y;
+@print-zone-padding-top: 2 * @print-paragraph-margin;
+@print-zone-padding-bottom: 2 * @print-paragraph-margin;
+@print-block-margin: 2 * @print-paragraph-margin;
+
+
+/* Html theme styles */
+html {}
+
+/* body theme styles */
+body {}
+
+/* Page theme styles */
+#page {
+	.short-page-footer-fix;
+}
+
+/* Header theme styles */
+#header {
+	@media print {
+		border-bottom: 2px solid @color-grayscale-4;
+		margin-bottom: 2 * @print-paragraph-margin;
+		padding-bottom: 2 * @print-paragraph-margin;
+	}
+}
+
+/* Main theme styles */
+#main {}
+
+/* Footer theme styles */
+#footer {
+	@media print {
+		border-top: 2px solid @color-grayscale-4;
+		margin-top: 2 * @print-paragraph-margin;
+		padding-top: 1 * @print-paragraph-margin;
+	}
+}
+
+/* Zone theme styles */
+.zone {}
+
+/* Block theme styles */
+.block {}

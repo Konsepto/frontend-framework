@@ -1,0 +1,51 @@
+/* Core component stylesheet: Breadcrumbs (keep or comment out this file) */
+
+
+// TODO: Rewrite styles
+/* Breadcrumbs */
+.breadcrumbs {
+	.list-float;
+	.color-fix(@breadcrumbs-text-color);
+	font-family: @breadcrumbs-font-family;
+	font-size: @breadcrumbs-font-size;
+	font-weight: @breadcrumbs-font-weight;
+	line-height: @breadcrumbs-line-height;
+	text-decoration: @breadcrumbs-text-decoration;
+	li {
+		margin-left: @breadcrumbs-item-margin;
+		&:first-child {
+			margin-left: 0px;
+		}
+		> a {
+			.no-focus;
+			cursor: pointer;
+			&, 
+			&:visited, 
+			&:hover, 
+			&:active {
+				.color-fix(@breadcrumbs-text-color);
+				text-decoration: @breadcrumbs-text-decoration;
+			}
+			&:hover {
+				.color-fix(@breadcrumbs-text-color-hover);
+				text-decoration: @breadcrumbs-text-decoration-hover;
+			}
+		}
+		&.active {
+			&, 
+			> a, 
+			> a:visited, 
+			> a:hover, 
+			> a:active {
+				.color-fix(@breadcrumbs-text-color-active);
+				font-style: @breadcrumbs-font-style-active;
+				font-weight: @breadcrumbs-font-weight-active;
+			}
+			> a:hover {
+				.color-fix(@breadcrumbs-text-color-hover);
+				text-decoration: @breadcrumbs-text-decoration-hover;
+			}
+		}
+	}
+}
+

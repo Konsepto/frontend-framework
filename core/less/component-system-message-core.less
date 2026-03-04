@@ -1,0 +1,84 @@
+/* Core component stylesheet: System message (keep or comment out this file) */
+
+
+/* System message */
+.system-message {
+	.background-color-fix(@system-message-color);
+	.color-fix(@system-message-text-color);
+	margin-bottom: @y;
+	padding: @system-message-padding;
+}
+
+/* Success system message */
+.system-message-success {
+	.system-message;
+	.background-color-fix(@system-message-success-color);
+	.color-fix(@system-message-success-text-color);
+}
+
+/* Notice system message */
+.system-message-notice {
+	.system-message;
+	.background-color-fix(@system-message-notice-color);
+	.color-fix(@system-message-notice-text-color);
+}
+
+/* Failure system message */
+.system-message-failure {
+	.system-message;
+	.background-color-fix(@system-message-failure-color);
+	.color-fix(@system-message-failure-text-color);
+}
+
+/* Information system message */
+.system-message-information {
+	.system-message;
+	.background-color-fix(@system-message-information-color);
+	.color-fix(@system-message-information-text-color);
+}
+
+/* Question system message */
+.system-message-question {
+	.system-message;
+	.background-color-fix(@system-message-question-color);
+	.color-fix(@system-message-question-text-color);
+}
+
+/* System message Drupal adapter */
+.messages {
+	&.status {
+		&:extend(.system-message-success all);
+	}
+	&.warning {
+		&:extend(.system-message-notice all);
+	}
+	&.error {
+		&:extend(.system-message-failure all);
+	}
+	&.information {
+		&:extend(.system-message-information all);
+	}
+	&.question {
+		&:extend(.system-message-question all);
+	}
+}
+.form-item {
+	div {
+		&.status, 
+		&.warning, 
+		&.error {
+			margin-top: @y;
+		}
+		&.status {
+			&:extend(.system-message-success all);
+		}
+		&.warning {
+			&:extend(.system-message-notice all);
+		}
+		&.error {
+			// Drupal 7 uses incorrect class and style on forms to mark invalid user input, but lets try to fix it here
+			&:extend(.system-message-notice all);
+		}
+	}
+}
+

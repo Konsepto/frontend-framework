@@ -1,0 +1,45 @@
+/* Theme component stylesheet: Breadcrumbs (keep, replace or comment out these files) */
+
+
+// TODO: Rewrite styles
+/* Breadcrumbs theme settings */
+@breadcrumbs-font-family: @body-font-family;
+@breadcrumbs-font-size: 0.9 * @body-font-size; // Use rem unit
+@breadcrumbs-font-weight: @body-font-weight;
+@breadcrumbs-font-weight-active: bold;
+@breadcrumbs-font-style-active: normal;
+@breadcrumbs-line-height: @body-line-height; // Use a plain number without unit
+@breadcrumbs-text-color: @color-grayscale-10;
+@breadcrumbs-text-color-hover: @link-color-hover;
+@breadcrumbs-text-color-active: @breadcrumbs-text-color;
+@breadcrumbs-text-color-disabled: @color-grayscale-6;
+@breadcrumbs-text-decoration: none;
+@breadcrumbs-text-decoration-hover: @link-text-decoration-hover;
+@breadcrumbs-item-margin: @x;
+
+
+/* Breadcrumbs presets */
+.breadcrumbs {
+	li {
+		// TODO: Remove old styles
+		//background-repeat: no-repeat;
+		//background-position: @x center;
+		//background-image: url(../img/breadcrumbs-separator.png);
+		//&:first-child {
+			//background-image: none;
+		//}
+		&::before {
+			.icon-font('arrow-right'; @color-grayscale-4; @breadcrumbs-font-size);
+			display: inline-block;
+			float: left;
+			margin-right: @x;      
+		}
+		&:first-child {
+			&::before {
+				content: none;
+			}
+		}
+	}
+	.small-screen-adjust-text(@breadcrumbs-font-size);
+}
+

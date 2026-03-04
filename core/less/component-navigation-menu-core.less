@@ -1,0 +1,809 @@
+/* Core component stylesheet: Navigation menu (keep or comment out this file) */
+
+
+/* Navigation menu mixin */
+.navigation-menu(
+	@menu-color: @navigation-menu-color;
+	@menu-text-color: @navigation-menu-text-color;
+	@menu-font-size: @navigation-menu-font-size;
+	@menu-line-height: @navigation-menu-line-height;
+	@menu-font-family: @navigation-menu-font-family;
+	@menu-font-weight: @navigation-menu-font-weight;
+) {
+	color: @menu-text-color;
+	background-color: @menu-color;
+	&,
+	* {
+		font-size: @menu-font-size;
+		line-height: @menu-line-height;
+		font-family: @menu-font-family;
+		font-weight: @menu-font-weight;
+	}
+}
+
+/* Navigation menu item mixin */
+.navigation-menu-item(
+	@item-min-height: @navigation-menu-item-min-height;
+	@item-padding-top: @navigation-menu-item-padding-top;
+	@item-padding-right: @navigation-menu-item-padding-right;
+	@item-padding-bottom: @navigation-menu-item-padding-bottom;
+	@item-padding-left: @navigation-menu-item-padding-left;
+	@line-height: @navigation-menu-line-height;
+	@toggle-height: @navigation-menu-toggle-height;
+	@toggle-width: @navigation-menu-toggle-width;
+	@toggle-padding-top: @navigation-menu-toggle-padding-top;
+	@toggle-padding-right: @navigation-menu-toggle-padding-right;
+	@toggle-padding-bottom: @navigation-menu-toggle-padding-bottom;
+	@toggle-padding-left: @navigation-menu-toggle-padding-left;
+	@toggle-margin: @navigation-menu-toggle-margin;
+	@toggle-width: @navigation-menu-toggle-width;
+	@toggle-height: @navigation-menu-toggle-height;
+) {
+	position: relative;
+	> a,
+	> button {
+		// Fix Android inconsistent font sizes
+		// https://stackoverflow.com/a/60044980
+		max-height: 999999px;
+		//word-break: break-all;
+		// Make sure outline is shown on top of other items
+		&:focus:not(.mouse-focused) {
+			z-index: 100000;
+		}
+		&:focus:not(.mouse-focused) + .toggle {
+			z-index: 100001;
+		}
+	}
+	> a:first-child {
+		min-height: @item-min-height;
+		position: relative;
+		display: block;
+		padding: @item-padding-top @item-padding-right @item-padding-bottom @item-padding-left;
+		&,
+		&:visited {
+			text-decoration: none;
+			&:active,
+			&.active {
+				text-decoration: none;
+			}
+			//&:hover,
+			//&:focus {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	> .toggle {
+		background-color: transparent;
+		border: 0px;
+		cursor: pointer;
+		line-height: @line-height;
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		text-align: center;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+		&::after {
+			display: block;
+			min-height: @toggle-height;
+			min-width: @toggle-width;
+			z-index: 1;
+			padding: @toggle-padding-top @toggle-padding-right @toggle-padding-bottom @toggle-padding-left;
+		}
+		& {
+			&,
+			&:active,
+			&.active,
+			//&:hover,
+			//&:focus {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	// No script styles (property 'content' is defined elsewhere)
+	&.has-children,
+	&.menu-item-has-children {
+		> a:first-child {
+			padding-right: @item-padding-right + @toggle-margin + @toggle-width;
+			&::after {
+				text-align: center;
+				position: absolute;
+				min-height: @toggle-height;
+				min-width: @toggle-width;
+				padding: @toggle-padding-top @toggle-padding-right @toggle-padding-bottom @toggle-padding-left;
+				right: 0px;
+				top: 0px;
+			}
+		}
+	}
+}
+
+/* Navigation menu item color mixin */
+.navigation-menu-item-color(
+	@item-color: @navigation-menu-color; 
+	@item-color-trail: @navigation-menu-color-trail; 
+	@item-color-active: @navigation-menu-color-active; 
+	@item-color-hover: @navigation-menu-color-hover; 
+	@item-color-disabled: @navigation-menu-color-disabled; 
+	@item-text-color: @navigation-menu-text-color; 
+	@item-text-color-trail: @navigation-menu-text-color-trail; 
+	@item-text-color-active: @navigation-menu-text-color-active; 
+	@item-text-color-hover: @navigation-menu-text-color-hover; 
+	@item-text-color-disabled: @navigation-menu-text-color-disabled;
+	@toggle-color: @navigation-menu-toggle-color;
+	@toggle-color-trail: @navigation-menu-toggle-color-trail;
+	@toggle-color-active: @navigation-menu-toggle-color-active;
+	@toggle-color-hover: @navigation-menu-toggle-color-hover;
+	@toggle-color-disabled: @navigation-menu-toggle-color-disabled;
+	@toggle-text-color: @navigation-menu-toggle-text-color;
+	@toggle-text-color-trail: @navigation-menu-toggle-text-color-trail;
+	@toggle-text-color-active: @navigation-menu-toggle-text-color-active;
+	@toggle-text-color-hover: @navigation-menu-toggle-text-color-hover;
+	@toggle-text-color-disabled: @navigation-menu-toggle-text-color-disabled;
+) {
+	background-color: @item-color;
+	color: @item-text-color;
+	> a:first-child {
+		&,
+		&:visited {
+			background-color: @item-color;
+			color: @item-text-color;
+			&.active {
+				background-color: @item-color-active !important;
+				color: @item-text-color-active !important;
+			}
+			&:hover {
+				background-color: @item-color-hover !important;
+				color: @item-text-color-hover !important;
+			}
+		}
+	}
+	> .toggle {
+		background-color: transparent;
+		color: @toggle-text-color;
+		&::after {
+			background-color: @toggle-color;
+			color: @toggle-text-color;
+		}
+		&.active {
+			&::after {
+				background-color: @toggle-color-hover !important;
+				color: @toggle-text-color-hover !important;
+			}
+		}
+		&:hover {
+			&::after {
+				background-color: @toggle-color-hover !important;
+				color: @toggle-text-color-hover !important;
+			}
+		}
+	}
+	&.active-trail,
+	//&.current-menu-ancestor,
+	//&.current-page-ancestor,
+	//&.current-post-ancestor {
+	&.current-menu-ancestor {
+		> a:first-child {
+			&,
+			&:visited {
+				background-color: @item-color-trail;
+				color: @item-text-color-trail;
+			}
+		}
+		> .toggle {
+			&::after {
+				background-color: @toggle-color-trail;
+				color: @toggle-text-color-trail;
+			}
+		}
+	}
+	&.expanded,
+	&.hovering {
+		> a:first-child {
+			&,
+			&:visited {
+				background-color: @item-color-trail;
+				color: @item-text-color-trail;
+			}
+		}
+		> .toggle {
+			&::after {
+				background-color: @toggle-color-trail;
+				color: @toggle-text-color-trail;
+			}
+		}
+	}
+	&.active,
+	&.current-menu-item {
+		> a:first-child {
+			&,
+			&:visited,
+			&.active {
+				background-color: @item-color-active;
+				color: @item-text-color-active;
+			}
+		}
+		> .toggle {
+			&::after {
+				background-color: @toggle-color-active;
+				color: @toggle-text-color-active;
+			}
+		}
+	}
+	&.disabled {
+		> a:first-child {
+			&,
+			&:visited,
+			&.active,
+			&:hover {
+				background-color: @item-color-disabled !important;
+				color: @item-text-color-disabled !important;
+			}
+		}
+		> .toggle {
+			&,
+			&.active,
+			&:hover {
+				color: @toggle-text-color-disabled !important;
+				&::after {
+					background-color: @toggle-color-disabled !important;
+					color: @toggle-text-color-disabled !important;
+				}
+			}
+		}
+	}
+}
+
+/* Navigation menu toggle button mixin */
+.toggle() {}
+
+/* Bar navigation menu */
+.navigation-menu-bar {
+	.navigation-menu();
+	li {
+		.navigation-menu-item();
+		.navigation-menu-item-color();
+	}
+	ul {
+		.navigation-menu(
+			@navigation-submenu-color;
+			@navigation-submenu-text-color;
+			@navigation-submenu-font-size;
+			@navigation-submenu-line-height;
+			@navigation-submenu-font-family;
+			@navigation-submenu-font-weight;
+		);
+		li {
+			.navigation-menu-item(
+				@navigation-submenu-item-min-height;
+				@navigation-submenu-item-padding-top;
+				@navigation-submenu-item-padding-right;
+				@navigation-submenu-item-padding-bottom;
+				@navigation-submenu-item-padding-left;
+				@navigation-submenu-line-height;
+				@navigation-submenu-toggle-height;
+				@navigation-submenu-toggle-width;
+				@navigation-submenu-toggle-padding-top;
+				@navigation-submenu-toggle-padding-right;
+				@navigation-submenu-toggle-padding-bottom;
+				@navigation-submenu-toggle-padding-left;
+				@navigation-submenu-toggle-margin;
+				@navigation-submenu-toggle-width;
+				@navigation-submenu-toggle-height;
+			);
+			.navigation-menu-item-color(
+				@navigation-submenu-color; 
+				@navigation-submenu-color-trail; 
+				@navigation-submenu-color-active; 
+				@navigation-submenu-color-hover; 
+				@navigation-submenu-color-disabled; 
+				@navigation-submenu-text-color; 
+				@navigation-submenu-text-color-trail; 
+				@navigation-submenu-text-color-active; 
+				@navigation-submenu-text-color-hover; 
+				@navigation-submenu-text-color-disabled;
+				@navigation-submenu-toggle-color;
+				@navigation-submenu-toggle-color-trail;
+				@navigation-submenu-toggle-color-active;
+				@navigation-submenu-toggle-color-hover;
+				@navigation-submenu-toggle-color-disabled;
+				@navigation-submenu-toggle-text-color;
+				@navigation-submenu-toggle-text-color-trail;
+				@navigation-submenu-toggle-text-color-active;
+				@navigation-submenu-toggle-text-color-hover;
+				@navigation-submenu-toggle-text-color-disabled;
+			);
+		}
+	}
+	.list-horizontal();
+	margin-bottom: 0px;
+	position: relative;
+	&,
+	* {
+		overflow: visible;
+	}
+	&,
+	ul {
+		position: relative;
+		margin: 0px;
+	}
+	&,
+	ul {
+		font-size: 0%;
+	}
+	ul {
+		position: absolute;
+		// Chrome 1-pixel misplacement fix 21.9.2020
+		//top: 100%;
+		top: 99.99999%;
+	}
+	li {
+		list-style: none;
+		margin-left: 0px;
+		a:first-child {
+			display: inline-block;
+		}
+	}
+	> * {
+		vertical-align: middle;
+	}
+}
+
+/* Column navigation menu */
+.navigation-menu-col {
+	.navigation-menu();
+	li {
+		.navigation-menu-item();
+		.navigation-menu-item-color();
+	}
+	ul {
+		.navigation-menu(
+			@navigation-submenu-color;
+			@navigation-submenu-text-color;
+			@navigation-submenu-font-size;
+			@navigation-submenu-line-height;
+			@navigation-submenu-font-family;
+			@navigation-submenu-font-weight;
+		);
+		li {
+			.navigation-menu-item(
+				@navigation-submenu-item-min-height;
+				@navigation-submenu-item-padding-top;
+				@navigation-submenu-item-padding-right;
+				@navigation-submenu-item-padding-bottom;
+				@navigation-submenu-item-padding-left;
+				@navigation-submenu-line-height;
+				@navigation-submenu-toggle-height;
+				@navigation-submenu-toggle-width;
+				@navigation-submenu-toggle-padding-top;
+				@navigation-submenu-toggle-padding-right;
+				@navigation-submenu-toggle-padding-bottom;
+				@navigation-submenu-toggle-padding-left;
+				@navigation-submenu-toggle-margin;
+				@navigation-submenu-toggle-width;
+				@navigation-submenu-toggle-height;
+			);
+			.navigation-menu-item-color(
+				@navigation-submenu-color; 
+				@navigation-submenu-color-trail; 
+				@navigation-submenu-color-active; 
+				@navigation-submenu-color-hover; 
+				@navigation-submenu-color-disabled; 
+				@navigation-submenu-text-color; 
+				@navigation-submenu-text-color-trail; 
+				@navigation-submenu-text-color-active; 
+				@navigation-submenu-text-color-hover; 
+				@navigation-submenu-text-color-disabled;
+				@navigation-submenu-toggle-color;
+				@navigation-submenu-toggle-color-trail;
+				@navigation-submenu-toggle-color-active;
+				@navigation-submenu-toggle-color-hover;
+				@navigation-submenu-toggle-color-disabled;
+				@navigation-submenu-toggle-text-color;
+				@navigation-submenu-toggle-text-color-trail;
+				@navigation-submenu-toggle-text-color-active;
+				@navigation-submenu-toggle-text-color-hover;
+				@navigation-submenu-toggle-text-color-disabled;
+			);
+		}
+	}
+	.list-linear();
+	&,
+	* {
+		overflow: visible;
+	}
+	&,
+	ul {
+		position: relative;
+		margin: 0px;
+	}
+	li {
+		list-style: none;
+		margin-left: 0px;
+		&.has-children,
+		&.menu-item-has-children {
+			> a:first-child {
+				padding-right: @navigation-menu-item-padding-right + @navigation-menu-toggle-margin + @navigation-menu-toggle-width;
+			}
+		}
+		li {
+			> a:first-child {
+				padding-left: @navigation-menu-col-indent-padding + @navigation-menu-col-indent;
+			}
+			li {
+				> a:first-child {
+					padding-left: @navigation-menu-col-indent-padding + 2 * @navigation-menu-col-indent;
+				}
+				li {
+					> a:first-child {
+						padding-left: @navigation-menu-col-indent-padding + 3 * @navigation-menu-col-indent;
+					}
+					li {
+						> a:first-child {
+							padding-left: @navigation-menu-col-indent-padding + 4 * @navigation-menu-col-indent;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Dropdown navigation menu bar */
+// See https://bugs.jquery.com/ticket/11635
+.navigation-menu-bar-dropdown {
+	.navigation-menu-bar;
+	ul {
+		display: none;
+		left: 0px;
+		overflow: visible clip;
+		position: absolute;
+		max-width: @navigation-menu-bar-dropdown-max-width;
+		//min-width: @navigation-menu-bar-dropdown-min-width;
+		// Fix IE that does not understand 'width: max-content'
+		//width: @navigation-menu-bar-dropdown-max-width;
+		width: max-content;
+		z-index: 9999;
+		&.finished {
+			overflow: visible;
+		}
+		ul {
+			// Chrome 1-pixel misplacement fix 21.9.2020
+			//left: 100%;
+			left: 99.99999%;
+			overflow: clip visible;
+			top: 0px;
+			&.finished {
+				overflow: visible;
+			}
+		}
+		li {
+			display: block;
+			max-width: @navigation-menu-bar-dropdown-max-width;
+			min-width: @navigation-menu-bar-dropdown-min-width;
+		}
+		li,
+		a:first-child {
+			display: block !important;
+		}
+	}
+}
+
+/* Dropdown column navigation menu */
+.navigation-menu-col-dropdown {
+	.navigation-menu-col;
+	ul {
+		display: none;
+		width: 100%;
+		z-index: 9999;
+		left: 0px;
+		ul {
+			left: 0px;
+		}
+	}
+}
+
+// TODO: Would not work well, to be removed
+/* Megamenu navigation menu *
+// See https://bugs.jquery.com/ticket/11635
+.navigation-menu-megamenu {
+	.navigation-menu();
+	> li {
+		.navigation-menu-item(
+		);
+		.navigation-menu-item-color();
+	}
+	ul {
+		.navigation-menu(
+			@navigation-submenu-color;
+			@navigation-submenu-text-color;
+			@navigation-submenu-font-size;
+			@navigation-submenu-line-height;
+			@navigation-submenu-font-family;
+			@navigation-submenu-font-weight;
+		);
+	}
+	.list-horizontal();
+	margin-bottom: 0px;
+	position: relative;
+	&,
+	ul {
+		font-size: 0%;
+	}
+	> li > ul {
+		position: absolute;
+		// Chrome 1-pixel misplacement fix 21.9.2020
+		//top: 100%;
+		top: 99.99999%;
+		max-width: 100% !important;
+		padding: @navigation-menu-megamenu-padding;
+		width: 100% !important;
+		display: flex !important;
+		gap: @navigation-menu-megamenu-gap;
+		ul {
+			position: static !important;
+			display: block !important;
+			max-width: 100% !important;
+			width: 100% !important;
+			height: 100% !important;
+			margin-left: @navigation-menu-megamenu-indent;
+		}
+	}
+	> li {
+		position: static;
+		list-style: none;
+		margin-left: 0px;
+		a:first-child {
+			display: inline-block;
+		}
+	}
+	> * {
+		vertical-align: middle;
+	}
+	ul {
+		margin: 0px;
+		display: none;
+		left: 0px;
+		//overflow: visible clip !important;
+		//position: absolute;
+		//max-width: @navigation-menu-bar-dropdown-max-width;
+		//min-width: @navigation-menu-bar-dropdown-min-width;
+		// Fix IE that does not understand 'width: max-content'
+		//width: @navigation-menu-bar-dropdown-max-width;
+		//width: max-content;
+		z-index: 9999;
+		&.finished {
+			//overflow: visible !important;
+		}
+		ul {
+			display: block !important;
+			// Chrome 1-pixel misplacement fix 21.9.2020
+			//left: 100%;
+			//left: 99.99999%;
+			//overflow: clip visible !important;
+			//top: 0px;
+			&.finished {
+				//overflow: visible !important;
+			}
+		}
+		li {
+			//display: block;
+			//max-width: @navigation-menu-bar-dropdown-max-width;
+			//min-width: @navigation-menu-bar-dropdown-min-width;
+		}
+		li,
+		a:first-child {
+			display: block !important;
+		}
+		.toggle {
+			display: none;
+		}
+	}
+	> li > .toggle {
+		position: absolute !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
+		margin-left: -@navigation-menu-toggle-width !important;
+	}
+}
+
+/* Mobile navigation menu */
+.navigation-menu-mobile {
+	.navigation-menu(
+		@navigation-menu-color-mobile;
+		@navigation-menu-text-color-mobile;
+		@navigation-menu-font-size-mobile;
+		@navigation-menu-line-height-mobile;
+		@navigation-menu-font-family-mobile;
+		@navigation-menu-font-weight-mobile;
+	);
+	li {
+		.navigation-menu-item(
+			@navigation-menu-item-min-height-mobile;
+			@navigation-menu-item-padding-top-mobile;
+			@navigation-menu-item-padding-right-mobile;
+			@navigation-menu-item-padding-bottom-mobile;
+			@navigation-menu-item-padding-left-mobile;
+			@navigation-menu-line-height-mobile;
+			@navigation-menu-toggle-height-mobile;
+			@navigation-menu-toggle-width-mobile;
+			@navigation-menu-toggle-padding-top-mobile;
+			@navigation-menu-toggle-padding-right-mobile;
+			@navigation-menu-toggle-padding-bottom-mobile;
+			@navigation-menu-toggle-padding-left-mobile;
+			@navigation-menu-toggle-margin-mobile;
+			@navigation-menu-toggle-width-mobile;
+			@navigation-menu-toggle-height-mobile;
+		);
+		.navigation-menu-item-color(
+			@navigation-menu-color-mobile; 
+			@navigation-menu-color-trail-mobile; 
+			@navigation-menu-color-active-mobile; 
+			@navigation-menu-color-hover-mobile; 
+			@navigation-menu-color-disabled-mobile; 
+			@navigation-menu-text-color-mobile; 
+			@navigation-menu-text-color-trail-mobile; 
+			@navigation-menu-text-color-active-mobile; 
+			@navigation-menu-text-color-hover-mobile; 
+			@navigation-menu-text-color-disabled-mobile;
+			@navigation-menu-toggle-color-mobile;
+			@navigation-menu-toggle-color-trail-mobile;
+			@navigation-menu-toggle-color-active-mobile;
+			@navigation-menu-toggle-color-hover-mobile;
+			@navigation-menu-toggle-color-disabled-mobile;
+			@navigation-menu-toggle-text-color-mobile;
+			@navigation-menu-toggle-text-color-trail-mobile;
+			@navigation-menu-toggle-text-color-active-mobile;
+			@navigation-menu-toggle-text-color-hover-mobile;
+			@navigation-menu-toggle-text-color-disabled-mobile;
+		);
+	}
+	ul {
+		.navigation-menu(
+			@navigation-submenu-color-mobile;
+			@navigation-submenu-text-color-mobile;
+			@navigation-submenu-font-size-mobile;
+			@navigation-submenu-line-height-mobile;
+			@navigation-submenu-font-family-mobile;
+			@navigation-submenu-font-weight-mobile;
+		);
+		li {
+			.navigation-menu-item(
+				@navigation-submenu-item-min-height-mobile;
+				@navigation-submenu-item-padding-top-mobile;
+				@navigation-submenu-item-padding-right-mobile;
+				@navigation-submenu-item-padding-bottom-mobile;
+				@navigation-submenu-item-padding-left-mobile;
+				@navigation-submenu-line-height-mobile;
+				@navigation-submenu-toggle-height-mobile;
+				@navigation-submenu-toggle-width-mobile;
+				@navigation-submenu-toggle-padding-top-mobile;
+				@navigation-submenu-toggle-padding-right-mobile;
+				@navigation-submenu-toggle-padding-bottom-mobile;
+				@navigation-submenu-toggle-padding-left-mobile;
+				@navigation-submenu-toggle-margin-mobile;
+				@navigation-submenu-toggle-width-mobile;
+				@navigation-submenu-toggle-height-mobile;
+			);
+			.navigation-menu-item-color(
+				@navigation-submenu-color-mobile; 
+				@navigation-submenu-color-trail-mobile; 
+				@navigation-submenu-color-active-mobile; 
+				@navigation-submenu-color-hover-mobile; 
+				@navigation-submenu-color-disabled-mobile; 
+				@navigation-submenu-text-color-mobile; 
+				@navigation-submenu-text-color-trail-mobile; 
+				@navigation-submenu-text-color-active-mobile; 
+				@navigation-submenu-text-color-hover-mobile; 
+				@navigation-submenu-text-color-disabled-mobile;
+				@navigation-submenu-toggle-color-mobile;
+				@navigation-submenu-toggle-color-trail-mobile;
+				@navigation-submenu-toggle-color-active-mobile;
+				@navigation-submenu-toggle-color-hover-mobile;
+				@navigation-submenu-toggle-color-disabled-mobile;
+				@navigation-submenu-toggle-text-color-mobile;
+				@navigation-submenu-toggle-text-color-trail-mobile;
+				@navigation-submenu-toggle-text-color-active-mobile;
+				@navigation-submenu-toggle-text-color-hover-mobile;
+				@navigation-submenu-toggle-text-color-disabled-mobile;
+			);
+		}
+	}
+	.list-linear();
+	&,
+	* {
+		overflow: visible;
+	}
+	&,
+	ul {
+		position: relative;
+		margin: 0px;
+	}
+	ul {
+		display: none;
+	}
+	li {
+		list-style: none;
+		margin-left: 0px;
+		&.has-children,
+		&.menu-item-has-children {
+			> a:first-child {
+				padding-right: @navigation-menu-item-padding-right-mobile + @navigation-menu-toggle-margin-mobile + @navigation-menu-toggle-width-mobile;
+			}
+		}
+		li {
+			> a:first-child {
+				padding-left: @navigation-menu-col-indent-padding-mobile + @navigation-menu-col-indent-mobile;
+			}
+			li {
+				> a:first-child {
+					padding-left: @navigation-menu-col-indent-padding-mobile + 2 * @navigation-menu-col-indent-mobile;
+				}
+				li {
+					> a:first-child {
+						padding-left: @navigation-menu-col-indent-padding-mobile + 3 * @navigation-menu-col-indent-mobile;
+					}
+					li {
+						> a:first-child {
+							padding-left: @navigation-menu-col-indent-padding-mobile + 4 * @navigation-menu-col-indent-mobile;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Dropdown navigation menu open right to left styles (apply to the whole menu or the individual LI elements) */
+.navigation-menu-dropdown-rtl() {
+	&:is(li),
+	li {
+		text-align: right !important;
+		&.has-children,
+		&.menu-item-has-children {
+			&::after {
+			right: auto !important;
+			left: 0px !important;
+			}
+			> a:first-child {
+				padding-right: @navigation-menu-item-padding-left !important;
+				padding-left: @navigation-menu-item-padding-right + @navigation-menu-toggle-margin + @navigation-menu-toggle-width !important;
+			}
+		}
+		> a:first-child {
+			padding: @navigation-menu-item-padding-top @navigation-menu-item-padding-left @navigation-menu-item-padding-bottom @navigation-menu-item-padding-right !important;
+		}
+		> .toggle {
+			right: auto !important;
+			left: 0px !important;
+		}
+	}
+	&:is(ul),
+	ul {
+		left: auto !important;
+		right: 0px !important;
+	}
+	&:is(.submenu .submenu),
+	ul:is(.submenu .submenu) {
+		text-align: right !important;
+		left: auto !important;
+		// Chrome 1-pixel misplacement fix 21.9.2020
+		//right: 100% !important;
+		right: 99.99999% !important;
+		ul {
+			left: auto !important;
+			// Chrome 1-pixel misplacement fix 21.9.2020
+			//right: 100% !important;
+			right: 99.99999% !important;
+			li {
+				float: right;
+				clear: right;
+			}
+		}
+	}
+}
+

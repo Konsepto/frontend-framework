@@ -1,0 +1,147 @@
+/* Theme stylesheet: Base (replace this file) */
+
+
+/*
+
+It is recommended (but not required) to use 'rem' units for font sizes and line heights and 'px' for everything else. For reference, browser's default root font size should be 16px, unless overridden in browser settings by user or by CSS.
+
+See https://engageinteractive.co.uk/blog/em-vs-rem-vs-px (except conclusions, which are not so good)
+
+*/
+
+
+/* Base grid */
+@x: 8px;
+@y: 8px;
+//@x: 10px;
+//@y: 10px;
+
+
+/* Columns and rows */
+@col-width: 8 * @x;
+@row-height: 8 * @y;
+//@col-width: 6 * @x;
+//@row-height: 6 * @y;
+
+
+/* Horizontal and vertical gutters */
+@gutter-width: 3 * @x;
+@gutter-height: 3 * @y;
+//@gutter-width: 2 * @x;
+//@gutter-height: 2 * @y;
+
+
+/* Content widths */
+// Information on common screen sizes:
+// https://screensizemap.com/ (choose "low" or "medium")
+// https://s3.amazonaws.com/codecademy-content/courses/freelance-1/unit-5/screen-sizes.png
+// https://www.designrush.com/agency/web-development-companies/trends/website-dimensions
+
+@content-width-1: auto;
+@content-width-2: 8 * (@col-width + @gutter-width) - @gutter-width;
+@content-width-3: 10 * (@col-width + @gutter-width) - @gutter-width;
+@content-width-4: 12 * (@col-width + @gutter-width) - @gutter-width;
+@content-width-5: 14 * (@col-width + @gutter-width) - @gutter-width;
+
+
+/* Minimum page margin */
+@min-page-margin: 3 * @x;
+
+
+/* Scroll bar width */
+// Scrollbars are *not* reduced from the media query widths, so you have to estimate how much they take space.
+// https://codepen.io/sambible/post/browser-scrollbar-widths
+@scroll-bar-width: 20px;
+
+
+/* Layout breakpoints (edit if you need more or less) */
+// Media query's min-width should be at least (content width + 2 * content margin width + 2 * scrollbar width)
+@min-width-2: @content-width-2 + (2 * @min-page-margin) + @scroll-bar-width;
+@min-width-3: @content-width-3 + (2 * @min-page-margin) + @scroll-bar-width;
+@min-width-4: @content-width-4 + (2 * @min-page-margin) + @scroll-bar-width;
+@min-width-5: @content-width-5 + (2 * @min-page-margin) + @scroll-bar-width;
+// You should use pixels and 2 digit precision (exactly x.98) for max widths to avoid most rounding errors in different browsers
+// https://getbootstrap.com/docs/4.0/layout/overview/ (about upper limits .98px)
+@max-width-1: @min-width-2 - 0.02px;
+@max-width-2: @min-width-3 - 0.02px;
+@max-width-3: @min-width-4 - 0.02px;
+@max-width-4: @min-width-5 - 0.02px;
+
+
+/* Layout levels (edit if you need more or less) */
+// https://github.com/SomMeri/less4j/wiki/Less-Language-Escaping
+@layout-1: ~'(max-width: @{max-width-1})';
+@layout-2: ~'(min-width: @{min-width-2}) and (max-width: @{max-width-2})';
+@layout-3: ~'(min-width: @{min-width-3}) and (max-width: @{max-width-3})';
+@layout-4: ~'(min-width: @{min-width-4}) and (max-width: @{max-width-4})';
+@layout-5: ~'(min-width: @{min-width-5})';
+
+
+/* Small screen layouts (edit depending on your layout levels) */
+@small-screen: ~'(max-width: @{max-width-1})';
+//@small-screen: ~'(max-width: @{max-width-2})';
+
+
+/* Colors */
+@color-1: #FFFFFF; // white
+@color-2: #000000; // black
+@color-3: #CCCCCC; // ?
+@color-4: #CCCCCC; // ?
+@color-5: #CCCCCC; // ?
+@color-6: #CCCCCC; // ?
+@color-7: #CCCCCC; // ?
+@color-8: #CCCCCC; // ?
+
+
+/* Font stacks */
+// https://www.cssfontstack.com/
+@font-1: 'Open Sans', 'Lato', 'Roboto', @font-sans-serif-1;
+@font-2: 'Roboto Slab', 'Merriweather', 'Noto Serif', @font-serif-1;
+@font-3: 'Roboto Mono', 'Inconsolata', 'Source Code Pro', @font-monospace-1;
+
+
+/* Font faces */
+// https://css-tricks.com/snippets/css/using-font-face/
+// http://www.metaltoad.com/blog/how-use-font-face-avoid-faux-italic-and-bold-browser-styles
+// http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/
+// http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/
+// http://www.paulirish.com/2010/font-face-gotchas/#smiley
+// http://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/
+// https://css-tricks.com/font-display-masses/
+
+/*!
+ * Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2022 Fonticons, Inc.
+ */
+@font-face {
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('@{path-fonts-default}fa-solid-900.woff2') format('woff2'),
+	url('@{path-fonts-default}fa-solid-900.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Font Awesome 6 Brands';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('@{path-fonts-default}fa-brands-400.woff2') format('woff2'),
+	url('@{path-fonts-default}fa-brands-400.ttf') format('truetype');
+}
+
+
+/* Debugging grid background images */
+@grid-background: url('@{path-img-default}grid-8-8-64-24.png');
+@grid-background-odd: url('@{path-img-default}grid-8-8-64-24-odd.png');
+@grid-background-even: url('@{path-img-default}grid-8-8-64-24-even.png');
+//@grid-background: url('@{path-img-default}grid-10-10-60-20.png');
+//@grid-background-odd: url('@{path-img-default}grid-10-10-60-20-odd.png');
+//@grid-background-even: url('@{path-img-default}grid-10-10-60-20-even.png');
+
+
+/* Debugging element background images */
+@text-background-block: url('@{path-img-default}text-background-block.png');
+@text-background-inline: url('@{path-img-default}text-background-inline.png');
+@text-background-other: url('@{path-img-default}text-background-other.png');

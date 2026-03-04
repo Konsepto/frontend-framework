@@ -1,0 +1,70 @@
+/* Core component stylesheet: Comments (keep or comment out this file) */
+
+
+// TODO: Rewrite styles
+/* Comments */
+.comments {
+	margin-top: 3 * @y;
+	.comment {
+		margin-top: 3 * @y;
+		&:first-child {
+			margin-top: 2 * @y;
+		}
+		footer {
+			.float-fix;
+			.dim;
+			margin-top: 2 * @y;
+			.avatar {
+				display: block;
+				float: left;
+				margin-right: @gutter-width;
+			}
+		}
+		.content {
+			margin-top: 2 * @y;
+			.field {
+				margin-top: 2 * @y;
+				&:first-child {
+					margin-top: 0px;
+				}
+			}
+		}
+		.comment-links {
+			margin-top: 2 * @y;
+			ul {
+				list-style: none;
+				margin: 0px;
+				li {
+					display: inline;
+					margin-left: @x;
+					&:first-child {
+						margin-left: 0px;
+					}
+					a,
+					a:visited,
+					a:active,
+					a:hover {
+						.color-fix(@link-color);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Comment form */
+.comment-form {
+	input[type='text'] {
+		width: 30 * @x - 6px;
+	}
+	.form-actions {
+		margin-top: 2 * @y;
+		input {
+			margin-left: @x;
+			&:first-child {
+				margin-left: 0px;
+			}
+		}
+	}
+}
+

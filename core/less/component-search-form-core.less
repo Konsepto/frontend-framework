@@ -1,0 +1,55 @@
+/* Core component stylesheet: Search form (keep or comment out this file) */
+
+
+/* Search form */
+.search-form {
+	input[type='search'], 
+	input[type='text'] {
+		.search-form-input;
+		//.border-radius(0px);
+	}
+	input[type='submit'],  
+	button[type='submit'] {
+		.search-form-button;
+	}
+}
+
+/* Search form input */
+.search-form-input {
+	font-family: @search-input-font-family;
+	font-size: @search-input-font-size;
+	font-weight: @search-input-font-weight;
+	line-height: @search-input-line-height;
+	background-color: @search-input-color;
+	color: @search-input-text-color;
+	height: @search-input-height;
+	width: @search-input-width;
+	padding: @search-input-padding;
+	border: @search-input-border;
+}
+
+/* Search form button */
+.search-form-button {
+	font-family: @search-button-font-family;
+	font-size: @search-button-font-size;
+	font-weight: @search-button-font-weight;
+	line-height: @search-button-line-height;
+	background-color: @search-button-color;
+	color: @search-button-text-color;
+	height: @search-button-height;
+	width: @search-button-width;
+	padding: @search-button-padding;
+	border: @search-button-border;
+	&.active {
+		background-color: @search-button-color-active;
+		color: @search-button-text-color-active;
+	}
+	&:hover {
+		background-color: @search-button-color-hover;
+		color: @search-button-text-color-hover;
+	}
+}
+
+/* Search form autocomplete results */
+.search-form-autocomplete-results {}
+

@@ -1,0 +1,39 @@
+/* Theme component stylesheet: Text (keep, replace or comment out these files)*/
+
+
+/* Lead theme settings */
+@lead-font-size: 1.2 * @body-font-size; // Use rem unit
+@lead-line-height: @body-line-height; // Use a plain number without unit
+@lead-font-weight: bold;
+@lead-font-style: normal;
+@lead-text-color: @body-text-color;
+
+/* Caption theme settings */
+@caption-font-size: 0.9 * @body-font-size; // Use rem unit
+@caption-line-height: @body-line-height; // Use a plain number without unit
+@caption-font-weight: normal;
+@caption-font-style: normal;
+@caption-text-color: @body-text-color;
+
+/* Dim theme settings */
+@dim-font-size: 0.9 * @body-font-size; // Use rem unit
+@dim-line-height: @body-line-height; // Use a plain number without unit
+@dim-font-weight: normal;
+@dim-font-style: normal;
+@dim-text-color: @color-grayscale-10;
+
+/* Lead theme styles */
+.lead {
+	.small-screen-adjust-text(@lead-font-size);
+}
+
+/* Caption theme styles */
+.caption {
+	.small-screen-adjust-text(@caption-font-size);
+}
+
+/* Dim text theme styles */
+.dim {
+	.small-screen-adjust-text(@dim-font-size);
+}
+

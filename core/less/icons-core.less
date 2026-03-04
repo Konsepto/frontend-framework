@@ -1,0 +1,68 @@
+/* Core stylesheet: Icons (keep or comment out this file) */
+
+
+/* Icon font mixin */
+.icon-font(@icon: ''; @color: ''; @size: ''; @margin: ''; @font-family: '') {
+	.icon-font-color(@color);
+	.icon-font-margin(@margin);
+	.icon-font-icon(@icon);
+	.icon-font-size(@size);
+	.icon-font-font-family(@font-family);
+	font-style: normal;
+	font-weight: normal;
+	speak: never; // "Property speak doesn't exist for media screen (aural, speech)", but we cannot use media queries in mixin
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+}
+
+/* Icon font color guard */
+.icon-font-color(@color) when (iscolor(@color)) {
+	.color-fix(@color);
+}
+
+/* Icon font margin guard */
+.icon-font-margin(@margin) when not (@margin = '') {
+	margin: @margin;
+}
+
+/* Icon font icon guard */
+// https://github.com/SomMeri/less4j/wiki/Less-Language-Escaping
+// http://stackoverflow.com/a/23824424/4140621
+.icon-font-icon(@icon) when not (@icon = '') {
+	@name: ~'icon-@{icon}';
+	content: @@name;
+	content: @@name / '';
+}
+
+/* Icon font size guard */
+.icon-font-size(@size) when (isnumber(@size)) {
+	font-size: @size;
+}
+
+/* Icon font font family guard */
+.icon-font-font-family(@font-family) when not (@font-family = '') {
+	font-family: @font-family;
+}
+
+/* No icon mixin */
+.no-icon {
+	&::before, 
+	&::after {
+		content: '' !important;
+		display: none !important;
+	}
+}
+
+/* No icons mixin */
+.no-icons {
+	&, 
+	* {
+		&::before, 
+		&::after {
+			content: '' !important;
+			display: none !important;
+		}
+	}
+}
+

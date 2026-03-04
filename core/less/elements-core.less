@@ -1,0 +1,1203 @@
+/* Core stylesheet: Elements (keep or comment out this file) */
+
+
+/* Global styles */
+	
+/* Fix the incorrect box model problem for good */
+// http://www.w3.org/TR/CSS21/box.html
+// http://quirksmode.org/css/user-interface/boxsizing.html
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+// https://css-tricks.com/transparent-borders-with-background-clip/
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	background-clip: inherit;
+	background-origin: inherit;
+	-webkit-text-size-adjust: none !important;
+	text-size-adjust: none !important;
+}
+html {
+	.border-box();
+	//background-clip: padding-box; // 2021-06-10: This causes sometimes a visible gap on Chrome
+	background-clip: border-box;
+	background-origin: padding-box;
+	font-size: 100%;
+}
+
+/* Prevent elements to go out their containers */
+*,
+::before,
+::after {
+	max-width: 100%;
+}
+
+/* Prevent too long words to go out of their containers */
+* {
+	-ms-word-break: break-all;
+	word-break: break-word;
+}
+
+/* Fix the margins inside/outside depending on borders/padding problem for good */
+// http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+@media screen {
+	* {
+		.margin-fix();
+		.empty-fix();
+	}
+}
+
+/* Hidden elements */
+// https://getbootstrap.com/docs/4.0/content/reboot/#html5-hidden-attribute
+[hidden] {
+	display: none !important;
+}
+
+/* Fix Chrome sub-pixel rounding errors with certain screen widths (tested 2020-05-21 on Chrome / Windows 10) */
+body {
+	width: 99.999%;
+}
+
+/* Allow long words like URLs to wrap instead of breaking the layout */
+// http://www.w3.org/TR/css3-text/#overflow-wrap
+// http://caniuse.com/#feat=wordwrap
+body {
+	overflow-wrap: break-word; // New synonym for the word-wrap property
+	word-wrap: break-word;
+}
+
+/* Disable IOS orientation font size change */
+// https://css-tricks.com/your-css-reset-needs-text-size-adjust-probably/
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+
+/* Text styles */
+body {
+	* {
+		word-wrap: break-word;
+	}
+}
+abbr,
+dfn {
+	&[title] {
+		border-bottom: 1px dotted;
+		cursor: help;
+	}
+}
+address {
+	font-style: normal;
+}
+b,
+strong {
+	font-weight: 700;
+	b,
+	strong {
+		font-weight: normal;
+	}
+}
+caption,
+figcaption {
+	font-style: italic;
+	text-align: left;
+}
+cite,
+dfn,
+var {
+	font-style: italic;
+}
+code,
+kbd,
+samp {
+}
+dt {
+	font-weight: bold;
+}
+em,
+i {
+	font-style: italic;
+	em,
+	i {
+		font-style: normal;
+	}
+}
+output {
+	font-style: italic;
+}
+pre {
+}
+big { // Obsolete in HTML5
+}
+small {
+}
+sub,
+sup {
+}
+summary {
+	font-weight: bold;
+}
+tfoot {
+	td,
+	th {
+		font-style: italic;
+	}
+}
+td,
+th {
+	vertical-align: top;
+}
+th {
+	font-weight: bold;
+	text-align: left;
+}
+
+/* Positioning, margins and paddings */
+body {
+	padding: 0px;
+	margin: 0px;
+}
+blockquote,
+dd,
+details,
+dl,
+dt,
+fieldset,
+figure,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup, // Obsolete in HTML5
+li,
+menu,
+nav,
+ol,
+p,
+pre,
+ul,
+summary,
+table {}
+blockquote,
+details,
+dl,
+fieldset,
+figure,
+form,
+menu,
+nav,
+ol,
+p,
+pre,
+ul,
+summary,
+table {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+blockquote {
+	margin-right: 0px;
+}
+caption,
+figcaption {
+	margin: 0px;
+	padding-top: 0px;
+	/*
+	padding-right: @x;
+	padding-left: @x;
+	*/
+}
+dl {
+	padding: 0px;
+	dt {
+		margin: 0px;
+		padding: 0px;
+	}
+	dd {
+		margin: 0px;
+		padding: 0px;
+	}
+}
+figure {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+menu,
+ol,
+ul {
+	margin-left: 0px;
+	padding: 0px;
+	li {
+		padding: 0px;
+		margin: 0px;
+		ol,
+		ul {
+			margin-bottom: 0px;
+		}
+	}
+}
+menu {
+}
+menu[type='toolbar'] {
+	li {
+		margin-left: 0px;
+	}
+}
+menu[type='context'] {
+	li {
+		margin: 0px;
+	}
+}
+
+/* Links */
+a {
+	img,
+	input[type='image']	{
+		border: none;
+	}
+	> img,
+	> input[type='image'] {
+		display: inline-block;
+	}
+	// https://css-tricks.com/snippets/css/remove-dotted-link-borders/
+	//&.active {
+	//	outline: 0px;
+	//}
+}
+
+/* Media content */
+img,
+canvas,
+video,
+audio	{
+	max-width: 100%;
+}
+img,
+canvas,
+video	{
+	height: auto;
+}
+
+/* Fix Google Maps */
+.gm-style {
+	img {
+		max-width: none;
+	}
+}
+
+/* Images */
+img {
+	-ms-interpolation-mode: bicubic;
+}
+
+/* Tables */
+table {
+	//margin-top: -1px;
+	//top: 1px;
+	position: relative;
+	td,
+	th {
+		padding-top: @y / 2 - @table-border-width;
+		padding-right: @x;
+		padding-bottom: @y / 2;
+		padding-left: @x - @table-border-width;
+	}
+	tfoot {
+		td,
+		th {
+			padding-top: @y / 2 - @table-footer-border-width;
+			padding-right: @x;
+			padding-bottom: @y / 2;
+			padding-left: @x - @table-footer-border-width;
+		}
+	}
+	thead {
+		td,
+		th {
+			padding-top: @y / 2 - @table-header-border-width;
+			padding-right: @x;
+			padding-bottom: @y / 2;
+			padding-left: @x - @table-header-border-width;
+		}
+	}
+}
+table {
+	.background-color-fix(@table-color);
+	.color-fix(@table-text-color);
+	border-collapse: collapse;
+	width: 100%;
+	caption {
+		caption-side: top;
+	}
+	td,
+	th {
+		.border-color-fix(@table-border-color);
+		border-bottom-style: solid;
+		border-bottom-width: @table-border-width;
+	}
+	tfoot {
+		td,
+		th {
+			.background-color-fix(@table-footer-color);
+			.border-color-fix(@table-footer-border-color);
+			.color-fix(@table-footer-text-color);
+			border-bottom-style: solid;
+			border-bottom-width: @table-footer-border-width;
+		}
+	}
+	thead {
+		td,
+		th {
+			.background-color-fix(@table-header-color);
+			.border-color-fix(@table-header-border-color);
+			.color-fix(@table-header-text-color);
+			border-bottom-style: solid;
+			border-bottom-width: @table-header-border-width;
+		}
+	}
+}
+
+/* Embedding content */
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+video {
+	vertical-align: middle;
+}
+audio {
+	//height: 4 * @y;
+	//width: 20 * @x;
+}
+iframe {
+	border: none;
+}
+
+/* Forms */
+form {
+	margin: 0px;
+}
+// https://codepen.io/absolutholz/pen/jWgBMo
+fieldset {
+	border-width: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+legend {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+label {
+	cursor: pointer;
+}
+// http://stackoverflow.com/a/17948816/4140621
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+textarea,
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	-webkit-border-radius: 0;
+}
+button {
+	* {
+		vertical-align: middle;
+	}
+}
+button,
+input,
+select,
+textarea {
+	.border-box();
+	display: inline-block;
+	vertical-align: middle;
+	&:not([disabled]) {
+		cursor: pointer;
+	}
+}
+input[type='text'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='url'],
+input[type='email'],
+input[type='datetime'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='number'],
+input[type='range'],
+input[type='color'] {
+	.background-color-fix(@text-input-color);
+	.border-color-fix(@text-input-border-color);
+	.color-fix(@text-input-text-color);
+	border-style: @text-input-border-style;
+	border-width: @text-input-border-width;
+	font-family: @text-input-font-family;
+	font-size: @text-input-font-size;
+	font-weight: @text-input-font-weight;
+	height: @text-input-height;
+	line-height: @text-input-line-height;
+	margin: @text-input-line-fill 0px;
+	padding: @text-input-padding;
+	&[required],
+	&:required {
+		.background-color-fix(@text-input-color-required);
+		.border-color-fix(@text-input-border-color-required);
+		.color-fix(@text-input-text-color-required);
+	}
+	&[disabled],
+	&:disabled {
+		.background-color-fix(@text-input-color-disabled);
+		.border-color-fix(@text-input-border-color-disabled);
+		.color-fix(@text-input-text-color-disabled);
+	}
+}
+input[type='checkbox'],
+input[type='radio'] {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	top: -1px;
+	width: 2 * @x;
+}
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+button {
+	.background-color-fix(@button-color);
+	.border-color-fix(@button-border-color);
+	.color-fix(@button-text-color);
+	border-style: @button-border-style;
+	border-width: @button-border-width;
+	display: inline-block;
+	font-family: @button-font-family;
+	font-weight: @button-font-weight;
+	font-size: @button-font-size;
+	height: @button-height;
+	line-height: @button-line-height;
+	margin: @button-line-fill 0px;
+	padding: @button-padding;
+	position: relative;
+	vertical-align: middle;
+	white-space: nowrap;
+	&:hover {
+		.background-color-fix(@button-color-hover);
+		.border-color-fix(@button-border-color-hover);
+		.color-fix(@button-text-color-hover);
+	}
+	&.active {
+		.background-color-fix(@button-color-active);
+		.border-color-fix(@button-border-color-active);
+		.color-fix(@button-text-color-active);
+		border-style: @button-border-style-active;
+	}
+	&[disabled],
+	&:disabled {
+		.background-color-fix(@button-color-disabled) !important;
+		.border-color-fix(@button-border-color-disabled) !important;
+		.color-fix(@button-text-color-disabled) !important;
+		border-style: @button-border-style !important;
+	}
+}
+input[type='submit'] {
+	.background-color-fix(@button-color-default);
+	.border-color-fix(@button-border-color-default);
+	.color-fix(@button-text-color-default);
+}
+input[type='search'] {
+	.border-box();
+}
+/* Input type file seems to have a fixed height in Firefox */
+input[type='file'] {
+	.border-box();
+	.color-fix(@text-input-text-color);
+	height: 26px;
+	position: relative;
+	margin: 2px 0px;
+	&[required],
+	&:required {
+		.color-fix(@text-input-text-color-required);
+	}
+	&[disabled],
+	&:disabled {
+		.color-fix(@text-input-text-color-disabled);
+	}
+}
+select {
+	.background-color-fix(@select-color);
+	.border-color-fix(@select-border-color);
+	.color-fix(@select-text-color);
+	border-style: @select-border-style;
+	border-width: @select-border-width;
+	font-family: @select-font-family;
+	font-size: @select-font-size;
+	font-weight: @select-font-weight;
+	line-height: @select-line-height;
+	margin: @select-line-fill 0px;
+	padding: @select-padding;
+	&[required],
+	&:required {
+		.background-color-fix(@select-color-required);
+		.border-color-fix(@select-border-color-required);
+		.color-fix(@select-text-color-required);
+	}
+	&[disabled],
+	&:disabled {
+		.background-color-fix(@select-color-disabled);
+		.border-color-fix(@select-border-color-disabled);
+		.color-fix(@select-text-color-disabled);
+	}
+	option {
+		padding: 0px 0.3 * @x;
+	}
+}
+select:not([multiple]) {
+	height: @select-height;
+}
+textarea {
+	.background-color-fix(@text-area-color);
+	.border-color-fix(@text-area-border-color);
+	.color-fix(@text-area-text-color);
+	border-style: @text-area-border-style;
+	border-width: @text-area-border-width;
+	font-family: @text-area-font-family;
+	font-size: @text-area-font-size;
+	font-weight: @text-area-font-weight;
+	height: @text-area-height;
+	line-height: @text-area-line-height;
+	margin: @text-area-line-fill 0px;
+	padding: @text-area-padding;
+	&[required],
+	&:required {
+		.background-color-fix(@text-area-color-required);
+		.border-color-fix(@text-area-border-color-required);
+		.color-fix(@text-area-text-color-required);
+	}
+	&[disabled],
+	&:disabled {
+		.background-color-fix(@text-area-color-disabled);
+		.border-color-fix(@text-area-border-color-disabled);
+		.color-fix(@text-area-text-color-disabled);
+	}
+}
+::-webkit-input-placeholder,
+:-webkit-input-placeholder,
+:-moz-placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder,
+:-o-placeholder,
+::placeholder {
+	color: @color-grayscale-4;
+	font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+	.border-box();
+	.background-color-fix(@hr-color);
+	.color-fix(@hr-color);
+	border: none;
+	top: @hr-height;
+	position: relative;
+	height: @hr-height;
+	outline: none;
+	padding: 0px;
+	&,
+	&:empty {
+		margin: @hr-margin;
+	}
+}
+
+/* Selection */
+::selection {
+	background-color: @selection-color;
+}
+
+
+/* Screen styles */
+@media screen {
+
+	/* Text styles */
+	body {
+		.color-fix(@body-text-color);
+		font-family: @body-font-family;
+		font-weight: @body-font-weight;
+		font-size: @body-font-size;
+		line-height: @body-line-height;
+	}
+	a {
+		.color-fix(@link-color);
+		&,
+		&:visited,
+		&.active {
+			text-decoration: @link-text-decoration;
+		}
+		&:visited {
+			.color-fix(@link-color-visited);
+		}
+		&:hover {
+			.color-fix(@link-color-hover);
+			text-decoration: @link-text-decoration-hover;
+		}
+		&.active {
+			.color-fix(@link-color-active);
+		}
+	}
+	code,
+	kbd,
+	samp {
+		.color-fix(@monospace-text-color);
+		font-family: @monospace-font-family;
+		font-weight: @monospace-font-weight;
+		font-size: @monospace-font-size;
+		line-height: @monospace-line-height;
+	}
+	h1 {
+		.h1;
+	}
+	h2 {
+		.h2;
+	}
+	h3 {
+		.h3;
+	}
+	h4 {
+		.h4;
+	}
+	h5 {
+		.h5;
+	}
+	h6 {
+		.h6;
+	}
+	pre {
+		.color-fix(@monospace-text-color);
+		font-family: @monospace-font-family;
+		font-weight: @monospace-font-weight;
+		font-size: @monospace-font-size;
+		line-height: @monospace-line-height;
+	}
+	ruby {
+		line-height: 2 * @body-line-height;
+		rp,
+		rt {
+			line-height: @body-line-height / 2;
+		}
+	}
+	big { // Obsolete in HTML5
+		font-size: 1.2 * @body-font-size;
+		line-height: 1.2 * @body-line-height;
+	}
+	small {
+		font-size: 0.8 * @body-font-size;
+		line-height: 0.8 * @body-line-height;
+	}
+	sub,
+	sup {
+		line-height: 0.3 * @body-line-height;
+	}
+	td,
+	th {
+		line-height: @body-line-height;
+	}
+
+	/* Positioning, margins and paddings */
+	// We get rid of top margins and use only bottom margins (except for H1-H6-elements, because they need bigger top margins).
+	// Every first and last child will also get 0px top and bottom margins respectively, in order to prevent additional margins when using padding.
+	// https://www.smashingmagazine.com/2019/07/margins-in-css/
+	blockquote,
+	dd,
+	details,
+	dl,
+	dt,
+	fieldset,
+	figure,
+	legend,
+	menu,
+	nav,
+	ol,
+	p,
+	pre,
+	ul,
+	summary,
+	table {
+		margin-top: @paragraph-margin;
+		margin-bottom: @paragraph-margin;
+	}
+	blockquote {
+		margin-left: @block-indent;
+		margin-right: @block-indent;
+	}
+	caption,
+	figcaption {
+		margin-top: @paragraph-margin / 2;
+		margin-bottom: @paragraph-margin / 2;
+		//padding-bottom: @paragraph-margin;
+	}
+	figure {
+		table {
+			margin-bottom: 0px;
+		}
+	}
+	dd {
+		margin-left: @block-indent;
+	}
+	hgroup { // Obsolete in HTML5
+		margin-bottom: @heading-1-margin-bottom;
+		margin-top: @heading-1-margin-top;
+	}
+	menu,
+	ol,
+	ul {
+		li {
+			margin-left: @block-indent;
+		}
+	}
+	ol {
+		li {
+			margin-left: @block-indent;
+		}
+	}
+	
+}
+
+
+/* Print styles */
+@media print {
+	
+	/* Paging control */
+	caption,
+	figcaption {
+		page-break-before: avoid;
+	}
+	caption,
+	dt
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	legend,
+	label,
+	summary	{
+		page-break-after: avoid;
+	}
+	audio,
+	button,
+	canvas,
+	caption,
+	dt,
+	figcaption,
+	figure,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	hgroup, // Obsolete in HTML5
+	img,
+	input,
+	legend,
+	li,
+	label,
+	select,
+	sub,
+	summary,
+	sup,
+	td,
+	textarea,
+	th,
+	video {
+		page-break-inside: avoid;
+	}
+
+	/* Text styles */
+	body {
+		.color-fix(@print-body-text-color) !important;
+		font-family: @print-body-font-family !important;
+		font-weight: @print-body-font-weight !important;
+		font-size: @print-body-font-size !important;
+		line-height: @print-body-line-height !important;
+	}
+	a {
+		.color-fix(@print-link-color) !important;
+		&,
+		&:visited,
+		&.active {
+			text-decoration: @print-link-text-decoration !important;
+		}
+		&:visited {
+			.color-fix(@print-link-color-visited) !important;
+		}
+		&:hover {
+			.color-fix(@print-link-color-hover) !important;
+			text-decoration: @print-link-text-decoration-hover !important;
+		}
+		&.active {
+			.color-fix(@print-link-color-active) !important;
+		}
+	}
+	h1 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-1-text-color);
+		}
+	}
+	h2 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-2-text-color);
+		}
+	}
+	h3 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-3-text-color);
+		}
+	}
+	h4 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-4-text-color);
+		}
+	}
+	h5 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-5-text-color);
+		}
+	}
+	h6 {
+		a,
+		a:visited {
+			.color-fix(@print-heading-6-text-color);
+		}
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		a,
+		a:visited {
+			text-decoration: none;
+		}
+		a.active {
+			.color-fix(@print-link-color-active);
+		}
+		a:hover {
+			.color-fix(@print-link-color-hover);
+		}
+	}
+	code,
+	kbd,
+	samp {
+		.color-fix(@print-monospace-text-color) !important;
+		font-family: @print-monospace-font-family !important;
+		font-weight: @print-monospace-font-weight !important;
+		font-size: @print-monospace-font-size !important;
+		line-height: @print-monospace-line-height !important;
+	}
+	h1 {
+		.color-fix(@print-heading-1-text-color) !important;
+		font-family: @print-heading-1-font-family !important;
+		font-weight: @print-heading-1-font-weight !important;
+		font-size: @print-heading-1-font-size !important;
+		letter-spacing: @print-heading-1-letter-spacing !important;
+		line-height: @print-heading-1-line-height !important;
+		text-transform: @print-heading-1-text-transform !important;
+	}
+	h2 {
+		.color-fix(@print-heading-2-text-color) !important;
+		font-family: @print-heading-2-font-family !important;
+		font-weight: @print-heading-2-font-weight !important;
+		font-size: @print-heading-2-font-size !important;
+		letter-spacing: @print-heading-2-letter-spacing !important;
+		line-height: @print-heading-2-line-height !important;
+		text-transform: @print-heading-2-text-transform !important;
+	}
+	h3 {
+		.color-fix(@print-heading-3-text-color) !important;
+		font-family: @print-heading-3-font-family !important;
+		font-weight: @print-heading-3-font-weight !important;
+		font-size: @print-heading-3-font-size !important;
+		letter-spacing: @print-heading-3-letter-spacing !important;
+		line-height: @print-heading-3-line-height !important;
+		text-transform: @print-heading-3-text-transform !important;
+	}
+	h4 {
+		.color-fix(@print-heading-4-text-color) !important;
+		font-family: @print-heading-4-font-family !important;
+		font-weight: @print-heading-4-font-weight !important;
+		font-size: @print-heading-4-font-size !important;
+		letter-spacing: @print-heading-4-letter-spacing !important;
+		line-height: @print-heading-4-line-height !important;
+		text-transform: @print-heading-4-text-transform !important;
+	}
+	h5 {
+		.color-fix(@print-heading-5-text-color) !important;
+		font-family: @print-heading-5-font-family !important;
+		font-weight: @print-heading-5-font-weight !important;
+		font-size: @print-heading-5-font-size !important;
+		letter-spacing: @print-heading-5-letter-spacing !important;
+		line-height: @print-heading-5-line-height !important;
+		text-transform: @print-heading-5-text-transform !important;
+	}
+	h6 {
+		.color-fix(@print-heading-6-text-color) !important;
+		font-family: @print-heading-6-font-family !important;
+		font-weight: @print-heading-6-font-weight !important;
+		font-size: @print-heading-6-font-size !important;
+		letter-spacing: @print-heading-6-letter-spacing !important;
+		line-height: @print-heading-6-line-height !important;
+		text-transform: @print-heading-6-text-transform !important;
+	}
+	pre {
+		.color-fix(@print-monospace-text-color) !important;
+		font-family: @print-monospace-font-family !important;
+		font-weight: @print-monospace-font-weight !important;
+		font-size: @print-monospace-font-size !important;
+		line-height: @print-monospace-line-height !important;
+	}
+	ruby {
+		line-height: 2 * @print-body-line-height !important;
+		rp,
+		rt {
+			line-height: @print-body-line-height / 2;
+		}
+	}
+	big { // Obsolete in HTML5
+		font-size: 1.2 * @print-body-font-size;
+		line-height: 1.2 * @print-body-line-height !important;
+	}
+	small {
+		font-size: 0.8 * @print-body-font-size;
+		line-height: 0.8 * @print-body-line-height !important;
+	}
+	sub,
+	sup {
+		line-height: 0.3 * @print-body-line-height !important;
+	}
+	th,
+	td {
+		line-height: @print-body-line-height !important;
+	}
+
+	/* Positioning, margins and paddings */
+	blockquote,
+	dd,
+	details,
+	dl,
+	dt,
+	fieldset,
+	figure,
+	legend,
+	form,  
+	menu,
+	nav,
+	ol,
+	p,
+	pre,
+	ul,
+	summary,
+	table {
+		margin-bottom: @print-paragraph-margin;
+	}
+	blockquote {
+	}
+	caption,
+	figcaption {
+		padding-bottom: @print-paragraph-margin;
+	}
+	dd {
+		margin-left: @print-block-indent;
+	}
+	h1 {
+		margin-top: @print-heading-1-margin-top;
+		margin-bottom: @print-heading-1-margin-bottom;
+	}
+	h2 {
+		margin-top: @print-heading-2-margin-top;
+		margin-bottom: @print-heading-2-margin-bottom;
+	}
+	h3 {
+		margin-top: @print-heading-3-margin-top;
+		margin-bottom: @print-heading-3-margin-bottom;
+	}
+	h4 {
+		margin-top: @print-heading-4-margin-top;
+		margin-bottom: @print-heading-4-margin-bottom;
+	}
+	h5 {
+		margin-top: @print-heading-5-margin-top;
+		margin-bottom: @print-heading-5-margin-bottom;
+	}
+	h6 {
+		margin-top: @print-heading-6-margin-top;
+		margin-bottom: @print-heading-6-margin-bottom;
+	}
+	hgroup { // Obsolete in HTML5
+		margin-bottom: @print-heading-1-margin-bottom;
+		margin-top: @print-heading-1-margin-top;
+	}
+	menu,
+	ol,
+	ul {
+		li {
+			margin-left: @print-block-indent;
+		}
+	}
+	ol {
+		li {
+			margin-left: @print-block-indent + @x;
+		}
+	}
+
+}
+
+/* Heading mixins */
+.h1 {
+	margin-bottom: @heading-1-margin-bottom;
+	margin-top: @heading-1-margin-top;
+	.color-fix(@heading-1-text-color);
+	font-family: @heading-1-font-family;
+	font-weight: @heading-1-font-weight;
+	font-size: @heading-1-font-size;
+	letter-spacing: @heading-1-letter-spacing;
+	line-height: @heading-1-line-height;
+	text-transform: @heading-1-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-1-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+.h2 {
+	margin-bottom: @heading-2-margin-bottom;
+	margin-top: @heading-2-margin-top;
+	.color-fix(@heading-2-text-color);
+	font-family: @heading-2-font-family;
+	font-weight: @heading-2-font-weight;
+	font-size: @heading-2-font-size;
+	letter-spacing: @heading-2-letter-spacing;
+	line-height: @heading-2-line-height;
+	text-transform: @heading-2-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-2-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+.h3 {
+	margin-bottom: @heading-3-margin-bottom;
+	margin-top: @heading-3-margin-top;
+	.color-fix(@heading-3-text-color);
+	font-family: @heading-3-font-family;
+	font-weight: @heading-3-font-weight;
+	font-size: @heading-3-font-size;
+	letter-spacing: @heading-3-letter-spacing;
+	line-height: @heading-3-line-height;
+	text-transform: @heading-3-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-3-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+.h4 {
+	margin-bottom: @heading-4-margin-bottom;
+	margin-top: @heading-4-margin-top;
+	.color-fix(@heading-4-text-color);
+	font-family: @heading-4-font-family;
+	font-weight: @heading-4-font-weight;
+	font-size: @heading-4-font-size;
+	letter-spacing: @heading-4-letter-spacing;
+	line-height: @heading-4-line-height;
+	text-transform: @heading-4-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-4-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+.h5 {
+	margin-bottom: @heading-5-margin-bottom;
+	margin-top: @heading-5-margin-top;
+	.color-fix(@heading-5-text-color);
+	font-family: @heading-5-font-family;
+	font-weight: @heading-5-font-weight;
+	font-size: @heading-5-font-size;
+	letter-spacing: @heading-5-letter-spacing;
+	line-height: @heading-5-line-height;
+	text-transform: @heading-5-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-5-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+.h6 {
+	margin-bottom: @heading-6-margin-bottom;
+	margin-top: @heading-6-margin-top;
+	.color-fix(@heading-6-text-color);
+	font-family: @heading-6-font-family;
+	font-weight: @heading-6-font-weight;
+	font-size: @heading-6-font-size;
+	letter-spacing: @heading-6-letter-spacing;
+	line-height: @heading-6-line-height;
+	text-transform: @heading-6-text-transform;
+	a,
+	a:visited {
+		.color-fix(@heading-6-text-color);
+	}
+	a.active {
+		.color-fix(@link-color-active);
+	}
+	a:hover {
+		.color-fix(@link-color-hover);
+	}
+}
+

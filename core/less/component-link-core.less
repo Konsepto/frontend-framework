@@ -1,0 +1,56 @@
+/* Core component stylesheet: Link (keep or comment out this file) */
+
+
+/* Link */
+.link {}
+
+
+/* Action link */
+.link-action {
+	&:visited {
+		color: @link-color;
+	}
+}
+
+
+/* Unmarked link */
+.link-unmarked {
+	&,
+	&:visited,
+	&:active {
+		color: @body-text-color;
+		text-decoration: none;
+	}
+	&:hover {
+		color: @link-color-hover;
+		text-decoration: @link-text-decoration-hover;
+	}
+}
+
+
+/* More link */
+.link-more {
+	&,
+	a {
+		.link-action();
+	}
+}
+
+
+/* Less link */
+.link-less {
+	&,
+	a {
+		.link-action();
+	}
+}
+
+
+/* All link */
+.link-all {
+	&,
+	a {
+		.link-action();
+	}
+}
+

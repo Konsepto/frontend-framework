@@ -1,0 +1,35 @@
+/* Core component stylesheet: Accordion (keep or comment out this file) */
+
+
+// TODO: Rewrite styles
+/* Accordion */
+.accordion-basic {
+	.accordion-title {
+		border-width: @accordion-border-width;
+		border-style: @accordion-border-style;
+		font-family: @accordion-font-family;
+		font-size: @accordion-font-size;
+		font-weight: @accordion-font-weight;
+		line-height: @accordion-line-height - 2 * @accordion-border-width;
+		margin-bottom: @paragraph-margin;
+		a,
+		a:visited,
+		a:hover,
+		a:active {
+			background-position: top left;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			display: block;
+			text-decoration: none;
+		}
+	}
+	.accordion-content {
+		margin-bottom: @paragraph-margin;
+		padding-left: 2 * @x;
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
+

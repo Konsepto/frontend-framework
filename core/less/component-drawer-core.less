@@ -1,0 +1,48 @@
+/* Core component stylesheet: Drawer (keep or comment out this file) */
+
+
+/* Drawer container */
+.drawer-container {
+}
+
+
+/* Drawer */
+.drawer {
+	//.float-fix();
+	position: relative;
+	&.closed {
+		display: none;
+	}
+	&.open {
+		display: block;
+	}
+}
+
+
+/* Toggle drawer button */
+.toggle-drawer-button {
+	display: inline-block;
+	border: @toggle-drawer-button-border;
+	padding: @toggle-drawer-button-padding;
+	min-height: @toggle-drawer-button-height;
+	min-width: @toggle-drawer-button-width;
+	font-family: @toggle-drawer-button-font-family;
+	font-size: @toggle-drawer-button-font-size;
+	line-height: @toggle-drawer-button-line-height;
+	font-weight: @toggle-drawer-button-font-weight;
+	text-decoration: none;
+	&, 
+	&:visited {
+		background-color: @toggle-drawer-button-color;
+		color: @toggle-drawer-button-text-color;
+		&.active {
+			background-color: @toggle-drawer-button-color-active;
+			color: @toggle-drawer-button-text-color-active;
+		}
+		&:hover {
+			background-color: @toggle-drawer-button-color-hover;
+			color: @toggle-drawer-button-text-color-hover;
+		}
+	}
+}
+

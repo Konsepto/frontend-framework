@@ -1,0 +1,457 @@
+/* Core stylesheet: Grid (keep or comment out this file) */
+
+
+/* Column + gutter width shortcut */
+@col-gutter-width: @col-width + @gutter-width;
+
+/* Column width shortcuts */
+@col-width-1: @col-width;
+@col-width-2: @col-width-1 + @col-gutter-width;
+@col-width-3: @col-width-2 + @col-gutter-width;
+@col-width-4: @col-width-3 + @col-gutter-width;
+@col-width-5: @col-width-4 + @col-gutter-width;
+@col-width-6: @col-width-5 + @col-gutter-width;
+@col-width-7: @col-width-6 + @col-gutter-width;
+@col-width-8: @col-width-7 + @col-gutter-width;
+@col-width-9: @col-width-8 + @col-gutter-width;
+@col-width-10: @col-width-9 + @col-gutter-width;
+@col-width-11: @col-width-10 + @col-gutter-width;
+@col-width-12: @col-width-11 + @col-gutter-width;
+@col-width-13: @col-width-12 + @col-gutter-width;
+@col-width-14: @col-width-13 + @col-gutter-width;
+@col-width-15: @col-width-14 + @col-gutter-width;
+@col-width-16: @col-width-15 + @col-gutter-width;
+@col-width-17: @col-width-16 + @col-gutter-width;
+@col-width-18: @col-width-17 + @col-gutter-width;
+@col-width-19: @col-width-18 + @col-gutter-width;
+@col-width-20: @col-width-19 + @col-gutter-width;
+@col-width-21: @col-width-20 + @col-gutter-width;
+@col-width-22: @col-width-21 + @col-gutter-width;
+@col-width-23: @col-width-22 + @col-gutter-width;
+@col-width-24: @col-width-23 + @col-gutter-width;
+@col-width-25: @col-width-24 + @col-gutter-width;
+@col-width-26: @col-width-25 + @col-gutter-width;
+@col-width-27: @col-width-26 + @col-gutter-width;
+@col-width-28: @col-width-27 + @col-gutter-width;
+@col-width-29: @col-width-28 + @col-gutter-width;
+@col-width-30: @col-width-29 + @col-gutter-width;
+@col-width-31: @col-width-30 + @col-gutter-width;
+@col-width-32: @col-width-31 + @col-gutter-width;
+
+/* Column + gutter width shortcuts */
+@col-gutter-width-1: @col-width-1 + @gutter-width;
+@col-gutter-width-2: @col-width-2 + @gutter-width;
+@col-gutter-width-3: @col-width-3 + @gutter-width;
+@col-gutter-width-4: @col-width-4 + @gutter-width;
+@col-gutter-width-5: @col-width-5 + @gutter-width;
+@col-gutter-width-6: @col-width-6 + @gutter-width;
+@col-gutter-width-7: @col-width-7 + @gutter-width;
+@col-gutter-width-8: @col-width-8 + @gutter-width;
+@col-gutter-width-9: @col-width-9 + @gutter-width;
+@col-gutter-width-10: @col-width-10 + @gutter-width;
+@col-gutter-width-11: @col-width-11 + @gutter-width;
+@col-gutter-width-12: @col-width-12 + @gutter-width;
+@col-gutter-width-13: @col-width-13 + @gutter-width;
+@col-gutter-width-14: @col-width-14 + @gutter-width;
+@col-gutter-width-15: @col-width-15 + @gutter-width;
+@col-gutter-width-16: @col-width-16 + @gutter-width;
+@col-gutter-width-17: @col-width-17 + @gutter-width;
+@col-gutter-width-18: @col-width-18 + @gutter-width;
+@col-gutter-width-19: @col-width-19 + @gutter-width;
+@col-gutter-width-20: @col-width-20 + @gutter-width;
+@col-gutter-width-21: @col-width-21 + @gutter-width;
+@col-gutter-width-22: @col-width-22 + @gutter-width;
+@col-gutter-width-23: @col-width-23 + @gutter-width;
+@col-gutter-width-24: @col-width-24 + @gutter-width;
+@col-gutter-width-25: @col-width-25 + @gutter-width;
+@col-gutter-width-26: @col-width-26 + @gutter-width;
+@col-gutter-width-27: @col-width-27 + @gutter-width;
+@col-gutter-width-28: @col-width-28 + @gutter-width;
+@col-gutter-width-29: @col-width-29 + @gutter-width;
+@col-gutter-width-30: @col-width-30 + @gutter-width;
+@col-gutter-width-31: @col-width-31 + @gutter-width;
+@col-gutter-width-32: @col-width-32 + @gutter-width;
+
+
+/* New grid styles utilizing flex styles */
+// Use order and negative or positive integers to change flex items' visual order if needed (order does not affect screen readers or keyboard browsing)
+.flex-item {
+	order: 0;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+}
+.flex-container {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.flex {
+	.flex-container;
+	> * {
+		.flex-item;
+	}
+}
+// You can give flex items fixed widths to make the row work as intended
+.flex-row {
+	.flex-row();
+}
+.flex-row(@hgap: @gutter-width) {
+	.flex;
+	column-gap: @hgap;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	align-content: stretch;
+}
+// You can give flex items fixed widths to make the row work as intended
+.flex-multirow {
+	.flex-multirow();
+}
+.flex-multirow(@vgap: @gutter-height; @hgap: @gutter-width) {
+	.flex;
+	gap: @vgap @hgap;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+	> * {
+		flex-basis: content;
+	}
+}
+// You can give flex items fixed heights to make the column work as intended
+.flex-col {
+	.flex-col();
+}
+.flex-col(@vgap: @gutter-height) {
+	.flex;
+	row-gap: @vgap;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	align-content: stretch;
+	> * {
+		width: 100%;
+	}
+}
+// You can give flex items fixed widths to make the row work as intended
+.flex-multicol {
+	.flex-multicol();
+}
+.flex-multicol(@vgap: @gutter-height; @hgap: @gutter-width) {
+	.flex;
+	gap: @vgap @hgap;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+	> * {
+		width: ~'calc(100% / 2 - @{vgap} / 2)';
+	}
+}
+.flex-grid {
+	.flex-grid();
+}
+.flex-grid(@cols: 2; @vgap: @gutter-height; @hgap: @gutter-width) {
+	.flex;
+	gap: @vgap @hgap;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+	> * {
+		width: ~'calc(100% / @{cols} - ((@{cols} - 1)/@{cols}) * @{hgap})';
+	}
+}
+.flex-left {
+	justify-content: flex-start;
+}
+.flex-center {
+	justify-content: center;
+}
+.flex-right {
+	justify-content: flex-end;
+}
+.flex-top {
+	align-items: flex-start;
+}
+.flex-middle {
+	align-items: center;
+}
+.flex-bottom {
+	align-items: flex-end;
+}
+.flex-grid-1 {
+	.flex-grid(1);
+}
+.flex-grid-2 {
+	.flex-grid(2);
+}
+.flex-grid-3 {
+	.flex-grid(3);
+}
+.flex-grid-4 {
+	.flex-grid(4);
+}
+.flex-grid-5 {
+	.flex-grid(5);
+}
+.flex-grid-6 {
+	.flex-grid(6);
+}
+.flex-grid-7 {
+	.flex-grid(7);
+}
+.flex-grid-8 {
+	.flex-grid(8);
+}
+.flex-grid-9 {
+	.flex-grid(9);
+}
+.flex-grid-10 {
+	.flex-grid(10);
+}
+.flex-grid-11 {
+	.flex-grid(11);
+}
+.flex-grid-12 {
+	.flex-grid(12);
+}
+
+
+/* Old grid styles utilizing floating elements */
+
+/* Grid column */
+.col(@grid-col-width: ''; @grid-gutter-width: @gutter-width; @grid-gutter-height: @gutter-height) {
+	float: left;
+	margin-bottom: @grid-gutter-height;
+	margin-left: @grid-gutter-width;
+	position: relative;
+	&:first-child {
+		.row-break;
+	}
+}
+.col(@grid-col-width: ''; @grid-gutter-width: @gutter-width; @grid-gutter-height: @gutter-height) when not (@grid-col-width = '') {
+	width: @grid-col-width;
+}
+
+/* Grid row */
+.row(@grid-row-height: '') {
+	position: relative;
+}
+.row(@grid-row-height: '') when not (@grid-row-height = '') {
+	height: @grid-row-height;
+}
+
+/* Grid */
+.grid(@grid-col-width: ''; @row-length: ''; @grid-gutter-width: @gutter-width; @grid-gutter-height: @gutter-height)  {
+	.float-fix;
+	position: relative;
+	& > * {
+		.col(@grid-col-width; @grid-gutter-width; @grid-gutter-height);
+	}
+	.row-length(@row-length);
+}
+
+/* Row break */
+.row-break {
+	//clear: left !important;
+	//margin-left: 0px !important;
+	clear: left;
+	margin-left: 0px;
+}
+
+/* Automatic row break */
+.auto-row-break {
+	@media screen {
+		//clear: left !important;
+		clear: left;
+	}
+}
+
+/* No row breaks */
+.no-row-breaks(@grid-gutter-width: @gutter-width) {
+	margin-left: -@grid-gutter-width;
+	& > :first-child {
+		margin-left: @grid-gutter-width;
+	}
+}
+
+/* Row length */
+.row-length(@length) when not (@length = '') {
+	& > :first-child {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 1) {
+	& > *, 
+	& > .break-1 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	} 
+	& > :nth-child(1n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 2) {
+	& > .break-2 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	} 
+	& > :nth-child(2n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 3) {
+	& > .break-3 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(3n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 4) {
+	& > .break-4 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(4n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 5) {
+	& > .break-5 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(5n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 6) {
+	& > .break-6 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(6n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 7) {
+	& > .break-7 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	} 
+	& > :nth-child(7n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 8) {
+	& > .break-8 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(8n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 9) {
+	& > .break-9 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(9n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 10) {
+	& > .break-10 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(10n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 11) {
+	& > .break-11 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(11n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 12) {
+	& > .break-12 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(12n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 13) {
+	& > .break-13 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(13n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 14) {
+	& > .break-14 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(14n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 15) {
+	& > .break-15 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(15n + 1) {
+		.row-break;
+	}
+}
+.row-length(@length) when (@length = 16) {
+	& > .break-16 {
+		.row-break; // IE8 fix, must be inside its own block because IE8 ignores the whole block with nth-child selector
+	}
+	& > :nth-child(16n + 1) {
+		.row-break;
+	}
+}
+
+
+/* Pull (moves column left) */
+.pull(@amount: @col-gutter-width-1) {
+	right: @amount;
+}
+
+/* Push (moves column right) */
+.push(@amount: @col-gutter-width-1) {
+	left: @amount;
+}
+
+/* Lift column (moves up) */
+.lift(@amount: @row-gutter-height-1) {
+	bottom: @amount;
+}
+
+/* Lower column (moves down) */
+.lower(@amount: @row-gutter-height-1) {
+	top: @amount;
+}
+
+
+/* Pad left (adds left padding) */
+.pad-left(@amount: @col-gutter-width-1) {
+	padding-left: @amount;
+}
+
+/* Pad right (adds right padding) */
+.pad-right(@amount: @col-gutter-width-1) {
+	padding-right: @amount;
+}
+
+/* Pad top (adds top padding) */
+.pad-top(@amount: @row-gutter-height-1) {
+	padding-top: @amount;
+}
+
+/* Pad bottom (adds bottom padding) */
+.pad-bottom(@amount: @row-gutter-height-1) {
+	padding-right: @amount;
+}
+

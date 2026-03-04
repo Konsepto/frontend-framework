@@ -1,0 +1,75 @@
+/* Theme component stylesheet: Form (keep, replace or comment out these files) */
+
+
+/* Form legend theme settings */
+@form-legend-font-size: @body-font-size; // Use rem unit
+@form-legend-font-style: normal;
+@form-legend-font-weight: bold;
+
+/* Form label theme settings */
+@form-label-font-size: @body-font-size; // Use rem unit
+@form-label-font-style: normal;
+@form-label-font-weight: bold;
+
+/* Form hint theme settings */
+@form-hint-font-size: 0.9 * @body-font-size; // Use rem unit
+@form-hint-font-style: normal;
+@form-hint-font-weight: normal;
+@form-hint-text-color: @color-grayscale-12;
+
+/* Form tip theme settings */
+@form-tip-font-size: @body-font-size; // Use rem unit
+@form-tip-font-style: italic;
+@form-tip-font-weight: normal;
+@form-tip-text-color: #CC6600;
+
+
+/* Form theme styles */
+.form {
+	.small-screen-adjust-margin-bottom(2 * @paragraph-margin);
+}
+
+/* Form field theme styles */
+.form-field {
+	.small-screen-adjust-margin-bottom();
+}
+
+/* Form label theme styles */
+.form-label {
+	.small-screen-adjust-text(@form-label-font-size);
+	.small-screen-adjust-margin-bottom(@paragraph-margin, 0.25);
+}
+
+/* Form value label */
+.form-value-label {
+	.small-screen-adjust-text(@body-font-size);
+}
+
+/* Form input theme styles */
+.form-input {}
+
+/* Form legend */
+.form-legend {
+	.small-screen-adjust-text(@form-legend-font-size);
+}
+
+/* Form hint theme styles */
+.form-hint {
+	.small-screen-adjust-text(@form-hint-font-size);
+	.small-screen-adjust-margin-top(@paragraph-margin, 0.25);
+}
+
+/* Form tip theme styles */
+.form-tip {
+	padding-left: 1.5rem;
+	&::before {
+		.icon-font('arrow-up');
+		font-size: @body-font-size;
+		margin-left: -1.25rem;
+		position: absolute;
+		.small-screen-adjust-text(@body-font-size);
+	}
+	.small-screen-adjust-text(@form-tip-font-size);
+	.small-screen-adjust-margin-top(@paragraph-margin, 0.25);
+}
+

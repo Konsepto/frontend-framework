@@ -1,0 +1,35 @@
+/* Theme component stylesheet: Pagination (keep, replace or comment out these files) */
+
+/* pagination theme settings */
+@pagination-font-family: @body-font-family;
+@pagination-font-size: @body-font-size; // Use rem unit
+@pagination-font-weight: @body-font-weight;
+@pagination-line-height: @body-line-height; // Use a plain number without unit
+//@pagination-color: @color-grayscale-3;
+//@pagination-color-active: @color-grayscale-5;
+//@pagination-color-hover: @color-grayscale-6;
+//@pagination-text-color: @color-grayscale-16;
+//@pagination-text-color-active: @pagination-text-color;
+//@pagination-text-color-hover: @pagination-text-color;
+//@pagination-item-padding: 0.25rem 0.5rem;
+@pagination-item-min-width: 2rem;
+//@pagination-item-min-height: 2rem;
+@pagination-item-margin: 0.5rem;
+
+
+/* pagination theme settings */
+
+
+/* pagination theme styles */
+.pagination {
+	.assistive {
+		.screen-reader();
+	}
+	.small-screen-adjust-text(@pagination-font-size);
+	.page-controls {
+		.small-screen-adjust-margin-bottom();
+	}
+	.page-links {
+		.small-screen-adjust-margin-bottom();
+	}
+}

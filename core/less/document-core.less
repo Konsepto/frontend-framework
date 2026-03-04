@@ -1,0 +1,140 @@
+/* Core stylesheet: Document (keep or comment out this file) */
+
+
+/* Too short page fix */
+html, 
+body {
+	height: 100%;
+	margin: 0px;
+	min-height: 100%;
+	padding: 0px;
+}
+#page {
+	min-height: 100%;
+}
+
+/* Html */
+html {}
+
+/* Body */
+body {
+	@media screen {
+		.centered-content();
+		background-color: @body-background-color;
+		margin: 0px;
+		padding: 0px;
+	}
+}
+
+/* Page */
+#page {
+	overflow: visible;
+	margin-bottom: 0px;
+	position: relative;
+	@media screen {
+		.centered-content();
+		background-color: @page-background-color;
+	}
+}
+
+/* Header */
+#header {
+	margin-bottom: 0px;
+	@media screen {
+		.centered-content();
+		background-color: @header-background-color;
+	}
+}
+
+/* Main */
+#main {
+	margin-bottom: 0px;
+	@media screen {
+		.centered-content();
+		background-color: @main-background-color;
+	}
+}
+
+/* Footer */
+#footer {
+	margin-bottom: 0px;
+	@media screen {
+		.centered-content();
+		background-color: @footer-background-color;
+	}
+}
+
+/* Zone wrapper */
+.zone-wrapper {
+	//.float-fix();
+	//.margin-bottom-fix;
+	position: relative;
+	@media screen {
+		.centered-content();
+	}
+}
+
+/* Zone */
+.zone {
+	//.float-fix();
+	//.margin-bottom-fix;
+	position: relative;
+	@media screen {
+		.centered();
+	}
+	#main & {
+		@media screen {
+			padding-bottom: @zone-padding-bottom;
+			padding-top: @zone-padding-top;
+		}
+		@media print {
+			padding-bottom: @print-zone-padding-bottom;
+			padding-top: @print-zone-padding-top;
+		}
+	}
+}
+
+/* Block */
+.block {
+	//.float-fix();
+	//.margin-bottom-fix;
+	position: relative;
+	#main & {
+		@media screen {
+			margin-bottom: @block-margin;
+		}
+		@media print {
+			margin-bottom: @print-block-margin;
+		}
+	}
+}
+
+/* Short page footer fix mixin (apply to the #page element)*/
+.short-page-footer-fix() {
+	//display: grid;
+    //height: 100vh; // Full height
+	//grid-template-columns: 1fr; // 1 column
+	//grid-template-rows: auto; // First row
+    //grid-auto-rows: 1fr; // Multiple middle rows
+    //grid-template-rows: auto 1fr auto; // Last row
+	//> * {
+	//	width: 100vw; // Force grid cells to full width
+	//}
+	display: flex;
+	flex-direction: column;
+	> * {
+		width: 100%; // Force grid cells to full width
+	}
+	main  {
+		flex-grow: 1;
+	}
+}
+
+/* Fix the Webkit 1px rounding error: http://philfreo.com/blog/fixing-safaris-1px-background-image-centering-problem/ *
+@media screen AND (-webkit-min-device-pixel-ratio: 0), handheld AND (-webkit-min-device-pixel-ratio: 0), projection AND (-webkit-min-device-pixel-ratio: 0), tv AND (-webkit-min-device-pixel-ratio: 0) {
+	body {
+		background-position: 50.001% 0;
+	}
+}
+*/
+

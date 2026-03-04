@@ -1,0 +1,72 @@
+/* Core component stylesheet: Form (keep or comment out this file) */
+
+
+/* Forms */
+.form {
+	margin-bottom: 2 * @paragraph-margin;
+	&:last-child {
+		margin-bottom: 0px;
+	}
+	legend {
+		.form-legend;
+	}
+	label[for] {
+		.form-label;
+	}
+}
+
+/* Form field */
+.form-field {
+	margin-bottom: @paragraph-margin;
+}
+
+/* Form label */
+.form-label {
+	display: block;
+	font-size: @form-label-font-size;
+	font-weight: @form-label-font-weight;
+	margin-bottom: @paragraph-margin / 4;
+}
+
+/* Form value label */
+.form-value-label {
+	display: inline;
+	font-size: @body-font-size;
+	font-weight: @body-font-weight;
+}
+
+/* Form legend */
+.form-legend {
+	font-size: @form-legend-font-size;
+	font-weight: @form-legend-font-weight;
+}
+
+/* Form hint */
+.form-hint {
+	color: @form-hint-text-color;
+	display: block;
+	font-size: @form-hint-font-size;
+	font-style: @form-hint-font-style;
+	margin-top: @paragraph-margin / 4;
+}
+
+/* Form tip */
+.form-tip {
+	color: @form-tip-text-color;
+	display: block;
+	font-size: @form-tip-font-size;
+	font-style: @form-tip-font-style;
+	margin-top: @paragraph-margin / 4;
+}
+
+/* Form actions */
+.form-actions {
+	margin-bottom: @paragraph-margin;
+}
+
+/* Form honeypot spam detection */
+.form-check, 
+.form-honeypot {
+	display: none;
+}
+

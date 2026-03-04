@@ -1,0 +1,101 @@
+/* Theme component stylesheet: Accordion (keep, replace or comment out these files) */
+
+
+// TODO: Rewrite styles
+/* Accordion theme settings */
+@accordion-font-family: @body-font-family;
+@accordion-font-size: @body-font-size; // Use rem unit
+@accordion-font-weight: bold;
+@accordion-line-height: @body-line-height; // Use a plain number without unit
+@accordion-color: transparent;
+@accordion-color-hover: transparent;
+@accordion-color-active: transparent;
+@accordion-color-disabled: transparent;
+@accordion-text-color: @body-text-color;
+@accordion-text-color-hover: @accordion-text-color;
+@accordion-text-color-active: @accordion-text-color;
+@accordion-text-color-disabled: @color-grayscale-6;
+@accordion-border-color: @color-grayscale-5;
+@accordion-border-color-hover: @accordion-border-color;
+@accordion-border-color-active: @accordion-border-color;
+@accordion-border-color-disabled: @color-grayscale-3;
+@accordion-border-width: 0px;
+@accordion-border-style: solid;
+@accordion-border-style-active: solid;
+
+
+/* Accordion theme styles */
+.accordion {
+	.accordion-title {
+		.background-color-fix(@accordion-color);
+		.border-color-fix(@accordion-border-color);
+		border-width: @accordion-border-width;
+		border-style: @accordion-border-style;
+		font-family: @accordion-font-family;
+		font-size: @accordion-font-size;
+		font-weight: @accordion-font-weight;
+		line-height: @accordion-line-height - 2 * @accordion-border-width;
+		margin-bottom: @paragraph-margin;
+		&:first-child {
+			border-top: none;
+		}
+		&:hover {
+			.background-color-fix(@accordion-color-hover);
+			a {
+				&,
+				&:visited,
+				&:hover,
+				&:active {
+					.color-fix(@accordion-text-color-hover);
+				}
+			}
+		}
+		&:active,
+		&.active {
+			.background-color-fix(@accordion-color-active);
+			.border-color-fix(@accordion-border-color-active);
+			border-style: @accordion-border-style-active;
+			a {
+				&,
+				&:visited,
+				&:hover,
+				&:active {
+					// TODO: Switch to Font Awesome
+					.color-fix(@accordion-text-color-active);
+					background-image: url('@{path-img-default}accordion-expanded.png');
+				}
+			}
+		}
+		&:disabled,
+		&.disabled {
+			.background-color-fix(@accordion-color-disabled);
+			a {
+				&,
+				&:visited,
+				&:hover,
+				&:active {
+					// TODO: Switch to Font Awesome
+					.color-fix(@accordion-text-color-disabled);
+					background-image: url('@{path-img-default}accordion-expanded.png');
+				}
+			}
+		}
+		a {
+			&,
+			&:visited,
+			&:hover,
+			&:active {
+				// TODO: Switch to Font Awesome
+				.color-fix(@accordion-text-color);
+				background-image: url('@{path-img-default}accordion-collapsed.png');
+				padding: 0px 0px 0px 2 * @x - 2 * @accordion-border-width;
+				.small-screen-adjust-text(@accordion-font-size);
+			}
+		}
+		.small-screen-adjust-margin-bottom();
+	}
+	.accordion-content {
+		.small-screen-adjust-margin-bottom();
+	}
+}
+

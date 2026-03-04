@@ -1,0 +1,111 @@
+/* Core component stylesheet: Media (keep or comment out this file) */
+
+
+/* Media wrapper */
+.media-wrapper {
+	display: inline-block;
+}
+
+/* Media wrapper Drupal adapter */
+.caption-wrapper {
+	&:extend(.media-wrapper all);
+}
+
+
+/* Media */
+.media {
+	.margin-fix;
+	display: inline-block;
+	margin-bottom: @med-margin-vertical;
+	margin-top: @med-margin-vertical;
+	&.float-left, 
+	&.float-right {
+		.margin-fix;
+		margin-top: 0px;
+		margin-bottom: @med-margin-vertical;
+	}
+	&.float-left {
+		//clear: left;
+		margin-right: @med-margin-horizontal;
+	}
+	&.float-right {
+		//clear: right;
+		margin-left: @med-margin-horizontal;
+	}
+	&, 
+  & > figure, 
+	& > img, 
+	& > canvas,
+	& > video, 
+	& > audio {
+		height: auto;
+		max-width: 100%;
+	}
+}
+.figure {
+	.margin-fix;
+	margin-bottom: @med-margin-vertical;
+	margin-top: @med-margin-vertical;
+}
+
+
+
+/* Image */
+.image {}
+
+
+/* Adaptive image */
+.image-adaptive {
+	height: auto;
+	max-width: 100%;
+}
+
+/* Adaptive image Drupal adapter */
+img.adaptive-image {
+	&:extend(.image-adaptive all);
+}
+
+
+/* Zoomable image */
+.image-zoomable {}
+
+
+/* Video */
+.video {}
+
+/* Video player */
+.player-video {
+	display: block;
+	height: 0px;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+	overflow: hidden;
+	iframe,
+	object,
+	embed {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	@media print {
+		display: none;
+	}
+}
+
+/* Video player Drupal adapter */
+.media-youtube-video, 
+.media-vimeo-video {
+	&:extend(.player-video all);
+}
+
+/* Audio */
+.audio {}
+
+/* Media caption */
+.media-caption {
+	margin-top: @paragraph-margin;
+}
+

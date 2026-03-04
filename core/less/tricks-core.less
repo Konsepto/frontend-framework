@@ -1,0 +1,456 @@
+/* Core stylesheet: Tricks (keep or comment out this file) */
+
+
+/* Font-face declaration helper mixin */
+// https://css-tricks.com/snippets/css/using-font-face/
+// http://www.metaltoad.com/blog/how-use-font-face-avoid-faux-italic-and-bold-browser-styles
+// http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/
+// http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/
+// http://www.paulirish.com/2010/font-face-gotchas/#smiley
+// http://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/
+.font-face(@name; @filename; @path; @weight: normal; @style: normal) {
+	@font-face {
+		font-family: @name;
+		src: url('@{path}@{filename}.eot');
+		src: local('☺'), url('@{path}@{filename}.woff') format('woff'), url('@{path}@{filename}.ttf') format('truetype'), url('@{path}@{filename}.svg') format('svg');
+		font-weight: @weight;
+		font-style: @style;
+	}
+}
+
+/* Sensible box model */
+// http://www.w3.org/TR/CSS21/box.html
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// http://caniuse.com/#feat=css3-boxsizing
+.border-box { 
+	box-sizing: border-box;
+}
+
+/* Original stupid box model */
+// http://www.w3.org/TR/CSS21/box.html
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// http://caniuse.com/#feat=css3-boxsizing
+.content-box {
+	box-sizing: content-box;
+}
+
+/* Hide empty element's top and bottom margins */
+// https://css-tricks.com/snippets/css/remove-margins-first-element/
+// http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+.empty-fix {
+	&:empty {
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+}
+
+/* Fix the first element's top margin */
+// https://css-tricks.com/snippets/css/remove-margins-first-element/
+// http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+.margin-top-fix {
+	&:first-child {
+		margin-top: 0px !important;
+	}
+}
+
+/* Fix the last element's bottom margin */
+// https://css-tricks.com/snippets/css/remove-margins-first-element/
+// http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+.margin-bottom-fix {
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+}
+
+/* Fix the first element's top margin and last element's bottom margin */
+// https://css-tricks.com/snippets/css/remove-margins-first-element/
+// http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+.margin-fix {
+	.margin-top-fix;
+	.margin-bottom-fix;
+}
+
+/* Hide element (from both browsers and screenreaders: h5bp.com/u) */
+.hidden {
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+}
+
+/* Show element */
+.visible {
+	display: initial;
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Make element display as inline */
+.display-inline {
+	display: inline;
+}
+
+/* Make element display as block */
+.display-block {
+	display: block;
+}
+
+/* Make element display as inline block */
+.display-inline-block {
+	display: inline-block;
+}
+
+/* Reset element's display property */
+.display-initial {
+	display: initial;
+}
+
+/* Make element occupy full width */
+.full-width {
+	width: 100%;
+}
+
+/* Force a container to occupy the same height as its floated content */
+// https://css-tricks.com/all-about-floats/
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.float-fix {
+	//zoom: 1; // Triggers hasLayout for IE 6/7
+	&::after {
+		clear: both;
+		content: ' ';
+		display: table;
+	}
+}
+
+/* Image field floating */
+// TODO
+.image-float(@side; @float-width; @image-width: '') {
+	float: @side;
+	margin-bottom: 0px;
+}
+.image-float(@side; @float-width; @image-width: '') when (@side = left) {
+	margin-left: @float-width;
+	margin-left: 0px;
+}
+.image-float(@side; @float-width; @image-width: '') when (@side = right) {
+	margin-right: @float-width;
+	margin-right: 0px;
+}
+.image-float(@side; @float-width; @image-width: '') when not (@image-width = '') {
+	width: @image-width;
+}
+
+/* Make container's content blocks centered */
+// https://css-tricks.com/centering-css-complete-guide/
+.centered-content {
+	text-align: center;
+	& > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left; // IE Edge (and earlier) does not understand the default value 'initial' here
+	}
+}
+
+/* Make element (div, p, table, image etc.) centered */
+// http://www.w3.org/Style/Examples/007/center
+// http://www.granneman.com/webdev/coding/css/centertables/
+// http://caniuse.com/#feat=css-sel3
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	//text-align: center; // IE Edge (and earlier) does not understand the default value 'initial' here
+	&:not(table) {
+		display: block;
+	}
+}
+
+/* Make image or table centered WordPress adapter *
+.aligncenter {
+	&:extend(.centered-content all);
+	.margin-bottom-fix;
+	margin-bottom: @gutter-height;
+}
+*/
+
+/* Float element left */
+// https://css-tricks.com/all-about-floats/
+.float-left {
+	.margin-bottom-fix;
+	float: left;
+	margin-right: @gutter-width;
+	margin-bottom: @gutter-height;
+}
+
+/* Float element left WordPress adapter *
+.alignleft {
+	&:extend(.float-left all);
+}
+*/
+
+/* Float element right */
+// https://css-tricks.com/all-about-floats/
+.float-right {
+	.margin-bottom-fix;
+	float: right;
+	margin-left: @gutter-width;
+	margin-bottom: @gutter-height;
+}
+
+/* Float element right WordPress adapter *
+.alignright {
+	&:extend(.float-right all);
+}
+*/
+
+/* Clear floated elements */
+.clear-both {
+	clear: both;
+}
+
+/* Make list's content linear */
+.list-linear {
+	li {
+		// This breaks the font size in certain cases (observed on Android Chrome 2020-03-30)
+		//display: block;
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+
+/* Make list's content horizontal */
+.list-horizontal {
+	display: flex;
+	flex-flow: row wrap;
+	li {
+		// This breaks the font size in certain cases (observed on Android Chrome 2020-03-30)
+		//display: block;
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+
+/* Make list's content horizontal and left aligned */
+.list-horizontal-left {
+	.list-horizontal();
+	justify-content: flex-start;
+}
+
+/* Make list's content horizontal and centered */
+.list-horizontal-center {
+	.list-horizontal();
+	justify-content: center;
+}
+
+/* Make list's content horizontal and right aligned */
+.list-horizontal-right {
+	.list-horizontal();
+	justify-content: flex-end;
+}
+
+/* Make list's content inline */
+// This causes screen readers read the list as a single paragraph.
+// http://css.maxdesign.com.au/listamatic/horizontal01.htm
+.list-inline {
+	li {
+		display: inline;
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+
+/* Make list's content inline block */
+// This causes screen readers read the list as a single paragraph.
+// http://css.maxdesign.com.au/listamatic/horizontal01.htm
+.list-inline-block {
+	li {
+		display: inline-block;
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+
+/* Make list's content floating */
+.list-float {
+	.float-fix;
+	li {
+		display: block;
+		float: left;
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+	
+/* Make table's content linear (for responsive layouts) */
+// http://exisweb.net/responsive-table-plugins-and-patterns
+// https://css-tricks.com/responsive-data-tables/
+.table-linear {
+	&, 
+	thead,
+	tbody, 
+	tfoot, 
+	tr, 
+	td, 
+	th {
+		display: block;
+	}
+}
+
+/* Add hyphenation (note the poor browser support) */
+// http://www.w3.org/TR/css3-text/#hyphens
+// http://caniuse.com/#feat=css-hyphens
+.hyphenation {
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+/* Hide text */
+// https://css-tricks.com/css-image-replacement/
+// https://css-tricks.com/examples/ImageReplacement/
+// http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+.text-hide {
+	overflow: hidden;
+	position: relative;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+/* Disable automatic line wrapping */
+// https://css-tricks.com/almanac/properties/w/whitespace/
+.no-wrap {
+	white-space: nowrap;
+}
+
+/* Cut long text lines with ellipis (remember to also specify the width in pixels) */
+// https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/
+.ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	//width: 100%;
+	white-space: nowrap;
+}
+
+/* Hide focus rectangles */
+// http://stackoverflow.com/a/179532/4140621
+// http://www.paciellogroup.com/blog/2012/04/how-to-remove-css-outlines-in-an-accessible-manner/
+.no-focus {
+	&:focus { 
+		outline: 0px;
+	}
+}
+
+/* Disable selecting */
+// https://css-tricks.com/almanac/properties/u/user-select/
+// http://caniuse.com/#feat=user-select-none
+.unselectable {
+  -webkit-user-select: none; // Chrome all / Safari all 
+  -moz-user-select: none; // Firefox all
+  -ms-user-select: none; // IE 10+
+  -o-user-select: none;
+  user-select: none;          
+}
+
+/* Allow word breaks if words are too long to fit in certain line */
+.break-words {
+	-ms-word-break: break-all;
+	word-break: break-word;
+	//-moz-hyphens: auto;
+	//hyphens: auto;
+}
+
+/* Change element's appearance */
+// https://css-tricks.com/almanac/properties/a/appearance/
+// http://caniuse.com/#feat=css-appearance
+.appearance(@appearance) {
+	-webkit-appearance: @appearance;
+	-moz-appearance: @appearance;
+	appearance: @appearance;
+} 
+
+/* Alpha color fixes for IE8 */
+// https://css-tricks.com/rgba-browser-support/
+.color-fix(@color) {
+	color: @color;
+}
+.background-color-fix(@color) {
+	background-color: @color;
+}
+.border-color-fix(@color) {
+	border-color: @color;
+}
+
+/* Background alpha color IE8 fix *
+.bg-alpha-color-ie8(@color) {
+	background-color: rgb(red(@color), green(@color), blue(@color)); // Fallback for older browsers
+	background-color: @color;
+	@ieFilterColor: argb(@color);
+	zoom: 1; // IE8 fix / hasLayout
+	background-color: transparent\9; // IE8 fix
+	-ms-filter:  "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieFilterColor}, endColorstr=@{ieFilterColor})"; // IE 8+
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieFilterColor}, endColorstr=@{ieFilterColor})"; // IE 6 & 7
+}
+*/
+
+/* Hide assistive screen reader content, but show focusable elements when focused */
+// https://webaim.org/techniques/css/invisiblecontent/
+// https://www.saavutettavuusvaatimukset.fi/ (use tab to show skip link)
+.screen-reader {
+	position: absolute !important;
+	left: -10000px !important;
+	//top: 0px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	&:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+}
+
+/* WordPress version of the above:
+
+https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+*/
+
+/* No icon */
+.no-icon {
+	&::before, 
+	&::after {
+		display: none !important;
+	}
+}
+
+/* No icons */
+.no-icons {
+	&, 
+	* {
+		&::before, 
+		&::after {
+			display: none !important;
+		}
+	}
+}
+
+/* Rounded corners */
+.rounded-corners(@args) {
+	border-radius: @args;
+	background-clip: padding-box;
+}

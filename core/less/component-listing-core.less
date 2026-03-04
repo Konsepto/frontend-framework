@@ -1,0 +1,75 @@
+/* Core component stylesheet: Listing (keep or comment out this file) */
+
+
+/* Listing */
+.listing {
+	.list-linear;
+}
+
+/* Listing grid */
+.listing-grid {}
+
+/* Full listing */
+.listing-full {
+	> * {
+		margin-top: @listing-full-margin;
+		margin-bottom: @listing-full-margin;
+		.float-fix;
+		.margin-fix;
+		.empty-fix;
+	}
+}
+
+/* Teasers listing */
+.listing-teasers {
+	> * {
+		margin-top: @listing-teasers-margin;
+		margin-bottom: @listing-teasers-margin;
+		.float-fix;
+		.margin-fix;
+		.empty-fix;
+	}
+}
+
+/* Search results listing */
+.listing-search-results {
+	> * {
+		margin-bottom: @listing-search-results-margin;
+		margin-bottom: @listing-search-results-margin;
+		.float-fix;
+		.margin-fix;
+		.empty-fix;
+	}
+}
+
+/* Grid listing */
+.listing-grid {
+	> * {
+		margin-bottom: @listing-grid-margin;
+		margin-bottom: @listing-grid-margin;
+		.float-fix;
+		.margin-fix;
+		.empty-fix;
+	}
+}
+
+/* Titles listing */
+.listing-titles {
+	ol, 
+	ul {
+		.list-linear;
+		li {
+			margin-bottom: @listing-titles-margin;
+			margin-bottom: @listing-titles-margin;
+			.float-fix;
+			.margin-fix;
+			.empty-fix;
+		}
+	}
+}
+
+/* Listing item */
+.listing-item {
+	page-break-inside: avoid;
+}
+
