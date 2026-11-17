@@ -1,9 +1,0 @@
-.foo {
-  width: 100px;
-}
-.foo-bar {
-  background: blue;
-}
-.foo:not(.foo-bar) {
-  background: green;
-}
