@@ -1,0 +1,13 @@
+{
+  "name": "front-end-framework-guide",
+  "private": true,
+  "description": "Protosite user guide (HTML) with live previews of the framework components",
+  "type": "module",
+  "scripts": {
+    "build": "node build-css.mjs && python3 build.py"
+  },
+  "devDependencies": {
+    "browserslist": "^4.29.6",
+    "lightningcss": "^1.33.0"
+  }
+}

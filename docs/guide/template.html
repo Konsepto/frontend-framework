@@ -1,0 +1,502 @@
+<title>Protosite-käyttöopas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@600;700&display=swap">
+<style>
+/* Layout: sticky table of contents on the left, one reading column; the product's own typefaces
+   (Roboto Slab, Open Sans, Roboto Mono) and its monochrome palette with the print-link blue. */
+:root {
+	--bg: #FFFFFF;
+	--surface: #F4F5F7;
+	--raised: #FFFFFF;
+	--ink: #111214;
+	--muted: #585C63;
+	--line: #DCDEE2;
+	--accent: #0057D9;
+	--accent-soft: #E6EEFC;
+	--code-bg: #F4F5F7;
+	--ok: #1C6B2E;
+	--font-display: 'Roboto Slab', 'Merriweather', Georgia, serif;
+	--font-body: 'Open Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+	--font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+	--radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #121315; --surface: #1B1D20; --raised: #202327; --ink: #ECEDEF; --muted: #A3A8B0;
+		--line: #33373D; --accent: #7AAEFF; --accent-soft: #1C2A40; --code-bg: #1B1D20; --ok: #7CCB8E;
+		color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #121315; --surface: #1B1D20; --raised: #202327; --ink: #ECEDEF; --muted: #A3A8B0;
+	--line: #33373D; --accent: #7AAEFF; --accent-soft: #1C2A40; --code-bg: #1B1D20; --ok: #7CCB8E;
+	color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.65 var(--font-body); }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; font-weight: 700; }
+h2 { font-size: 1.9rem; margin: 0 0 1rem; padding-top: 0.5rem; }
+h3 { font-size: 1.35rem; margin: 2.2rem 0 0.6rem; }
+h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 1.4rem 0 0.5rem; font-weight: 700; }
+p, ul, ol { margin: 0 0 1rem; }
+li + li { margin-top: 0.25rem; }
+
+.top { border-bottom: 1px solid var(--line); background: var(--surface); }
+.top-inner { max-width: 1240px; margin: 0 auto; padding-block: 40px 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top .eyebrow { font: 600 0.8rem var(--font-mono); color: var(--muted); letter-spacing: 0.04em; margin-bottom: 10px; }
+.top h1 { font-size: clamp(2rem, 4vw, 2.9rem); margin: 0 0 12px; }
+.top p { max-width: 62ch; color: var(--muted); margin: 0; font-size: 1.05rem; }
+.repos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.repos span { font: 500 0.78rem var(--font-mono); border: 1px solid var(--line); background: var(--raised); border-radius: 999px; padding: 3px 10px; }
+
+.layout { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; font-size: 0.9rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; }
+.toc a { display: block; padding: 4px 10px; border-radius: 8px; color: var(--ink); text-decoration: none; }
+.toc a:hover { background: var(--surface); }
+.toc a.current { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.toc .sub a { padding-left: 22px; color: var(--muted); font-size: 0.86rem; }
+.toc .navgroup { font: 700 0.68rem var(--font-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 10px 22px 2px; }
+.toc details summary { display: none; }
+main { min-width: 0; max-width: 860px; }
+main > section { padding-bottom: 32px; margin-bottom: 40px; border-bottom: 1px solid var(--line); }
+main > section:last-child { border-bottom: 0; }
+.lede { font-size: 1.08rem; }
+
+/* Flow diagram */
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 1.5rem 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.flow > div { padding: 16px 16px 18px; background: var(--raised); position: relative; min-width: 0; }
+.flow > div + div { border-left: 1px solid var(--line); }
+.flow > div + div::before { content: "→"; position: absolute; left: -11px; top: 16px; width: 20px; height: 20px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); font-size: 12px; line-height: 18px; text-align: center; color: var(--muted); }
+.flow b { display: block; font-family: var(--font-display); font-size: 1.02rem; margin-bottom: 2px; }
+.flow small { display: block; font: 500 0.74rem var(--font-mono); color: var(--muted); margin-bottom: 8px; overflow-wrap: anywhere; }
+.flow p { font-size: 0.86rem; margin: 0; }
+.layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1.2rem 0 1.5rem; }
+.layers > div { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; background: var(--raised); min-width: 0; }
+.layers b { font-family: var(--font-display); display: block; }
+.layers small { font: 500 0.74rem var(--font-mono); color: var(--muted); display: block; margin-bottom: 6px; overflow-wrap: anywhere; }
+.layers p { font-size: 0.88rem; margin: 0; }
+
+.steps { counter-reset: s; list-style: none; padding: 0; }
+.steps > li { counter-increment: s; position: relative; padding-left: 44px; margin-bottom: 1.1rem; }
+.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--bg); font: 700 0.85rem/28px var(--font-body); text-align: center; }
+
+.note { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; background: var(--surface); margin: 1.2rem 0; }
+.note > :last-child { margin-bottom: 0; }
+.note strong:first-child { display: block; margin-bottom: 4px; }
+
+.table-wrap { overflow-x: auto; margin: 1rem 0 1.4rem; border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { background: var(--surface); font-weight: 600; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+td code { white-space: nowrap; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--line); margin-right: 6px; vertical-align: -1px; }
+.yes { color: var(--ok); font-weight: 600; }
+
+.code { position: relative; margin: 0.6rem 0 1.2rem; }
+.code pre { margin: 0; background: var(--code-bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow-x: auto; font: 0.82rem/1.6 var(--font-mono); }
+.code pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal; }
+.copy { position: absolute; top: 8px; right: 8px; font: 600 0.72rem var(--font-body); border: 1px solid var(--line); background: var(--raised); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; opacity: 0.85; }
+.copy:hover { opacity: 1; }
+
+.cindex { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin: 1rem 0 0.5rem; }
+.cgroup h4 { margin-top: 0; }
+.cgroup ul { list-style: none; padding: 0; margin: 0; font-size: 0.92rem; }
+.component { padding-top: 8px; }
+.component + .component { border-top: 1px dashed var(--line); margin-top: 28px; }
+.component h3 { margin-top: 1.4rem; }
+.preview { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 1rem 0 0.6rem; background: var(--surface); }
+.preview-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 8px 6px 14px; border-bottom: 1px solid var(--line); font: 600 0.72rem var(--font-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg button { font: 600 0.72rem var(--font-body); text-transform: none; letter-spacing: 0; border: 0; background: transparent; color: var(--muted); padding: 4px 12px; cursor: pointer; }
+.seg button.on { background: var(--ink); color: var(--bg); }
+.stage { padding: 16px; display: flex; justify-content: center; }
+.stage iframe { display: block; width: 100%; max-width: 100%; height: 200px; border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF; transition: max-width 0.2s; }
+.preview.narrow iframe { max-width: 375px; }
+.meta { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; }
+.classes { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 0; font-size: 0.88rem; }
+.classes dt { min-width: 0; }
+.classes dd { margin: 0; color: var(--muted); }
+.files { list-style: none; padding: 0; margin: 0; font-size: 0.86rem; }
+.files li { margin: 0 0 3px; }
+
+@media (max-width: 900px) {
+	.layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+	.toc { position: static; max-height: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 8px; }
+	.toc details summary { display: block; cursor: pointer; padding: 8px 10px; font-weight: 600; }
+	.toc details:not([open]) > ul { display: none; }
+	.flow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+	.flow > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+	.flow > div:nth-child(4) { border-top: 1px solid var(--line); }
+	.flow > div:nth-child(3)::before { display: none; }
+}
+@media (max-width: 600px) {
+	.flow, .layers, .meta { grid-template-columns: minmax(0, 1fr); }
+	.flow > div + div { border-left: 0; border-top: 1px solid var(--line); }
+	.flow > div + div::before { display: none; }
+	.classes { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+	.classes dd { margin-bottom: 8px; }
+	h2 { font-size: 1.6rem; }
+}
+</style>
+
+<header class="top">
+	<div class="top-inner">
+		<div class="eyebrow">protosite.konsepto.fi · front-end · 17.11.2026</div>
+		<h1>Protosite-käyttöopas</h1>
+		<p>Miten Figman design-tokenit päätyvät sivustolle, miten front-end-frameworkin CSS-komponentit otetaan käyttöön ja muokataan, ja mitä komponentteja on käytettävissä.</p>
+		<div class="repos"><span>front-end-framework</span><span>protosite</span><span>protosite-child</span><span>haara: claude-native-css</span></div>
+	</div>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Sisällys">
+	<details open>
+		<summary>Sisällys</summary>
+		<ul>
+			<li><a href="#yleiskuva">Yleiskuva</a></li>
+			<li><a href="#figma">Figmasta koodiin</a></li>
+			<li class="sub"><a href="#figma-mita">Mitä Figmasta tulee</a></li>
+			<li class="sub"><a href="#figma-paivitys">Päivitys vaihe vaiheelta</a></li>
+			<li class="sub"><a href="#figma-esimerkki">Esimerkki: radius/md</a></li>
+			<li class="sub"><a href="#figma-komponentit">Figman komponentit</a></li>
+			<li><a href="#kayttoonotto">Käyttöönotto</a></li>
+			<li><a href="#muokkaus">Muokkaaminen</a></li>
+			<li><a href="#komponentit">Komponentit</a></li>
+			{{COMP_NAV}}
+			<li><a href="#asetukset">Asetukset</a></li>
+			<li><a href="#komennot">Komennot</a></li>
+		</ul>
+	</details>
+</nav>
+
+<main>
+
+<section id="yleiskuva">
+	<h2>Yleiskuva</h2>
+	<p class="lede">Sivuston ulkoasu syntyy kolmesta kerroksesta. Figma määrittelee arvot (värit, koot, välit), front-end-framework tarjoaa valmiit komponentit, ja teema yhdistää ne sivustoksi.</p>
+	<div class="layers">
+		<div><small>Figma: Protosite Design System</small><b>Design-tokenit</b><p>Muuttujat (värit, typografia, välit, layout) ja suunnittelun komponentit.</p></div>
+		<div><small>themes/front-end-framework</small><b>Framework</b><p>CSS-komponentit (<code>core/css</code>, <code>theme-default/css</code>) ja JavaScript-moduulit (<code>core/js/modules</code>). Yhteinen kaikille sivustoille.</p></div>
+		<div><small>themes/protosite + protosite-child</small><b>Teemat</b><p>Parent-teema sisältää WordPress-pohjan. Child-teema sisältää Protosite-sivuston tokenit, omat tyylit ja JavaScriptin.</p></div>
+	</div>
+	<p>Tyylit ovat natiivia CSS:ää (ei LESSiä). Lightning CSS niputtaa tiedostot yhdeksi <code>css/imports.css</code>-tiedostoksi, muuntaa <code>@custom-media</code>-breakpointit ja sisäkkäisen CSS:n selaimille sopivaksi ja minifioi tuloksen. Frameworkin vanha LESS-versio on edelleen tallessa sivustoille, jotka käyttävät sitä.</p>
+</section>
+
+<section id="figma">
+	<h2>Figmasta koodiin</h2>
+	<p>Figma-tiedosto <a href="https://www.figma.com/design/zKcxHIOERfCp2onsMcKe12" target="_blank" rel="noopener">Protosite Design System</a> on suunnittelun ja design-tokenien lähde. Arvot kulkevat koodiin neljän vaiheen kautta:</p>
+	<div class="flow" role="list">
+		<div role="listitem"><b>Figman muuttujat</b><small>Variables, WEB code syntax</small><p>Suunnittelija muuttaa arvon Figmassa.</p></div>
+		<div role="listitem"><b>tokens.json</b><small>design-tokens/tokens.json</small><p>Vienti Figma MCP:n kautta. Commitoitava, tarkasteltava diff.</p></div>
+		<div role="listitem"><b>theme.json</b><small>npm run tokens</small><p>WordPress tekee arvoista CSS-muuttujat <code>--wp--preset--*</code> ja <code>--wp--custom--*</code>.</p></div>
+		<div role="listitem"><b>styles/tokens.css</b><small>generoitu</small><p>Breakpointit ja frameworkin <code>--ff-*</code>-muuttujat theme.jsonin arvoista.</p></div>
+	</div>
+
+	<h3 id="figma-mita">Mitä Figmasta tulee</h3>
+	<p>Koodiin siirtyvät automaattisesti Figman <strong>muuttujat</strong> (Variables). Komponentit ja näkymät ovat suunnittelun malleja: niitä ei generoida koodiksi, vaan vastaava ulkoasu tehdään CSS:llä.</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Figmassa</th><th>Esimerkkejä</th><th>Koodiin</th><th>Minne</th></tr></thead>
+		<tbody>
+			<tr><td>Primitives-värit</td><td><code>gray/40</code>, <code>blue/print-link</code>, <code>palette/color-1</code></td><td class="yes">Automaattisesti</td><td><code>--wp--custom--gray--40</code>, väripaletti</td></tr>
+			<tr><td>Semanttiset värit</td><td><code>color/text/primary</code>, <code>color/button/bg/hover</code></td><td class="yes">Automaattisesti</td><td><code>--wp--custom--color--…</code> → <code>--ff-color-…</code></td></tr>
+			<tr><td>Typografia</td><td><code>font-size/heading-1</code> (Desktop/Mobile), <code>font-family/body</code></td><td class="yes">Automaattisesti</td><td>Joustavat <code>clamp()</code>-koot, fonttiperheet</td></tr>
+			<tr><td>Välit</td><td><code>spacing/2x</code></td><td class="yes">Automaattisesti</td><td><code>--wp--preset--spacing--…</code></td></tr>
+			<tr><td>Layout</td><td><code>radius/md</code>, <code>breakpoint/small</code>, <code>content-width/5</code></td><td class="yes">Automaattisesti</td><td><code>--wp--custom--…</code>, <code>@custom-media</code></td></tr>
+			<tr><td>Tekstityylit</td><td><code>Heading/H1</code>, <code>Body/Default</code></td><td>Viite</td><td>Tallennetaan <code>$textStyles</code>-osaan, ei vaikuta CSS:ään</td></tr>
+			<tr><td>Komponentit ja näkymät</td><td>Site header, Menu item, Etusivu</td><td>Käsin</td><td>CSS (<code>styles/site/</code>, framework)</td></tr>
+		</tbody>
+	</table></div>
+	<p>Muuttujan <strong>WEB code syntax</strong> Figmassa on sopimus koodin kanssa: se kertoo, mihin theme.jsonin kohtaan arvo kirjoitetaan.</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Code syntax Figmassa</th><th>theme.json</th></tr></thead>
+		<tbody>
+			<tr><td><code>var(--wp--preset--color--X)</code></td><td><code>settings.color.palette</code>, slug X</td></tr>
+			<tr><td><code>var(--wp--preset--font-size--X)</code></td><td><code>settings.typography.fontSizes</code>. Desktop-moodi on maksimi ja Mobile-moodi minimi; koko skaalautuu välillä 360–1276 px.</td></tr>
+			<tr><td><code>var(--wp--preset--font-family--X)</code></td><td><code>settings.typography.fontFamilies</code></td></tr>
+			<tr><td><code>var(--wp--preset--spacing--X)</code></td><td><code>settings.spacing.spacingSizes</code></td></tr>
+			<tr><td><code>var(--wp--custom--a--b)</code></td><td><code>settings.custom.a.b</code></td></tr>
+		</tbody>
+	</table></div>
+	<div class="note"><strong>Säännöt uusille muuttujille</strong>
+		<ul>
+			<li>Anna jokaiselle muuttujalle code syntax yllä olevassa muodossa, muuten build pysähtyy virheeseen <code>Unsupported code syntax</code>.</li>
+			<li>Aliakset säilyvät: <code>color/button/bg/hover</code> → <code>var(--wp--custom--gray--40)</code>. Muuta siis primitiiviä, jos sama sävy halutaan kaikkialle.</li>
+			<li>Älä nimeä tokeneita <code>small</code>, <code>medium</code>, <code>large</code>, <code>x-large</code> tai <code>20</code>–<code>80</code>: ne korvaisivat WordPressin oletuskoot, joita tallennettu sisältö käyttää.</li>
+			<li>Palettivärien slugit <code>color-1</code> … <code>color-8</code> ovat sisällössä käytössä; älä nimeä niitä uudelleen.</li>
+			<li>Vältä kirjainta heti numeron jälkeen (<code>2xl</code>): WordPress muuttaa sen muotoon <code>2-xl</code>.</li>
+		</ul>
+	</div>
+
+	<h3 id="figma-paivitys">Päivitys vaihe vaiheelta</h3>
+	<ol class="steps">
+		<li><strong>Muuta arvo Figmassa.</strong> Muuta olemassa olevaa muuttujaa tai lisää uusi (code syntax mukaan).</li>
+		<li><strong>Vie tokenit.</strong> Pyydä Claude Codelta: <em>"export Figma tokens to design-tokens/tokens.json"</em>. Se ajaa <code>design-tokens/figma-export.js</code>-skriptin Figma MCP:n kautta ja tallentaa tuloksen. Tarkista diff <code>git diff design-tokens/tokens.json</code>.</li>
+		<li><strong>Generoi theme.json ja tokens.css.</strong>
+			<pre data-code>cd wp-content/themes/protosite-child
+npm run tokens         # tokens.json -&gt; theme.json -&gt; styles/tokens.css
+npm run tokens-check   # varmistaa, että generoidut tiedostot ovat ajan tasalla</pre></li>
+		<li><strong>Rakenna CSS, jos tarpeen.</strong> Värit ja fontit ovat WordPressin CSS-muuttujia, joten ne päivittyvät ilman buildia. Fonttikoon, breakpointin tai muun <code>tokens.css</code>:ään vaikuttavan muutoksen jälkeen aja <code>npm run build</code>.</li>
+		<li><strong>Nosta versio.</strong> Kun <code>css/imports.css</code> muuttuu, kasvata <code>$version</code>-arvoa tiedostossa <code>functions.php</code> (rivi 12), jotta selaimet hakevat uuden tyylitiedoston.</li>
+	</ol>
+
+	<h3 id="figma-esimerkki">Esimerkki: painikkeiden pyöristys (radius/md)</h3>
+	<p>Painikkeiden, kenttien ja valikkolinkkien 16 px pyöristys lisättiin Figmaan muuttujaksi. Näin arvo kulkee:</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Vaihe</th><th>Missä</th><th>Arvo</th></tr></thead>
+		<tbody>
+			<tr><td>Figma</td><td>Layout / <code>radius/md</code></td><td><code>16</code>, code syntax <code>var(--wp--custom--radius--md)</code></td></tr>
+			<tr><td>tokens.json</td><td><code>Layout.radius.md</code></td><td><code>"$value": 16</code></td></tr>
+			<tr><td>theme.json</td><td><code>settings.custom.radius.md</code></td><td><code>"16px"</code></td></tr>
+			<tr><td>WordPress</td><td>CSS-muuttuja</td><td><code>--wp--custom--radius--md: 16px</code></td></tr>
+			<tr><td>Käyttö</td><td><code>styles/site/layout.css</code>, theme.jsonin button-tyyli</td><td><code>border-radius: var(--wp--custom--radius--md)</code></td></tr>
+		</tbody>
+	</table></div>
+	<p>Kun pyöristystä seuraavan kerran muutetaan Figmassa, vaiheet 2–3 riittävät: CSS käyttää muuttujaa, joten buildia ei tarvita.</p>
+
+	<h3 id="figma-komponentit">Figman komponentit ja vastaava koodi</h3>
+	<p>Figman Components-sivun komponentit käyttävät samoja muuttujia ja tekstityylejä kuin koodi. Screens-sivulla on etusivu (Desktop 1440, Mobile 375) ja mobiilivalikko auki koottuna niistä.</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Figma-komponentti</th><th>Variantit</th><th>Koodissa</th></tr></thead>
+		<tbody>
+			<tr><td>Button</td><td>Default, Hover, Active, Disabled</td><td><code>.button</code>, <code>.wp-block-button__link</code></td></tr>
+			<tr><td>Icon/…, Icon button</td><td>Large 48, Medium 38, Small 28; Default/Active</td><td>Font Awesome -ikonit, hakunappi, valikkonappi, jakopainikkeet</td></tr>
+			<tr><td>Menu item, Navigation item</td><td>Desktop/Mobile; Default/Current; alavalikko</td><td><code>#block-navigation-menu</code> (<code>styles/site/layout.css</code>)</td></tr>
+			<tr><td>Site header</td><td>Desktop; Mobile suljettu/auki</td><td><code>#header</code>, drawerit (<code>js/main.js</code>)</td></tr>
+			<tr><td>Site footer</td><td>Desktop, Mobile</td><td><code>#footer</code></td></tr>
+			<tr><td>Service card, Article teaser</td><td>–</td><td>Columns-lohko, Toolset-näkymän nostot</td></tr>
+			<tr><td>Share buttons</td><td>–</td><td>Social Sharing -lisäosa</td></tr>
+		</tbody>
+	</table></div>
+	<p>Desktop-navigaatio vaihtuu 924 px:ssä (<code>--large</code>) ja mobiiliasettelu alkaa alle 748 px:n (<code>--small</code>). Nämä ovat Figman <code>breakpoint/small</code>- ja <code>breakpoint/large</code>-muuttujat.</p>
+</section>
+
+<section id="kayttoonotto">
+	<h2>Käyttöönotto</h2>
+	<h3>Tiedostorakenne</h3>
+	<pre data-code>wp-content/themes/
+├── front-end-framework/
+│   ├── core/css/              komponenttien rakenne (button.css, form.css …)
+│   ├── theme-default/css/     oletusteeman ulkoasu + settings.css + framework.css
+│   ├── core/js/modules/       drawer.js, navigation-menu.js, accessible-links.js, animate.js
+│   └── core/less/, theme-default/less/   vanha LESS-versio (ei muutoksia)
+├── protosite/                 parent-teema: styles/main.css -&gt; css/imports.css
+└── protosite-child/           sivusto
+    ├── design-tokens/         Figma-vienti ja generaattorit
+    ├── theme.json             generoitu token-osa + käsin kirjoitettu styles
+    ├── styles/main.css        CSS:n aloituspiste
+    ├── styles/tokens.css      generoitu
+    ├── styles/site/*.css      sivuston omat tyylit
+    ├── js/main.js             JavaScript-moduulien käyttö
+    └── css/imports.css        build-tulos (ladataan sivulle)</pre>
+
+	<h3>CSS:n aloituspiste</h3>
+	<p><code>styles/main.css</code> tuo tiedostot järjestyksessä: frameworkin asetukset, sivuston tokenit (jotka korvaavat oletukset), vain käytetyt komponentit frameworkin järjestyksessä ja lopuksi sivuston omat tyylit.</p>
+	<pre data-code>/* protosite-child/styles/main.css (lyhennetty) */
+@import "../../front-end-framework/theme-default/css/settings.css";
+@import "tokens.css";
+
+@import "../../front-end-framework/theme-default/css/base.css";
+@import "../../front-end-framework/core/css/normalize.css";
+@import "../../front-end-framework/core/css/elements.css";
+@import "../../front-end-framework/core/css/button.css";
+/* … muut core-komponentit … */
+@import "../../front-end-framework/theme-default/css/elements.css";
+@import "../../front-end-framework/theme-default/css/button.css";
+/* … muut teemakomponentit … */
+
+@import "site/wordpress.css";
+@import "site/layout.css";</pre>
+	<p>Uudessa sivustossa voi aloittaa koko frameworkilla ja karsia myöhemmin:</p>
+	<pre data-code>@import "../../front-end-framework/theme-default/css/framework.css";
+@import "settings.css";   /* omat --ff-* arvot ja @custom-media */
+@import "site.css";</pre>
+	<div class="note"><strong>Järjestys ratkaisee</strong><p>Core-tiedostot tulevat ennen teematiedostoja, ja komponenttien keskinäinen järjestys noudattaa frameworkin <code>framework.css</code>:ää. Kun lisäät komponentin childiin, lisää se samaan kohtaan kuin framework.css:ssä.</p></div>
+
+	<h3>Build</h3>
+	<pre data-code>npm run build    # minifioitu css/imports.css (epäonnistuu CSS-virheeseen)
+npm run dev      # Browsersync + uudelleenrakennus, kun styles/ tai frameworkin CSS muuttuu
+npm run check-css  # varoittaa :is()-listoista, jotka muuttaisivat spesifisyyttä</pre>
+	<p>Parent-teemassa (<code>protosite</code>) vastaavat komennot ovat <code>npm run build</code> ja <code>npm run dev</code> (build.mjs).</p>
+
+	<h3>JavaScript</h3>
+	<p>Frameworkin JavaScript on ES-moduuleja ilman jQuerya. WordPress rekisteröi ne import mapiin, ja <code>js/main.js</code> käyttää niitä:</p>
+	<pre data-code>// functions.php
+$frameworkModules = get_stylesheet_directory_uri() . $frontendFrameworkPath . '/core/js/modules';
+wp_register_script_module('@front-end-framework/animate', $frameworkModules . '/animate.js', [], $version);
+wp_register_script_module('@front-end-framework/drawer', $frameworkModules . '/drawer.js', ['@front-end-framework/animate'], $version);
+wp_enqueue_script_module('protosite-child/main', get_stylesheet_directory_uri() . '/js/main.js',
+	['@front-end-framework/drawer', /* … */], $version);</pre>
+	<pre data-code>// js/main.js
+import { drawer } from '@front-end-framework/drawer';
+import { navigationMenu } from '@front-end-framework/navigation-menu';
+import { accessibleLinks } from '@front-end-framework/accessible-links';
+
+accessibleLinks(document.querySelectorAll('a:not([role="button"])'));
+drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
+	<p>JavaScriptille ei tarvita buildia.</p>
+</section>
+
+<section id="muokkaus">
+	<h2>Muokkaaminen</h2>
+	<p>Valitse muutoksen paikka sen mukaan, keneen muutoksen pitää vaikuttaa:</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Haluat muuttaa</th><th>Muuta</th><th>Vaikuttaa</th></tr></thead>
+		<tbody>
+			<tr><td>Värin, fontin, koon, välin, pyöristyksen tai breakpointin koko sivustolla</td><td>Figman muuttuja → <code>npm run tokens</code></td><td>Sivusto ja editori</td></tr>
+			<tr><td>Frameworkin arvon, jolle ei ole tokenia (esim. painikkeen padding)</td><td><code>--ff-*</code>-muuttuja (childissa vakio tiedostossa <code>build-css-tokens.mjs</code>)</td><td>Sivuston kaikki komponentit</td></tr>
+			<tr><td>Yhden komponentin ulkoasun tällä sivustolla</td><td>Sääntö tiedostoon <code>styles/site/*.css</code></td><td>Vain tämä sivusto</td></tr>
+			<tr><td>Komponentin virheen tai yleisen parannuksen</td><td><code>front-end-framework/core/css</code> tai <code>theme-default/css</code></td><td>Kaikki frameworkia käyttävät sivustot</td></tr>
+			<tr><td>Editorin ja lohkojen perustyylin</td><td>theme.jsonin <code>styles</code>-osa (vain <code>var(--wp--…)</code>-viittauksia)</td><td>Editori ja front end</td></tr>
+		</tbody>
+	</table></div>
+
+	<h3>Esimerkki: komponentin muokkaus sivustolla</h3>
+	<p>Ylikirjoita frameworkin sääntö sivuston tiedostossa. Käytä muuttujia kiinteiden arvojen sijaan, niin muutos seuraa tokeneita:</p>
+	<pre data-code>/* styles/site/layout.css */
+#main .system-message-information {
+	border-radius: var(--wp--custom--radius--md);
+	border-left: 4px solid var(--wp--custom--color--message--information--text);
+}
+
+@media (--small) {
+	#main .button {
+		width: 100%;   /* täysleveät painikkeet mobiilissa */
+	}
+}</pre>
+
+	<h3>Esimerkki: frameworkin oletusten muuttaminen</h3>
+	<pre data-code>/* oma settings-tiedosto frameworkin settings.css:n jälkeen */
+@custom-media --small (max-width: 639.98px);
+
+:root {
+	--ff-color-button-bg-default: #003366;
+	--ff-color-button-bg-hover: #0066FF;
+	--ff-button-padding: 1rem 1.5rem;
+}</pre>
+
+	<h3>Uuden komponentin lisääminen frameworkiin</h3>
+	<ol class="steps">
+		<li>Lisää rakenne tiedostoon <code>core/css/nimi.css</code> ja ulkoasu tiedostoon <code>theme-default/css/nimi.css</code>. Käytä arvoissa <code>--ff-*</code>-muuttujia ja breakpointeissa <code>@media (--small)</code>.</li>
+		<li>Jos tarvitset uuden asetuksen, lisää se oletusarvoineen <code>settings.css</code>:ään.</li>
+		<li>Lisää <code>@import</code> <code>framework.css</code>:ään oikeaan kohtaan ja sivuston <code>main.css</code>:ään, jos sivusto käyttää komponenttia.</li>
+		<li>Dokumentoi luokat frameworkin README:hen ja tähän oppaaseen.</li>
+	</ol>
+
+	<div class="note"><strong>Muista ennen committia</strong>
+		<ul>
+			<li>Älä sisennä sääntöjä sellaisen valitsinlistan alle, jonka valitsimilla on eri spesifisyys: sisäkkäisyys kääntyy <code>:is()</code>:ksi, joka saa listan korkeimman spesifisyyden. <code>npm run check-css</code> löytää nämä.</li>
+			<li>Säilytä sääntöjen järjestys, kun siirrät tai yhdistät sääntöjä, ja vertaa tulosta selaimessa edelliseen buildiin.</li>
+			<li>Nosta <code>$version</code> tiedostossa <code>functions.php</code>, kun <code>css/imports.css</code> muuttuu.</li>
+			<li>theme.jsonin <code>global-styles</code> latautuu CSS:n jälkeen: saman spesifisyyden säännöt theme.jsonissa voittavat.</li>
+		</ul>
+	</div>
+</section>
+
+<section id="komponentit">
+	<h2>Komponentit</h2>
+	<p>Esikatselut käyttävät frameworkin oikeaa CSS:ää oletusasetuksilla (<code>framework.css</code>). Protosite-sivustolla samat komponentit saavat arvonsa Figman tokeneista, joten pyöristykset ja koot voivat poiketa hieman. Vaihda esikatselun leveydeksi 375 px nähdäksesi pienen näytön (<code>--small</code>) tyylit.</p>
+	<div class="cindex">{{COMP_INDEX}}</div>
+	{{COMPONENTS}}
+</section>
+
+<section id="asetukset">
+	<h2>Asetukset</h2>
+	<p>Frameworkin asetukset ovat tiedostossa <code>theme-default/css/settings.css</code>. Protosite-childissa <code>styles/tokens.css</code> korvaa ne theme.jsonin arvoilla (esim. <code>--ff-color-text-primary: var(--wp--custom--color--text--primary)</code>).</p>
+	<h3>Breakpointit</h3>
+	<p>Käyttö: <code>@media (--small) { … }</code>. Protosite-childissa <code>--small</code> on alle 748 px ja <code>--large</code> vähintään 924 px (Figman <code>breakpoint/small</code> ja <code>breakpoint/large</code>).</p>
+	{{MEDIA_TABLE}}
+	<h3>Muuttujat</h3>
+	{{PROP_TABLE}}
+</section>
+
+<section id="komennot">
+	<h2>Komennot</h2>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Komento</th><th>Missä</th><th>Mitä tekee</th></tr></thead>
+		<tbody>
+			<tr><td><code>npm run tokens</code></td><td>protosite-child</td><td>tokens.json → theme.json → styles/tokens.css</td></tr>
+			<tr><td><code>npm run tokens-check</code></td><td>protosite-child</td><td>Epäonnistuu, jos generoidut tiedostot eivät ole ajan tasalla</td></tr>
+			<tr><td><code>npm run build</code></td><td>protosite-child, protosite</td><td>Minifioitu css/imports.css</td></tr>
+			<tr><td><code>npm run dev</code></td><td>protosite-child, protosite</td><td>Uudelleenrakennus muutoksista (childissa myös Browsersync)</td></tr>
+			<tr><td><code>npm run check-css</code></td><td>protosite-child</td><td>Etsii spesifisyyttä muuttavat <code>:is()</code>-listat</td></tr>
+		</tbody>
+	</table></div>
+	<p>Lisätietoa: <code>front-end-framework/README.md</code>, <code>protosite-child/design-tokens/README.md</code>, <code>protosite-child/styles/README.md</code>.</p>
+</section>
+
+</main>
+</div>
+
+{{TEMPLATES}}
+<script type="text/plain" id="fw-css">{{DEMO_CSS}}</script>
+<script>
+(function () {
+	var css = document.getElementById('fw-css').textContent;
+	var head = '<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+		+ '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono&family=Roboto+Slab:wght@700&display=swap">'
+		+ '<style>' + css + '</style><style>html,body{background:#fff}body{margin:0;padding:24px}body>:first-child{margin-top:0}body>:last-child{margin-bottom:0}a[href="#"]{cursor:pointer}</style></head><body>';
+	function fit(frame) {
+		try {
+			var doc = frame.contentDocument;
+			if (!doc || !doc.body) return;
+			frame.style.height = Math.max(80, doc.documentElement.scrollHeight) + 'px';
+		} catch (e) { /* keep the default height */ }
+	}
+	document.querySelectorAll('.preview').forEach(function (preview) {
+		var frame = preview.querySelector('iframe');
+		var tpl = document.getElementById(preview.dataset.demo);
+		frame.addEventListener('load', function () {
+			fit(frame);
+			try {
+				frame.contentDocument.addEventListener('click', function (e) { if (e.target.closest('a[href="#"]')) e.preventDefault(); });
+				if (frame.contentWindow.ResizeObserver) new frame.contentWindow.ResizeObserver(function () { fit(frame); }).observe(frame.contentDocument.body);
+			} catch (e) {}
+			try { frame.contentDocument.fonts.ready.then(function () { fit(frame); }); } catch (e) {}
+			[300, 900, 2000, 4000].forEach(function (t) { setTimeout(function () { fit(frame); }, t); });
+		});
+		frame.srcdoc = head + tpl.innerHTML + '</body></html>';
+		preview.querySelectorAll('.seg button').forEach(function (b) {
+			b.addEventListener('click', function () {
+				preview.querySelectorAll('.seg button').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+				preview.classList.toggle('narrow', b.dataset.w === '375');
+				setTimeout(function () { fit(frame); }, 250);
+			});
+		});
+	});
+	document.querySelectorAll('.copy').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var text = btn.parentNode.querySelector('code').textContent;
+			var done = function () { btn.textContent = 'Kopioitu'; setTimeout(function () { btn.textContent = 'Kopioi'; }, 1500); };
+			try {
+				navigator.clipboard.writeText(text).then(done, function () { select(btn); });
+			} catch (e) { select(btn); }
+		});
+	});
+	function select(btn) {
+		var range = document.createRange();
+		range.selectNodeContents(btn.parentNode.querySelector('code'));
+		var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+		btn.textContent = 'Valittu: Ctrl+C';
+	}
+	// Highlight the current section in the table of contents
+	var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+	var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+	function current() {
+		var y = window.scrollY + 120, idx = 0;
+		targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top + window.scrollY <= y) idx = i; });
+		links.forEach(function (a, i) { a.classList.toggle('current', i === idx); });
+	}
+	window.addEventListener('scroll', current, { passive: true });
+	current();
+})();
+</script>
