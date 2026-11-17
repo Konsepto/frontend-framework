@@ -1,0 +1,37 @@
+/* Pagination: native port of front-end-framework core/less/component-pagination-core.less */
+
+.pagination {
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+	line-height: var(--ff-body-line-height);
+	font-size: var(--ff-body-font-size);
+}
+
+/* Unstyled list items */
+.pagination,
+.pagination-controls,
+.pagination-numbers {
+	li {
+		list-style: none;
+		margin-left: 0px;
+	}
+}
+
+/* Previous / next controls and page numbers in wrapping rows */
+.pagination-controls,
+.pagination-numbers {
+	display: flex;
+	justify-content: flex-start;
+	gap: 16px 16px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		order: 0;
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: content;
+	}
+}

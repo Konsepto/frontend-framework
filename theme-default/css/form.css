@@ -1,0 +1,57 @@
+/* Forms: native port of front-end-framework theme-default/less/component-form.less */
+
+@media (--small) {
+	.form {
+		/* Halfway between 2 × and 1 × the paragraph margin, minus the reduction */
+		margin-bottom: calc(1.5 * var(--ff-paragraph-margin) - var(--ff-small-screen-font-size-reduction));
+	}
+	.form-field {
+		margin-bottom: calc(var(--ff-paragraph-margin) - var(--ff-small-screen-font-size-reduction));
+	}
+	.form-label {
+		font-size: calc((var(--ff-form-label-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+		/* The LESS theme called .small-screen-adjust-margin-bottom(@paragraph-margin, 0.25), where
+		   0.25 is the default value, not the multiplier; this is the value it gave. Kept as is. */
+		margin-bottom: 0.5625rem;
+	}
+	.form-value-label,
+	.form-legend {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+	.form-hint {
+		font-size: calc((0.9 * var(--ff-body-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+		margin-top: calc((var(--ff-paragraph-margin) - var(--ff-small-screen-font-size-reduction)) / 4);
+	}
+}
+
+/* Tip: arrow icon before the text */
+.form-tip {
+	padding-left: 1.5rem;
+
+	&::before {
+		content: '\f062';
+		content: '\f062' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+		font-size: var(--ff-body-font-size);
+		margin-left: -1.25rem;
+		position: absolute;
+	}
+
+	@media (--small) {
+		font-size: var(--ff-small-screen-body-font-size);
+		margin-top: calc((var(--ff-paragraph-margin) - var(--ff-small-screen-font-size-reduction)) / 4);
+
+		&::before {
+			font-size: var(--ff-small-screen-body-font-size);
+		}
+	}
+}

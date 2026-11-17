@@ -1,0 +1,433 @@
+/* Debug tools (debug mode, core/js/debug.js): native copy of front-end-framework
+   theme-default/less/debug.less. The LESS.js parts (.less-error-message, reload stylesheets,
+   LESS watch mode) only apply to sites that still compile LESS in the browser. */
+
+.less-error-message {
+  text-align: left !important;
+  top: 48px;
+  left: 48px;
+  right: 48px;
+  position: fixed;
+  z-index: 999999;
+}
+.less-error-message li {
+  padding: 0px !important;
+}
+.less-error-message label {
+  font-size: inherit !important;
+  padding: 0px !important;
+  float: left !important;
+  display: block !important;
+}
+.less-error-message pre {
+  padding: 0px !important;
+  display: block !important;
+}
+#debug-tools {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 999999;
+}
+#button-client-size-display-mode,
+#button-grid-layout-mode,
+#button-large-text-mode-mode,
+#button-mark-image-dimensions,
+#button-reload-stylesheets,
+#button-less-watch-mode-mode {
+  color: #FFFFFF;
+  background-color: #999999;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 32px;
+  padding: 4px;
+  text-align: center;
+  font-weight: normal;
+  margin-left: 8px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.125);
+  opacity: 0.5;
+}
+#button-client-size-display-mode:hover,
+#button-grid-layout-mode:hover,
+#button-large-text-mode-mode:hover,
+#button-mark-image-dimensions:hover,
+#button-reload-stylesheets:hover,
+#button-less-watch-mode-mode:hover {
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+#button-client-size-display-mode:active,
+#button-grid-layout-mode:active,
+#button-large-text-mode-mode:active,
+#button-mark-image-dimensions:active,
+#button-reload-stylesheets:active,
+#button-less-watch-mode-mode:active {
+  -webkit-box-shadow: 1.5px 1.5px 2.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 1.5px 1.5px 2.5px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+html.client-size-display-mode #button-client-size-display-mode,
+html.grid-layout-mode #button-grid-layout-mode,
+html.large-text-mode #button-large-text-mode-mode,
+html.mark-image-dimensions-mode #button-mark-image-dimensions,
+html.less-watch-mode-mode #button-less-watch-mode-mode {
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+#button-client-size-display-mode::before {
+  content: '\f545';
+  content: '\f545' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#button-client-size-display-mode,
+#button-client-size-display-mode:active {
+  margin-left: 0px;
+}
+#button-grid-layout-mode::before {
+  content: '\f00a';
+  content: '\f00a' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#button-large-text-mode-mode::before {
+  content: '\f034';
+  content: '\f034' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#button-mark-image-dimensions::before {
+  content: '\f78c';
+  content: '\f78c' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#button-reload-stylesheets::before {
+  content: '\f2f9';
+  content: '\f2f9' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#button-less-watch-mode-mode::before {
+  content: '\f06e';
+  content: '\f06e' / '';
+  font-family: 'Font Awesome 6';
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+#client-size-display {
+  background-color: #999999;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px;
+  text-align: right;
+  font-weight: normal;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 8px;
+  color: #FFFFFF;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  white-space: nowrap;
+  display: none;
+  vertical-align: middle;
+}
+html.client-size-display-mode #client-size-display {
+  display: inline-block;
+}
+html.grid-layout-mode {
+  /* White background for better grid visibility */
+  /* Hover effect for the all elements */
+  /* Hover effect for header, main, footer elements */
+  /* Hover effect for zone wrapper */
+  /* Hover effect zone */
+  /* Hover effect for block */
+  /* Make opaque elements 50% transparent on hover */
+  /* Apply grid background for block text elements */
+  /* Apply grid background for inline text elements */
+  /* Apply grid background for other text elements */
+  /* Obsolete HTML5 elements */
+}
+html.grid-layout-mode body {
+  background-color: transparent !important;
+}
+html.grid-layout-mode *:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  background-color: transparent !important;
+}
+html.grid-layout-mode #header,
+html.grid-layout-mode #main,
+html.grid-layout-mode #footer {
+  background-size: auto !important;
+  background-color: transparent !important;
+  background-image: url('/wp-content/themes/front-end-framework/theme-default/img/grid-8-8-64-24.png') !important;
+  background-repeat: repeat !important;
+  background-position: 0px 0px !important;
+  background-attachment: scroll !important;
+  image-rendering: pixelated;
+  /*
+		*:hover {
+			background-color: transparent !important;
+			background-image: none !important;
+		}
+		*/
+}
+html.grid-layout-mode #header > *,
+html.grid-layout-mode #main > *,
+html.grid-layout-mode #footer > * {
+  image-rendering: auto;
+}
+html.grid-layout-mode #header:hover,
+html.grid-layout-mode #main:hover,
+html.grid-layout-mode #footer:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 127, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 127, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(255, 127, 0, 0.5);
+}
+html.grid-layout-mode .zone-wrapper:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.5);
+}
+html.grid-layout-mode .zone:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 255, 255, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 255, 255, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 255, 255, 0.5);
+}
+html.grid-layout-mode .block:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 0, 255, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 0, 255, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(255, 0, 255, 0.5);
+}
+html.grid-layout-mode audio:hover,
+html.grid-layout-mode embed:hover,
+html.grid-layout-mode button:hover,
+html.grid-layout-mode canvas:hover,
+html.grid-layout-mode hr:hover,
+html.grid-layout-mode iframe:hover,
+html.grid-layout-mode img:hover,
+html.grid-layout-mode input:hover,
+html.grid-layout-mode object:hover,
+html.grid-layout-mode select:hover,
+html.grid-layout-mode textarea:hover,
+html.grid-layout-mode video:hover {
+  opacity: 0.5 !important;
+}
+html.grid-layout-mode caption:hover,
+html.grid-layout-mode dd:hover,
+html.grid-layout-mode dt:hover,
+html.grid-layout-mode figcaption:hover,
+html.grid-layout-mode h1:hover,
+html.grid-layout-mode h2:hover,
+html.grid-layout-mode h3:hover,
+html.grid-layout-mode h4:hover,
+html.grid-layout-mode h5:hover,
+html.grid-layout-mode h6:hover,
+html.grid-layout-mode li:hover,
+html.grid-layout-mode p:hover,
+html.grid-layout-mode pre:hover {
+  background-color: transparent !important;
+  background-image: url('/wp-content/themes/front-end-framework/theme-default/img/text-background-block.png') !important;
+  background-repeat: repeat !important;
+  background-position: left top !important;
+  background-attachment: scroll !important;
+}
+html.grid-layout-mode a:hover,
+html.grid-layout-mode abbr:hover,
+html.grid-layout-mode b:hover,
+html.grid-layout-mode bdi:hover,
+html.grid-layout-mode bdo:hover,
+html.grid-layout-mode cite:hover,
+html.grid-layout-mode code:hover,
+html.grid-layout-mode del:hover,
+html.grid-layout-mode dfn:hover,
+html.grid-layout-mode em:hover,
+html.grid-layout-mode i:hover,
+html.grid-layout-mode ins:hover,
+html.grid-layout-mode kbd:hover,
+html.grid-layout-mode label:hover,
+html.grid-layout-mode mark:hover,
+html.grid-layout-mode output:hover,
+html.grid-layout-mode q:hover,
+html.grid-layout-mode ruby:hover,
+html.grid-layout-mode rt:hover,
+html.grid-layout-mode rp:hover,
+html.grid-layout-mode s:hover,
+html.grid-layout-mode samp:hover,
+html.grid-layout-mode small:hover,
+html.grid-layout-mode strong:hover,
+html.grid-layout-mode sub:hover,
+html.grid-layout-mode sup:hover,
+html.grid-layout-mode time:hover,
+html.grid-layout-mode u:hover,
+html.grid-layout-mode var:hover {
+  background-color: transparent !important;
+  background-image: url('/wp-content/themes/front-end-framework/theme-default/img/text-background-inline.png') !important;
+  background-repeat: repeat !important;
+  background-position: left top !important;
+  background-attachment: scroll !important;
+}
+html.grid-layout-mode legend:hover,
+html.grid-layout-mode summary:hover,
+html.grid-layout-mode td:hover,
+html.grid-layout-mode th:hover {
+  background-color: transparent !important;
+  background-image: url('/wp-content/themes/front-end-framework/theme-default/img/text-background-other.png') !important;
+  background-repeat: repeat !important;
+  background-position: left top !important;
+  background-attachment: scroll !important;
+}
+html.grid-layout-mode applet,
+html.grid-layout-mode acronym,
+html.grid-layout-mode bgsound,
+html.grid-layout-mode dir,
+html.grid-layout-mode frame,
+html.grid-layout-mode frameset,
+html.grid-layout-mode noframes,
+html.grid-layout-mode hgroup,
+html.grid-layout-mode isindex,
+html.grid-layout-mode listing,
+html.grid-layout-mode nextid,
+html.grid-layout-mode noembed,
+html.grid-layout-mode plaintext,
+html.grid-layout-mode strike,
+html.grid-layout-mode xmp,
+html.grid-layout-mode basefont,
+html.grid-layout-mode big,
+html.grid-layout-mode blink,
+html.grid-layout-mode center,
+html.grid-layout-mode font,
+html.grid-layout-mode marquee,
+html.grid-layout-mode multicol,
+html.grid-layout-mode nobr,
+html.grid-layout-mode spacer,
+html.grid-layout-mode tt {
+  outline: 2px solid red !important;
+}
+html.large-text-mode {
+  font-size: 200%;
+}
+html.mark-image-dimensions-mode .loss-of-quality-upscaling {
+  outline: 2px solid red !important;
+}
+html.mark-image-dimensions-mode .loss-of-quality-downscaling {
+  outline: 2px solid orange !important;
+}
+html.mark-image-dimensions-mode .divisible-downscaling {
+  outline: 2px solid green !important;
+}
+html.mark-image-dimensions-mode .not-scaled {
+  outline: 2px solid blue !important;
+}
+/*
+.layout-debug {
+	body::before {
+		background-color: #999999;
+		-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+		color: #FFFFFF;
+		font-size: 14px;
+		line-height: 20px;
+		position: fixed;
+		padding: 5px 10px;
+		bottom: 20px;
+		left: 20px;
+		z-index: 999999;
+	}
+}
+@media screen {
+	@media @layout-default {
+		.layout-debug {
+			body::before {
+				content: "Default layout";
+			}
+		}
+	}
+	@media @layout-narrow {
+		.layout-debug {
+			body::before {
+				content: "Narrow layout";
+			}
+		}
+	}
+	@media @layout-fluid {
+		.layout-debug {
+			body::before {
+				content: "Fluid layout";
+			}
+		}
+	}
+}
+@media print {
+	.layout-debug {
+		body::before {
+			//content: "Print layout";
+		}
+	}
+}
+*/
+@media print {
+  #button-client-size-display-mode,
+  #button-grid-layout-mode,
+  #button-large-text-mode-mode,
+  #button-mark-image-dimensions,
+  #button-reload-stylesheets,
+  #button-less-watch-mode-mode,
+  #client-size-display {
+    display: none !important;
+  }
+}

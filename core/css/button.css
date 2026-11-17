@@ -1,0 +1,80 @@
+/* Buttons: native port of front-end-framework core/less/component-button-core.less */
+
+.button,
+.button-icon,
+.button-icon-text {
+	background-color: var(--ff-color-button-bg-default);
+	border-color: var(--ff-color-border-subtle);
+	color: var(--ff-color-text-inverse);
+	border-style: solid;
+	border-width: 0;
+	cursor: pointer;
+	display: inline-block;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+	font-size: var(--ff-body-font-size);
+	height: auto;
+	line-height: var(--ff-body-line-height);
+	margin: 0rem 0px;
+	padding: var(--ff-button-padding);
+	position: relative;
+	text-align: center;
+
+	&,
+	&:visited,
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		text-decoration: none;
+	}
+	&,
+	&:visited {
+		background-color: var(--ff-color-button-bg-default);
+		border-color: var(--ff-color-border-subtle);
+		color: var(--ff-color-text-inverse);
+	}
+	&:active,
+	&.active {
+		background-color: var(--ff-color-button-bg-active);
+		border-color: var(--ff-color-border-subtle);
+		color: var(--ff-color-text-inverse);
+		border-style: solid;
+	}
+	&:hover,
+	&:focus {
+		background-color: var(--ff-color-button-bg-hover);
+		border-color: var(--ff-color-border-subtle);
+		color: var(--ff-color-text-inverse);
+	}
+	&:disabled,
+	&.disabled {
+		background-color: var(--ff-color-button-bg-disabled) !important;
+		border-color: var(--ff-color-border-disabled) !important;
+		color: var(--ff-color-text-disabled) !important;
+		border-style: solid !important;
+	}
+}
+
+/* Icon only: the label is moved out of view */
+.button-icon {
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Icon and label */
+.button-icon-text {
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 24px;
+}
+
+@media (--small) {
+	.button-icon,
+	.button-icon-text {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}

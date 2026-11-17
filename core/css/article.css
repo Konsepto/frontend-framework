@@ -1,0 +1,37 @@
+/* Article fields and page navigation: native port of front-end-framework core/less/component-article-core.less */
+
+.field {
+	margin-top: var(--ff-paragraph-margin);
+	margin-bottom: var(--ff-paragraph-margin);
+
+	&:first-child {
+		margin-top: 0px !important;
+	}
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+	&:empty {
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+}
+
+.field-image a {
+	display: inline-block;
+}
+
+.page-navigation {
+	margin-top: calc(2 * var(--ff-paragraph-margin));
+	margin-bottom: calc(2 * var(--ff-paragraph-margin));
+
+	&:empty {
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+	&:first-child {
+		margin-top: 0px !important;
+	}
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+}

@@ -1,0 +1,12 @@
+/* Separator: native port of front-end-framework core/less/component-separator-core.less */
+
+.separator {
+	background-color: var(--ff-gray-80);
+	clear: both;
+	content: " ";
+	display: block;
+	height: 2px;
+	margin-top: calc(2 * var(--ff-paragraph-margin));
+	margin-bottom: calc(2 * var(--ff-paragraph-margin));
+	position: relative;
+}

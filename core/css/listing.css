@@ -1,0 +1,63 @@
+/* Listings: native port of front-end-framework core/less/component-listing-core.less */
+
+.listing li {
+	list-style: none;
+	margin-left: 0px;
+}
+
+/* Items in a listing: vertical spacing, cleared floats, no margin at the ends or when empty */
+/* (Selector lists written out: nesting would turn them into :is(), which takes the highest
+   specificity of the list) */
+.listing-full > *::after,
+.listing-teasers > *::after,
+.listing-search-results > *::after,
+.listing-grid > *::after,
+.listing-titles :is(ol, ul) li::after {
+	clear: both;
+	content: ' ';
+	display: table;
+}
+.listing-full > *:first-child,
+.listing-teasers > *:first-child,
+.listing-search-results > *:first-child,
+.listing-grid > *:first-child,
+.listing-titles :is(ol, ul) li:first-child {
+	margin-top: 0px !important;
+}
+.listing-full > *:last-child,
+.listing-teasers > *:last-child,
+.listing-search-results > *:last-child,
+.listing-grid > *:last-child,
+.listing-titles :is(ol, ul) li:last-child {
+	margin-bottom: 0px !important;
+}
+
+.listing-full > *,
+.listing-teasers > * {
+	margin-top: calc(3 * var(--ff-y));
+	margin-bottom: calc(3 * var(--ff-y));
+}
+.listing-search-results > * {
+	margin-bottom: calc(3 * var(--ff-y));
+}
+.listing-grid > * {
+	margin-bottom: calc(2 * var(--ff-y));
+}
+.listing-titles :is(ol, ul) li {
+	list-style: none;
+	margin-left: 0px;
+	margin-bottom: var(--ff-y);
+}
+
+.listing-full > *:empty,
+.listing-teasers > *:empty,
+.listing-search-results > *:empty,
+.listing-grid > *:empty,
+.listing-titles :is(ol, ul) li:empty {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.listing-item {
+	page-break-inside: avoid;
+}

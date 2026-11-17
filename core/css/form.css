@@ -1,0 +1,79 @@
+/* Forms: native port of front-end-framework core/less/component-form-core.less
+   (.form legend / label[for] get the .form-legend / .form-label styles, including the theme's
+   small-screen sizes, as the LESS mixins did) */
+
+.form {
+	margin-bottom: calc(2 * var(--ff-paragraph-margin));
+
+	&:last-child {
+		margin-bottom: 0px;
+	}
+	legend {
+		font-size: var(--ff-body-font-size);
+		font-weight: bold;
+
+		@media (--small) {
+			font-size: var(--ff-small-screen-body-font-size);
+		}
+	}
+	label[for] {
+		display: block;
+		font-size: var(--ff-form-label-font-size);
+		font-weight: bold;
+		margin-bottom: calc(var(--ff-paragraph-margin) / 4);
+
+		@media (--small) {
+			font-size: calc((var(--ff-form-label-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+			/* See .form-label in theme/form.css */
+			margin-bottom: 0.5625rem;
+		}
+	}
+}
+
+.form-field {
+	margin-bottom: var(--ff-paragraph-margin);
+}
+
+.form-label {
+	display: block;
+	font-size: var(--ff-form-label-font-size);
+	font-weight: bold;
+	margin-bottom: calc(var(--ff-paragraph-margin) / 4);
+}
+
+.form-value-label {
+	display: inline;
+	font-size: var(--ff-body-font-size);
+	font-weight: normal;
+}
+
+.form-legend {
+	font-size: var(--ff-body-font-size);
+	font-weight: bold;
+}
+
+.form-hint {
+	color: #444444;
+	display: block;
+	font-size: calc(0.9 * var(--ff-body-font-size));
+	font-style: normal;
+	margin-top: calc(var(--ff-paragraph-margin) / 4);
+}
+
+.form-tip {
+	color: #CC6600;
+	display: block;
+	font-size: var(--ff-body-font-size);
+	font-style: italic;
+	margin-top: calc(var(--ff-paragraph-margin) / 4);
+}
+
+.form-actions {
+	margin-bottom: var(--ff-paragraph-margin);
+}
+
+/* Honeypot spam detection */
+.form-check,
+.form-honeypot {
+	display: none;
+}

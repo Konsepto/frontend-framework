@@ -1,0 +1,54 @@
+/* Search form: native port of front-end-framework core/less/component-search-form-core.less */
+
+/* Search input */
+.search-form input[type='search'],
+.search-form input[type='text'],
+.search-form-input {
+	font-family: var(--ff-font-body);
+	font-size: var(--ff-body-font-size);
+	font-weight: normal;
+	line-height: var(--ff-body-line-height);
+	background-color: var(--ff-color-input-bg-default);
+	color: var(--ff-color-text-primary);
+	height: 3rem;
+	width: 15rem;
+	padding: 0.25rem 0.5rem;
+	border: 0px solid var(--ff-gray-73);
+}
+
+/* Search button */
+.search-form input[type='submit'],
+.search-form button[type='submit'],
+.search-form-button {
+	font-family: var(--ff-font-body);
+	font-size: var(--ff-body-font-size);
+	font-weight: normal;
+	line-height: var(--ff-body-line-height);
+	background-color: var(--ff-color-button-bg-default);
+	color: var(--ff-color-text-inverse);
+	height: 3rem;
+	width: 2rem;
+	padding: 0rem 0.5rem;
+	border: 0px solid var(--ff-gray-73);
+}
+.search-form input[type='submit'].active,
+.search-form button[type='submit'].active,
+.search-form-button.active {
+	background-color: var(--ff-color-button-bg-default);
+	color: var(--ff-color-text-inverse);
+}
+.search-form input[type='submit']:hover,
+.search-form button[type='submit']:hover,
+.search-form-button:hover {
+	background-color: var(--ff-color-button-bg-hover);
+	color: var(--ff-color-text-inverse);
+}
+
+@media (--small) {
+	.search-form input[type='search'],
+	.search-form input[type='text'],
+	.search-form input[type='submit'],
+	.search-form button[type='submit'] {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}

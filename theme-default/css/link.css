@@ -1,0 +1,103 @@
+/* Links: native port of front-end-framework theme-default/less/component-link.less
+   Icons and assistive texts for the link types marked by accessible-links.js */
+
+.link-image {
+	display: inline-block;
+}
+
+a[href].accessible-link {
+	overflow-wrap: break-word;
+}
+
+/* Font Awesome icon per link type */
+a[href].link-anchor .link-anchor-icon::before,
+a[href].link-email .link-protocol-icon::before,
+a[href].link-phone .link-protocol-icon::before,
+a[href].link-application .link-protocol-icon::before,
+a[href].link-pdf-file .link-file-type-icon::before,
+a[href].link-word-file .link-file-type-icon::before,
+a[href].link-excel-file .link-file-type-icon::before,
+a[href].link-powerpoint-file .link-file-type-icon::before,
+a[href].link-image-file .link-file-type-icon::before,
+a[href].link-video-file .link-file-type-icon::before,
+a[href].link-audio-file .link-file-type-icon::before,
+a[href].link-archive-file .link-file-type-icon::before,
+a[href].link-text-file .link-file-type-icon::before,
+a[href].link-rich-text-file .link-file-type-icon::before,
+a[href].link-tabular-data-file .link-file-type-icon::before,
+a[href].link-code-file .link-file-type-icon::before,
+a[href].link-file .link-file-type-icon::before,
+a[href].link-external .link-host-icon::before,
+a[href].link-new-tab .link-target-icon::before {
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+
+/* Empty alternative text: the assistive text already says the link type */
+a[href].link-anchor .link-anchor-icon::before { content: '\f13d'; content: '\f13d' / ''; }
+a[href].link-email .link-protocol-icon::before { content: '\f0e0'; content: '\f0e0' / ''; }
+a[href].link-phone .link-protocol-icon::before { content: '\f095'; content: '\f095' / ''; }
+a[href].link-application .link-protocol-icon::before { content: '\f12e'; content: '\f12e' / ''; }
+a[href].link-pdf-file .link-file-type-icon::before { content: '\f1c1'; content: '\f1c1' / ''; }
+a[href].link-word-file .link-file-type-icon::before { content: '\f1c2'; content: '\f1c2' / ''; }
+a[href].link-excel-file .link-file-type-icon::before { content: '\f1c3'; content: '\f1c3' / ''; }
+a[href].link-powerpoint-file .link-file-type-icon::before { content: '\f1c4'; content: '\f1c4' / ''; }
+a[href].link-image-file .link-file-type-icon::before { content: '\f1c5'; content: '\f1c5' / ''; }
+a[href].link-video-file .link-file-type-icon::before { content: '\f1c8'; content: '\f1c8' / ''; }
+a[href].link-audio-file .link-file-type-icon::before { content: '\f1c7'; content: '\f1c7' / ''; }
+a[href].link-archive-file .link-file-type-icon::before { content: '\f1c6'; content: '\f1c6' / ''; }
+a[href].link-text-file .link-file-type-icon::before { content: '\f15c'; content: '\f15c' / ''; }
+a[href].link-rich-text-file .link-file-type-icon::before { content: '\f15c'; content: '\f15c' / ''; }
+a[href].link-tabular-data-file .link-file-type-icon::before { content: '\f6dd'; content: '\f6dd' / ''; }
+a[href].link-code-file .link-file-type-icon::before { content: '\f1c9'; content: '\f1c9' / ''; }
+a[href].link-file .link-file-type-icon::before { content: '\f15b'; content: '\f15b' / ''; }
+a[href].link-external .link-host-icon::before { content: '\f35d'; content: '\f35d' / ''; }
+a[href].link-new-tab .link-target-icon::before { content: '\f2d0'; content: '\f2d0' / ''; }
+
+/* Email and phone icons are hidden by default */
+a[href].link-email .link-protocol-icon::before,
+a[href].link-phone .link-protocol-icon::before {
+	display: none;
+}
+
+/* Icon placement: no line break between the link text and the icon */
+a[href] :is(.link-anchor-icon, .link-protocol-icon, .link-file-type-icon, .link-host-icon, .link-target-icon) {
+	white-space: nowrap;
+
+	&::before {
+		margin-left: 0.25rem;
+		width: 1.25rem;
+		display: inline-block;
+	}
+}
+
+/* No icons on linked images */
+a[href].has-image :is(.link-anchor-icon, .link-protocol-icon, .link-file-type-icon, .link-host-icon, .link-target-icon)::before {
+	display: none;
+}
+
+/* Assistive texts: for screen readers only */
+a[href] .assistive {
+	position: absolute !important;
+	left: -10000px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+
+	&:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+}

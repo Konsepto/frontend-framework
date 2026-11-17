@@ -1,0 +1,8 @@
+/* Search form: native port of front-end-framework theme-default/less/component-search-form.less */
+
+@media (--small) {
+	.search-form-input,
+	.search-form-button {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}

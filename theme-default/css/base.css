@@ -1,0 +1,22 @@
+/* Base: native port of front-end-framework theme-default/less/base.less. Its only CSS output is
+   the icon font; the variables are in settings.css. */
+
+/*!
+ * Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2022 Fonticons, Inc.
+ */
+@font-face {
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/wp-content/themes/front-end-framework/theme-default/fonts/fa-solid-900.woff2') format('woff2'), url('/wp-content/themes/front-end-framework/theme-default/fonts/fa-solid-900.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Font Awesome 6 Brands';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/wp-content/themes/front-end-framework/theme-default/fonts/fa-brands-400.woff2') format('woff2'), url('/wp-content/themes/front-end-framework/theme-default/fonts/fa-brands-400.ttf') format('truetype');
+}

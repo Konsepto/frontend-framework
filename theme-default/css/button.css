@@ -1,0 +1,19 @@
+/* Buttons: native port of front-end-framework theme-default/less/component-button.less */
+
+@media (--small) {
+	.button {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+
+/* Floated buttons side by side */
+.button-group {
+	&::after {
+		clear: both;
+		content: ' ';
+		display: table;
+	}
+	& > * {
+		float: left;
+	}
+}

@@ -1,0 +1,27 @@
+/* Page structure: native port of front-end-framework theme-default/less/document.less */
+
+/* Footer at the bottom of short pages */
+#page {
+	display: flex;
+	flex-direction: column;
+
+	& > * {
+		width: 100%;
+	}
+	main {
+		flex-grow: 1;
+	}
+}
+
+@media print {
+	#header {
+		border-bottom: 2px solid var(--ff-gray-80);
+		margin-bottom: 20pt;
+		padding-bottom: 20pt;
+	}
+	#footer {
+		border-top: 2px solid var(--ff-gray-80);
+		margin-top: 20pt;
+		padding-top: 10pt;
+	}
+}

@@ -1,0 +1,124 @@
+/* Page structure: native port of front-end-framework core/less/document-core.less
+   (#page > #header, #main, #footer; zones and blocks inside them) */
+
+html,
+body {
+	height: 100%;
+	margin: 0px;
+	min-height: 100%;
+	padding: 0px;
+}
+
+#page {
+	min-height: 100%;
+}
+
+/* Containers centre their children (screen) */
+@media screen {
+	body {
+		text-align: center;
+		background-color: var(--ff-color-1);
+		margin: 0px;
+		padding: 0px;
+	}
+	body > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+}
+
+#page {
+	overflow: visible;
+	margin-bottom: 0px;
+	position: relative;
+}
+#header,
+#main,
+#footer {
+	margin-bottom: 0px;
+}
+
+/* Each container centres its children. Kept as separate rules in this order: #header is a child
+   of #page, so its own centring must come after "#page > *" (a combined :is() rule would also
+   give .zone-wrapper > * id specificity). */
+@media screen {
+	#page {
+		text-align: center;
+		background-color: transparent;
+	}
+	#page > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+	#header {
+		text-align: center;
+		background-color: var(--ff-color-1);
+	}
+	#header > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+	#main {
+		text-align: center;
+		background-color: var(--ff-color-1);
+	}
+	#main > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+	#footer {
+		text-align: center;
+		background-color: var(--ff-gray-93);
+	}
+	#footer > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+	.zone-wrapper {
+		text-align: center;
+	}
+	.zone-wrapper > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+}
+
+.zone-wrapper,
+.zone,
+.block {
+	position: relative;
+}
+
+@media screen {
+	.zone {
+		margin-left: auto;
+		margin-right: auto;
+
+		&:not(table) {
+			display: block;
+		}
+	}
+	#main .zone {
+		padding-bottom: var(--ff-gutter-height);
+		padding-top: var(--ff-gutter-height);
+	}
+	#main .block {
+		margin-bottom: var(--ff-gutter-height);
+	}
+}
+
+@media print {
+	#main .zone {
+		padding-bottom: 20pt;
+		padding-top: 20pt;
+	}
+	#main .block {
+		margin-bottom: 20pt;
+	}
+}

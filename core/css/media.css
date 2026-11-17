@@ -1,0 +1,96 @@
+/* Media (images, figures, embedded video): native port of front-end-framework core/less/component-media-core.less */
+
+.media-wrapper,
+.caption-wrapper {
+	display: inline-block;
+}
+
+.media {
+	display: inline-block;
+	margin-bottom: var(--ff-gutter-height);
+	margin-top: var(--ff-gutter-height);
+
+	&:first-child {
+		margin-top: 0px !important;
+	}
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+
+	&.float-left,
+	&.float-right {
+		margin-top: 0px;
+		margin-bottom: var(--ff-gutter-height);
+
+		&:first-child {
+			margin-top: 0px !important;
+		}
+		&:last-child {
+			margin-bottom: 0px !important;
+		}
+	}
+	&.float-left {
+		margin-right: var(--ff-gutter-width);
+	}
+	&.float-right {
+		margin-left: var(--ff-gutter-width);
+	}
+}
+
+.media,
+.media > figure,
+.media > img,
+.media > canvas,
+.media > video,
+.media > audio {
+	height: auto;
+	max-width: 100%;
+}
+
+.figure {
+	margin-bottom: var(--ff-gutter-height);
+	margin-top: var(--ff-gutter-height);
+
+	&:first-child {
+		margin-top: 0px !important;
+	}
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+}
+
+.image-adaptive,
+img.adaptive-image {
+	height: auto;
+	max-width: 100%;
+}
+
+/* Responsive 16:9 video embeds */
+.player-video,
+.media-youtube-video,
+.media-vimeo-video {
+	display: block;
+	height: 0px;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+	overflow: hidden;
+
+	iframe,
+	object,
+	embed {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	@media print {
+		display: none;
+	}
+}
+
+.media-caption {
+	margin-top: var(--ff-paragraph-margin);
+}

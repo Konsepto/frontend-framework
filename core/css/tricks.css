@@ -1,0 +1,203 @@
+/* Utility classes: native port of front-end-framework core/less/tricks-core.less */
+
+/* Box sizing */
+.border-box {
+	box-sizing: border-box;
+}
+.content-box {
+	box-sizing: content-box;
+}
+
+/* No margin when empty or at the start / end of the container */
+.empty-fix:empty {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+.margin-top-fix:first-child,
+.margin-fix:first-child {
+	margin-top: 0px !important;
+}
+.margin-bottom-fix:last-child,
+.margin-fix:last-child {
+	margin-bottom: 0px !important;
+}
+
+/* Display */
+.hidden {
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+}
+.visible {
+	display: initial;
+	visibility: visible;
+	opacity: 1;
+}
+.display-inline {
+	display: inline;
+}
+.display-block {
+	display: block;
+}
+.display-inline-block {
+	display: inline-block;
+}
+.display-initial {
+	display: initial;
+}
+.full-width {
+	width: 100%;
+}
+
+/* Floats and centring */
+.float-fix::after {
+	clear: both;
+	content: ' ';
+	display: table;
+}
+.centered-content {
+	text-align: center;
+
+	& > * {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+
+	&:not(table) {
+		display: block;
+	}
+}
+.float-left {
+	float: left;
+	margin-right: var(--ff-gutter-width);
+	margin-bottom: var(--ff-gutter-height);
+
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+}
+.float-right {
+	float: right;
+	margin-left: var(--ff-gutter-width);
+	margin-bottom: var(--ff-gutter-height);
+
+	&:last-child {
+		margin-bottom: 0px !important;
+	}
+}
+.clear-both {
+	clear: both;
+}
+
+/* Lists without bullets: linear, horizontal (flex), inline, floated */
+.list-linear li,
+.list-horizontal li,
+.list-horizontal-left li,
+.list-horizontal-center li,
+.list-horizontal-right li,
+.list-inline li,
+.list-inline-block li,
+.list-float li {
+	list-style: none;
+	margin-left: 0px;
+}
+.list-horizontal,
+.list-horizontal-left,
+.list-horizontal-center,
+.list-horizontal-right {
+	display: flex;
+	flex-flow: row wrap;
+}
+.list-horizontal-left {
+	justify-content: flex-start;
+}
+.list-horizontal-center {
+	justify-content: center;
+}
+.list-horizontal-right {
+	justify-content: flex-end;
+}
+.list-inline li {
+	display: inline;
+}
+.list-inline-block li {
+	display: inline-block;
+}
+.list-float {
+	&::after {
+		clear: both;
+		content: ' ';
+		display: table;
+	}
+	li {
+		display: block;
+		float: left;
+	}
+}
+
+/* Table as stacked blocks */
+.table-linear,
+.table-linear :is(thead, tbody, tfoot, tr, td, th) {
+	display: block;
+}
+
+/* Text */
+.hyphenation {
+	hyphens: auto;
+}
+.text-hide {
+	overflow: hidden;
+	position: relative;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+.no-wrap {
+	white-space: nowrap;
+}
+.ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.no-focus:focus {
+	outline: 0px;
+}
+.unselectable {
+	user-select: none;
+}
+.break-words {
+	word-break: break-word;
+}
+
+/* For screen readers only (visible when focused) */
+.screen-reader {
+	position: absolute !important;
+	left: -10000px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+
+	&:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+}
+
+/* No icons (see also icons.css) */
+.no-icon::before,
+.no-icon::after,
+.no-icons::before,
+.no-icons *::before,
+.no-icons::after,
+.no-icons *::after {
+	display: none !important;
+}

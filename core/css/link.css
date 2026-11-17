@@ -1,0 +1,25 @@
+/* Link variants: native port of front-end-framework core/less/component-link-core.less */
+
+.link-action:visited,
+.link-more:visited,
+.link-more a:visited,
+.link-less:visited,
+.link-less a:visited,
+.link-all:visited,
+.link-all a:visited {
+	color: var(--ff-color-text-link);
+}
+
+/* Looks like normal text until hovered */
+.link-unmarked {
+	&,
+	&:visited,
+	&:active {
+		color: var(--ff-color-text-primary);
+		text-decoration: none;
+	}
+	&:hover {
+		color: var(--ff-color-text-link);
+		text-decoration: underline;
+	}
+}

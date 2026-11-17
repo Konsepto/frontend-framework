@@ -1,0 +1,7 @@
+/* Separator: native port of front-end-framework theme-default/less/component-separator.less */
+
+/* The theme uses twice the small-screen paragraph margin on all screen sizes */
+.separator {
+	margin-top: calc(2 * (var(--ff-paragraph-margin) - var(--ff-small-screen-paragraph-margin-reduction)));
+	margin-bottom: calc(2 * (var(--ff-paragraph-margin) - var(--ff-small-screen-paragraph-margin-reduction)));
+}

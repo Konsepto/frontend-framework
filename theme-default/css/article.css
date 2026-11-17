@@ -1,0 +1,10 @@
+/* Article fields and page navigation: native port of front-end-framework theme-default/less/component-article.less */
+
+@media (--small) {
+	.page-navigation {
+		margin-top: calc(2 * (var(--ff-paragraph-margin) - var(--ff-small-screen-font-size-reduction)));
+		/* The LESS theme passed its arguments to .small-screen-adjust-margin-bottom() in the wrong
+		   order (default value 2 instead of the multiplier), which gave this value. Kept as is. */
+		margin-bottom: 1.4375rem;
+	}
+}

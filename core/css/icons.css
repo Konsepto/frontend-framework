@@ -1,0 +1,12 @@
+/* Icon helpers: native port of front-end-framework core/less/icons-core.less */
+
+/* Hide the icon of an element (.no-icon) or of all its descendants (.no-icons) */
+.no-icon::before,
+.no-icon::after,
+.no-icons::before,
+.no-icons *::before,
+.no-icons::after,
+.no-icons *::after {
+	content: '' !important;
+	display: none !important;
+}

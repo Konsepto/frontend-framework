@@ -1,0 +1,14 @@
+/* Text styles: native port of front-end-framework theme-default/less/component-text.less */
+
+/* Small screens: halfway between the size and the body size, minus the small-screen reduction */
+@media (--small) {
+	.lead {
+		font-size: calc((var(--ff-lead-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+	}
+	.caption {
+		font-size: calc((var(--ff-caption-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+	}
+	.dim {
+		font-size: calc((0.9 * var(--ff-body-font-size) + var(--ff-body-font-size)) / 2 - var(--ff-small-screen-font-size-reduction));
+	}
+}

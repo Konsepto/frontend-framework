@@ -1,0 +1,89 @@
+/* Drawer: native port of front-end-framework theme-default/less/component-drawer.less */
+
+/* Without JavaScript: open on hover and focus */
+.drawer-container:hover .drawer.no-script,
+.drawer-container:focus-within .drawer.no-script {
+	display: block !important;
+}
+
+/* Toggle buttons show a Font Awesome icon; the text is for screen readers */
+.toggle-drawer-button {
+	min-height: auto;
+	min-width: auto;
+	padding: 0px;
+
+	&::before {
+		display: inline-block;
+		min-height: 2rem;
+		min-width: 2rem;
+		padding: 0.25rem 0.25rem;
+	}
+	.text {
+		position: absolute !important;
+		left: -10000px !important;
+		width: 1px !important;
+		height: 1px !important;
+		overflow: hidden !important;
+
+		&:focus {
+			position: static !important;
+			left: auto !important;
+			top: auto !important;
+			width: auto !important;
+			height: auto !important;
+			overflow: visible !important;
+		}
+	}
+}
+
+/* Icon font settings shared by all toggle button icons */
+.toggle-drawer-button::before,
+.toggle-drawer-button.active::before,
+#toggle-navigation-menu-button::before,
+#toggle-navigation-menu-button.active::before,
+#toggle-search-form-button::before,
+#toggle-search-form-button.active::before {
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+
+/* Icons (empty alternative text: the button label is in .text) */
+.toggle-drawer-button::before {
+	content: '\2b';
+	content: '\2b' / '';
+}
+.toggle-drawer-button.active::before {
+	content: '\f068';
+	content: '\f068' / '';
+}
+
+@media (--small) {
+	.toggle-drawer-button {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+
+#toggle-navigation-menu-button::before {
+	content: '\f0c9';
+	content: '\f0c9' / '';
+}
+#toggle-navigation-menu-button.active::before {
+	content: '\f00d';
+	content: '\f00d' / '';
+}
+#toggle-search-form-button::before {
+	content: '\f002';
+	content: '\f002' / '';
+}
+#toggle-search-form-button.active::before {
+	content: '\f00d';
+	content: '\f00d' / '';
+}

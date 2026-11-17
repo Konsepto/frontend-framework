@@ -1,0 +1,105 @@
+/* Theme settings: breakpoints and custom properties used by the native CSS version of the
+   framework (core/css, theme-default/css). Native counterpart of theme-default/less/base.less and
+   the variables at the top of the theme LESS files.
+
+   Import this file first. To customise, import your own settings file after it (or instead of
+   it): a later @custom-media or :root value wins. WordPress themes typically point these
+   properties at theme.json variables, e.g. --ff-color-text-primary: var(--wp--custom--color--text--primary).
+
+   @custom-media needs a build step (Lightning CSS with drafts.customMedia, or PostCSS with
+   postcss-custom-media) until browsers support it. */
+
+
+/* Breakpoints (LESS @layout-1 … @layout-5, @small-screen).
+   min-width-N = content-width-N + 2 × page margin + scrollbar estimate (see base.less) */
+@custom-media --layout-1 (max-width: 747.98px);
+@custom-media --layout-2 (min-width: 748px) and (max-width: 923.98px);
+@custom-media --layout-3 (min-width: 924px) and (max-width: 1099.98px);
+@custom-media --layout-4 (min-width: 1100px) and (max-width: 1275.98px);
+@custom-media --layout-5 (min-width: 1276px);
+
+/* Named ranges used by the framework stylesheets */
+@custom-media --small (max-width: 747.98px);
+@custom-media --medium (min-width: 748px) and (max-width: 923.98px);
+@custom-media --medium-up (min-width: 748px);
+@custom-media --below-large (max-width: 923.98px);
+@custom-media --large (min-width: 924px);
+
+
+:root {
+	/* Base grid */
+	--ff-x: 8px;
+	--ff-y: 8px;
+	--ff-gutter-width: 24px;
+	--ff-gutter-height: 24px;
+
+	/* Colors (LESS @color-1 …, @color-grayscale-N) */
+	--ff-color-1: #FFFFFF;
+	--ff-color-2: #000000;
+	--ff-gray-40: #666666;
+	--ff-gray-73: #BBBBBB;
+	--ff-gray-80: #CCCCCC;
+	--ff-gray-87: #DDDDDD;
+	--ff-gray-93: #EEEEEE;
+
+	/* Semantic colors */
+	--ff-color-text-primary: #000000;
+	--ff-color-text-inverse: #FFFFFF;
+	--ff-color-text-disabled: #AAAAAA;
+	--ff-color-text-link: #000000;
+	--ff-color-border-default: #000000;
+	--ff-color-border-subtle: #AAAAAA;
+	--ff-color-border-disabled: #DDDDDD;
+	--ff-color-button-bg-default: #000000;
+	--ff-color-button-bg-hover: #666666;
+	--ff-color-button-bg-active: #BBBBBB;
+	--ff-color-button-bg-disabled: #EEEEEE;
+	--ff-color-input-bg-default: #FFFFFF;
+	--ff-color-input-bg-required: #FFFFCC;
+	--ff-color-input-bg-disabled: #EEEEEE;
+	--ff-color-message-default-bg: #EEEEEE;
+	--ff-color-message-default-text: #000000;
+	--ff-color-message-success-bg: #CCFFCC;
+	--ff-color-message-success-text: #006600;
+	--ff-color-message-notice-bg: #FFFFCC;
+	--ff-color-message-notice-text: #666600;
+	--ff-color-message-failure-bg: #FFCCCC;
+	--ff-color-message-failure-text: #660000;
+	--ff-color-message-information-bg: #CCDDFF;
+	--ff-color-message-information-text: #003366;
+	--ff-color-message-question-bg: #DDCCFF;
+	--ff-color-message-question-text: #330066;
+	--ff-print-link-color: #0066FF;
+
+	/* Font stacks (LESS @font-1, @font-2, @font-3) */
+	--ff-font-body: 'Open Sans', 'Lato', 'Roboto', 'Arial', 'Helvetica Neue', 'Helvetica', 'FreeSans', sans-serif;
+	--ff-font-heading: 'Roboto Slab', 'Merriweather', 'Noto Serif', 'TimesNewRoman', 'Times New Roman', 'Times', 'Baskerville', 'Georgia', 'FreeSerif', serif;
+	--ff-font-mono: 'Roboto Mono', 'Inconsolata', 'Source Code Pro', 'Courier New', 'Courier', 'Lucida Sans Typewriter', 'Lucida Typewriter', 'FreeMono', monospace;
+
+	/* Text sizes and spacing (rem; small screens = --small) */
+	--ff-body-font-size: 1.125rem;
+	--ff-body-line-height: 1.5;
+	--ff-paragraph-margin: var(--ff-body-font-size);
+	--ff-small-screen-body-font-size: 1rem;
+	--ff-small-screen-paragraph-margin: var(--ff-small-screen-body-font-size);
+	--ff-small-screen-font-size-reduction: calc(var(--ff-body-font-size) - var(--ff-small-screen-body-font-size));
+	--ff-small-screen-paragraph-margin-reduction: calc(var(--ff-paragraph-margin) - var(--ff-small-screen-paragraph-margin));
+	--ff-lead-font-size: calc(1.2 * var(--ff-body-font-size));
+	--ff-caption-font-size: calc(0.9 * var(--ff-body-font-size));
+	--ff-form-label-font-size: var(--ff-body-font-size);
+	--ff-print-body-font-size: 10pt;
+
+	/* Headings (each 0.7 × the previous one) */
+	--ff-heading-1-font-size: calc(2.6 * var(--ff-body-font-size));
+	--ff-heading-2-font-size: calc(0.6 * var(--ff-heading-1-font-size));
+	--ff-heading-3-font-size: calc(0.7 * var(--ff-heading-2-font-size));
+	--ff-heading-4-font-size: calc(0.7 * var(--ff-heading-3-font-size));
+	--ff-heading-5-font-size: calc(0.7 * var(--ff-heading-4-font-size));
+	--ff-heading-6-font-size: calc(0.7 * var(--ff-heading-5-font-size));
+	--ff-heading-2-font-weight: bold;
+	--ff-heading-2-line-height: 1.5;
+	--ff-heading-2-margin-top: calc(var(--ff-heading-2-font-size) * var(--ff-heading-2-line-height));
+
+	/* Buttons */
+	--ff-button-padding: 0.75rem 1rem;
+}

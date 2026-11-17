@@ -1,0 +1,157 @@
+/* Flex layout helpers: native port of front-end-framework core/less/grid-core.less */
+
+.flex-item,
+.flex > *,
+.flex-row > *,
+.flex-multirow > *,
+.flex-col > *,
+.flex-multicol > *,
+.flex-grid > *,
+.flex-grid-1 > *, .flex-grid-2 > *, .flex-grid-3 > *, .flex-grid-4 > *,
+.flex-grid-5 > *, .flex-grid-6 > *, .flex-grid-7 > *, .flex-grid-8 > *,
+.flex-grid-9 > *, .flex-grid-10 > *, .flex-grid-11 > *, .flex-grid-12 > * {
+	order: 0;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+}
+
+.flex-container,
+.flex {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+/* One row */
+.flex-row {
+	display: flex;
+	justify-content: flex-start;
+	column-gap: var(--ff-gutter-width);
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+/* Wrapping rows, items as wide as their content */
+.flex-multirow {
+	display: flex;
+	justify-content: flex-start;
+	gap: var(--ff-gutter-height) var(--ff-gutter-width);
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		flex-basis: content;
+	}
+}
+
+/* One column */
+.flex-col {
+	display: flex;
+	justify-content: flex-start;
+	row-gap: var(--ff-gutter-height);
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		width: 100%;
+	}
+}
+
+/* Wrapping columns, two side by side */
+.flex-multicol {
+	display: flex;
+	justify-content: flex-start;
+	gap: var(--ff-gutter-height) var(--ff-gutter-width);
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		width: calc(100% / 2 - var(--ff-gutter-width) / 2);
+	}
+}
+
+/* Grid of equal columns: .flex-grid (2 columns) */
+.flex-grid {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: var(--ff-gutter-height) var(--ff-gutter-width);
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		width: calc(100% / 2 - (2 - 1) / 2 * var(--ff-gutter-width));
+	}
+}
+
+/* Alignment */
+.flex-left {
+	justify-content: flex-start;
+}
+.flex-center {
+	justify-content: center;
+}
+.flex-right {
+	justify-content: flex-end;
+}
+.flex-top {
+	align-items: flex-start;
+}
+.flex-middle {
+	align-items: center;
+}
+.flex-bottom {
+	align-items: flex-end;
+}
+
+/* .flex-grid-1 … .flex-grid-12 (after the alignment classes, as in the framework: their
+   justify-content wins over .flex-left / .flex-center / .flex-right) */
+.flex-grid-1, .flex-grid-2, .flex-grid-3, .flex-grid-4,
+.flex-grid-5, .flex-grid-6, .flex-grid-7, .flex-grid-8,
+.flex-grid-9, .flex-grid-10, .flex-grid-11, .flex-grid-12 {
+	--columns: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: var(--ff-gutter-height) var(--ff-gutter-width);
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: stretch;
+
+	& > * {
+		width: calc(100% / var(--columns) - (var(--columns) - 1) / var(--columns) * var(--ff-gutter-width));
+	}
+}
+.flex-grid-1 { --columns: 1; }
+.flex-grid-2 { --columns: 2; }
+.flex-grid-3 { --columns: 3; }
+.flex-grid-4 { --columns: 4; }
+.flex-grid-5 { --columns: 5; }
+.flex-grid-6 { --columns: 6; }
+.flex-grid-7 { --columns: 7; }
+.flex-grid-8 { --columns: 8; }
+.flex-grid-9 { --columns: 9; }
+.flex-grid-10 { --columns: 10; }
+.flex-grid-11 { --columns: 11; }
+.flex-grid-12 { --columns: 12; }
+
+.row-break {
+	clear: left;
+	margin-left: 0px;
+}
+@media screen {
+	.auto-row-break {
+		clear: left;
+	}
+}

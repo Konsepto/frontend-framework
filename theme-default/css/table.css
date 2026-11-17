@@ -1,0 +1,19 @@
+/* Table variants: native port of front-end-framework theme-default/less/component-table.less */
+
+.table-striped tbody tr:nth-child(odd) {
+	background-color: var(--ff-gray-93);
+}
+
+.table-bordered {
+	td,
+	th {
+		border-style: solid;
+		border-width: 1px;
+	}
+	tfoot :is(td, th) {
+		border-bottom-width: 1px;
+	}
+	thead :is(td, th) {
+		border-bottom-width: 2px;
+	}
+}

@@ -1,0 +1,134 @@
+/* System messages: native port of front-end-framework core/less/component-system-message-core.less
+   (.messages / .form-item selectors are the Drupal equivalents) */
+
+/* Box */
+.system-message,
+.system-message-success,
+.messages.status,
+.form-item div.status,
+.system-message-notice,
+.messages.warning,
+.form-item div.warning,
+.form-item div.error,
+.system-message-failure,
+.messages.error,
+.system-message-information,
+.messages.information,
+.system-message-question,
+.messages.question {
+	background-color: var(--ff-color-message-default-bg);
+	color: var(--ff-color-message-default-text);
+	margin-bottom: var(--ff-y);
+	padding: var(--ff-y) var(--ff-x);
+}
+
+/* Colours by type */
+.system-message-success,
+.messages.status,
+.form-item div.status {
+	background-color: var(--ff-color-message-success-bg);
+	color: var(--ff-color-message-success-text);
+}
+.system-message-notice,
+.messages.warning,
+.form-item div.warning,
+.form-item div.error {
+	background-color: var(--ff-color-message-notice-bg);
+	color: var(--ff-color-message-notice-text);
+}
+.system-message-failure,
+.messages.error {
+	background-color: var(--ff-color-message-failure-bg);
+	color: var(--ff-color-message-failure-text);
+}
+.system-message-information,
+.messages.information {
+	background-color: var(--ff-color-message-information-bg);
+	color: var(--ff-color-message-information-text);
+}
+.system-message-question,
+.messages.question {
+	background-color: var(--ff-color-message-question-bg);
+	color: var(--ff-color-message-question-text);
+}
+
+/* Icon area in the left padding */
+.system-message-success::before,
+.messages.status::before,
+.form-item div.status::before,
+.system-message-notice::before,
+.messages.warning::before,
+.form-item div.warning::before,
+.form-item div.error::before,
+.system-message-failure::before,
+.messages.error::before,
+.system-message-information::before,
+.messages.information::before,
+.system-message-question::before,
+.messages.question::before {
+	display: inline-block;
+	float: left;
+	margin-right: var(--ff-x);
+	margin-left: calc(-3 * var(--ff-x));
+	min-width: 16px;
+}
+
+.form-item div.status,
+.form-item div.warning,
+.form-item div.error {
+	margin-top: var(--ff-y);
+}
+
+/* Drupal messages: Font Awesome icons */
+.messages.status,
+.form-item div.status,
+.messages.warning,
+.form-item div.warning,
+.form-item div.error,
+.messages.error,
+.messages.information,
+.messages.question {
+	padding-left: 32px;
+}
+.messages.status::before,
+.form-item div.status::before,
+.messages.warning::before,
+.form-item div.warning::before,
+.form-item div.error::before,
+.messages.error::before,
+.messages.information::before,
+.messages.question::before {
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+.messages.status::before,
+.form-item div.status::before {
+	content: '\f058';
+	content: '\f058' / '';
+}
+.messages.warning::before,
+.form-item div.warning::before,
+.form-item div.error::before {
+	content: '\f071';
+	content: '\f071' / '';
+}
+.messages.error::before {
+	content: '\f057';
+	content: '\f057' / '';
+}
+.messages.information::before {
+	content: '\f05a';
+	content: '\f05a' / '';
+}
+.messages.question::before {
+	content: '\f059';
+	content: '\f059' / '';
+}
