@@ -302,26 +302,26 @@ table {
 	position: relative;
 	td,
 	th {
-		padding-top: @y / 2 - @table-border-width;
+		padding-top: (@y / 2) - @table-border-width;
 		padding-right: @x;
-		padding-bottom: @y / 2;
+		padding-bottom: (@y / 2);
 		padding-left: @x - @table-border-width;
 	}
 	tfoot {
 		td,
 		th {
-			padding-top: @y / 2 - @table-footer-border-width;
+			padding-top: (@y / 2) - @table-footer-border-width;
 			padding-right: @x;
-			padding-bottom: @y / 2;
+			padding-bottom: (@y / 2);
 			padding-left: @x - @table-footer-border-width;
 		}
 	}
 	thead {
 		td,
 		th {
-			padding-top: @y / 2 - @table-header-border-width;
+			padding-top: (@y / 2) - @table-header-border-width;
 			padding-right: @x;
-			padding-bottom: @y / 2;
+			padding-bottom: (@y / 2);
 			padding-left: @x - @table-header-border-width;
 		}
 	}
@@ -696,7 +696,7 @@ hr {
 		line-height: 2 * @body-line-height;
 		rp,
 		rt {
-			line-height: @body-line-height / 2;
+			line-height: (@body-line-height / 2);
 		}
 	}
 	big { // Obsolete in HTML5
@@ -745,8 +745,8 @@ hr {
 	}
 	caption,
 	figcaption {
-		margin-top: @paragraph-margin / 2;
-		margin-bottom: @paragraph-margin / 2;
+		margin-top: (@paragraph-margin / 2);
+		margin-bottom: (@paragraph-margin / 2);
 		//padding-bottom: @paragraph-margin;
 	}
 	figure {
@@ -981,7 +981,7 @@ hr {
 		line-height: 2 * @print-body-line-height !important;
 		rp,
 		rt {
-			line-height: @print-body-line-height / 2;
+			line-height: (@print-body-line-height / 2);
 		}
 	}
 	big { // Obsolete in HTML5
