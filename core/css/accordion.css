@@ -1,0 +1,30 @@
+/* Accordion: native port of front-end-framework core/less/component-accordion-core.less */
+
+/* Accordion */
+.accordion-basic .accordion-title {
+	border-width: 0px;
+	border-style: solid;
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: bold;
+	line-height: var(--ff-body-line-height); /* LESS printed 1.5px (unitless line height minus 0px borders) */
+	margin-bottom: 1.125rem;
+}
+.accordion-basic .accordion-title a,
+.accordion-basic .accordion-title a:visited,
+.accordion-basic .accordion-title a:hover,
+.accordion-basic .accordion-title a:active {
+	background-position: top left;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+}
+.accordion-basic .accordion-content {
+	margin-bottom: 1.125rem;
+	padding-left: 16px;
+	display: none;
+}
+.accordion-basic .accordion-content.active {
+	display: block;
+}

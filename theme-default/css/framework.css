@@ -1,0 +1,67 @@
+/* Front-end Framework, native CSS version: the whole framework with the default theme, in the
+   cascade order of theme-default/less/imports.less (LESS files without CSS output are left out).
+
+   Use with a bundler that inlines @import and resolves @custom-media (Lightning CSS: bundle() with
+   drafts.customMedia and browser targets). To customise, import your own settings after
+   settings.css, or import only the components you need from core/css and theme-default/css:
+
+     @import "front-end-framework/theme-default/css/framework.css";
+     @import "my-settings.css";      (overrides --ff-* properties and @custom-media)
+     @import "my-site.css";
+*/
+
+@import "settings.css";
+
+/* Theme base (icon font) */
+@import "base.css";
+
+/* Core */
+@import "../../core/css/normalize.css";
+@import "../../core/css/tricks.css";
+@import "../../core/css/elements.css";
+@import "../../core/css/document.css";
+@import "../../core/css/grid.css";
+@import "../../core/css/icons.css";
+@import "../../core/css/animations.css";
+@import "../../core/css/accordion.css";
+@import "../../core/css/article.css";
+@import "../../core/css/attachments.css";
+@import "../../core/css/breadcrumbs.css";
+@import "../../core/css/button.css";
+@import "../../core/css/carousel.css";
+@import "../../core/css/drawer.css";
+@import "../../core/css/form.css";
+@import "../../core/css/link.css";
+@import "../../core/css/listing.css";
+@import "../../core/css/media.css";
+@import "../../core/css/navigation-menu.css";
+@import "../../core/css/pagination.css";
+@import "../../core/css/panel.css";
+@import "../../core/css/popup.css";
+@import "../../core/css/separator.css";
+@import "../../core/css/search-form.css";
+@import "../../core/css/speech-balloon.css";
+@import "../../core/css/system-message.css";
+@import "../../core/css/tabs.css";
+@import "../../core/css/text.css";
+
+/* Default theme */
+@import "elements.css";
+@import "document.css";
+@import "debug.css";
+@import "accordion.css";
+@import "article.css";
+@import "breadcrumbs.css";
+@import "button.css";
+@import "drawer.css";
+@import "form.css";
+@import "link.css";
+@import "media.css";
+@import "navigation-menu.css";
+@import "pagination.css";
+@import "separator.css";
+@import "search-form.css";
+@import "system-message.css";
+@import "table.css";
+@import "tabs.css";
+@import "text.css";

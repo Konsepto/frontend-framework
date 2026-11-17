@@ -1,0 +1,85 @@
+/* Accordion: native port of front-end-framework theme-default/less/component-accordion.less */
+
+/* Accordion theme settings */
+/* Accordion theme styles */
+.accordion .accordion-title {
+	background-color: transparent;
+	border-color: var(--ff-gray-73);
+	border-width: 0px;
+	border-style: solid;
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: bold;
+	line-height: var(--ff-body-line-height); /* LESS printed 1.5px (unitless line height minus 0px borders) */
+	margin-bottom: 1.125rem;
+}
+.accordion .accordion-title:first-child {
+	border-top: none;
+}
+.accordion .accordion-title:hover {
+	background-color: transparent;
+}
+.accordion .accordion-title:hover a,
+.accordion .accordion-title:hover a:visited,
+.accordion .accordion-title:hover a:hover,
+.accordion .accordion-title:hover a:active {
+	color: var(--ff-color-text-primary);
+}
+.accordion .accordion-title:active,
+.accordion .accordion-title.active {
+	background-color: transparent;
+	border-color: var(--ff-gray-73);
+	border-style: solid;
+}
+.accordion .accordion-title:active a,
+.accordion .accordion-title.active a,
+.accordion .accordion-title:active a:visited,
+.accordion .accordion-title.active a:visited,
+.accordion .accordion-title:active a:hover,
+.accordion .accordion-title.active a:hover,
+.accordion .accordion-title:active a:active,
+.accordion .accordion-title.active a:active {
+	color: var(--ff-color-text-primary);
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/accordion-expanded.png');
+}
+.accordion .accordion-title:disabled,
+.accordion .accordion-title.disabled {
+	background-color: transparent;
+}
+.accordion .accordion-title:disabled a,
+.accordion .accordion-title.disabled a,
+.accordion .accordion-title:disabled a:visited,
+.accordion .accordion-title.disabled a:visited,
+.accordion .accordion-title:disabled a:hover,
+.accordion .accordion-title.disabled a:hover,
+.accordion .accordion-title:disabled a:active,
+.accordion .accordion-title.disabled a:active {
+	color: var(--ff-gray-67);
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/accordion-expanded.png');
+}
+.accordion .accordion-title a,
+.accordion .accordion-title a:visited,
+.accordion .accordion-title a:hover,
+.accordion .accordion-title a:active {
+	color: var(--ff-color-text-primary);
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/accordion-collapsed.png');
+	padding: 0px 0px 0px 16px;
+}
+@media (--small) {
+	.accordion .accordion-title a,
+	.accordion .accordion-title a:visited,
+	.accordion .accordion-title a:hover,
+	.accordion .accordion-title a:active {
+		font-size: 1rem;
+	}
+}
+@media (--small) {
+	.accordion .accordion-title {
+		margin-bottom: 1rem;
+	}
+}
+@media (--small) {
+	.accordion .accordion-content {
+		margin-bottom: 1rem;
+	}
+}

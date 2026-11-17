@@ -1,0 +1,2350 @@
+/* Navigation menu: native port of front-end-framework core/less/component-navigation-menu-core.less */
+
+/* Navigation menu mixin */
+/* Navigation menu item mixin */
+/* Navigation menu item color mixin */
+/* Navigation menu toggle button mixin */
+/* Bar navigation menu */
+.navigation-menu-bar {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 0px;
+	position: relative;
+}
+.navigation-menu-bar,
+.navigation-menu-bar * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-bar li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li > a,
+.navigation-menu-bar li > button {
+	max-height: 999999px;
+}
+.navigation-menu-bar li > a:focus:not(.mouse-focused),
+.navigation-menu-bar li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-bar li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-bar li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-bar li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-bar li > a:first-child,
+.navigation-menu-bar li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-bar li > a:first-child:active,
+.navigation-menu-bar li > a:first-child:visited:active,
+.navigation-menu-bar li > a:first-child.active,
+.navigation-menu-bar li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-bar li > a:first-child:hover,
+.navigation-menu-bar li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-bar li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-bar li > .toggle,
+.navigation-menu-bar li > .toggle:active,
+.navigation-menu-bar li > .toggle.active,
+.navigation-menu-bar li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar li.has-children > a:first-child,
+.navigation-menu-bar li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-bar li.has-children > a:first-child::after,
+.navigation-menu-bar li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-bar li > a:first-child,
+.navigation-menu-bar li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li > a:first-child.active,
+.navigation-menu-bar li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar li > a:first-child:hover,
+.navigation-menu-bar li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar li.active-trail > a:first-child,
+.navigation-menu-bar li.current-menu-ancestor > a:first-child,
+.navigation-menu-bar li.active-trail > a:first-child:visited,
+.navigation-menu-bar li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li.active-trail > .toggle::after,
+.navigation-menu-bar li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li.expanded > a:first-child,
+.navigation-menu-bar li.hovering > a:first-child,
+.navigation-menu-bar li.expanded > a:first-child:visited,
+.navigation-menu-bar li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li.expanded > .toggle::after,
+.navigation-menu-bar li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar li.active > a:first-child,
+.navigation-menu-bar li.current-menu-item > a:first-child,
+.navigation-menu-bar li.active > a:first-child:visited,
+.navigation-menu-bar li.current-menu-item > a:first-child:visited,
+.navigation-menu-bar li.active > a:first-child.active,
+.navigation-menu-bar li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-bar li.active > .toggle::after,
+.navigation-menu-bar li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar li.disabled > a:first-child,
+.navigation-menu-bar li.disabled > a:first-child:visited,
+.navigation-menu-bar li.disabled > a:first-child.active,
+.navigation-menu-bar li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar li.disabled > .toggle,
+.navigation-menu-bar li.disabled > .toggle.active,
+.navigation-menu-bar li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar li.disabled > .toggle::after,
+.navigation-menu-bar li.disabled > .toggle.active::after,
+.navigation-menu-bar li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar ul {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-bar ul,
+.navigation-menu-bar ul * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-bar ul li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li > a,
+.navigation-menu-bar ul li > button {
+	max-height: 999999px;
+}
+.navigation-menu-bar ul li > a:focus:not(.mouse-focused),
+.navigation-menu-bar ul li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-bar ul li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-bar ul li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-bar ul li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-bar ul li > a:first-child,
+.navigation-menu-bar ul li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-bar ul li > a:first-child:active,
+.navigation-menu-bar ul li > a:first-child:visited:active,
+.navigation-menu-bar ul li > a:first-child.active,
+.navigation-menu-bar ul li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-bar ul li > a:first-child:hover,
+.navigation-menu-bar ul li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar ul li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-bar ul li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-bar ul li > .toggle,
+.navigation-menu-bar ul li > .toggle:active,
+.navigation-menu-bar ul li > .toggle.active,
+.navigation-menu-bar ul li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar ul li.has-children > a:first-child,
+.navigation-menu-bar ul li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-bar ul li.has-children > a:first-child::after,
+.navigation-menu-bar ul li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-bar ul li > a:first-child,
+.navigation-menu-bar ul li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li > a:first-child.active,
+.navigation-menu-bar ul li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar ul li > a:first-child:hover,
+.navigation-menu-bar ul li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar ul li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar ul li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar ul li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar ul li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar ul li.active-trail > a:first-child,
+.navigation-menu-bar ul li.current-menu-ancestor > a:first-child,
+.navigation-menu-bar ul li.active-trail > a:first-child:visited,
+.navigation-menu-bar ul li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li.active-trail > .toggle::after,
+.navigation-menu-bar ul li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li.expanded > a:first-child,
+.navigation-menu-bar ul li.hovering > a:first-child,
+.navigation-menu-bar ul li.expanded > a:first-child:visited,
+.navigation-menu-bar ul li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li.expanded > .toggle::after,
+.navigation-menu-bar ul li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar ul li.active > a:first-child,
+.navigation-menu-bar ul li.current-menu-item > a:first-child,
+.navigation-menu-bar ul li.active > a:first-child:visited,
+.navigation-menu-bar ul li.current-menu-item > a:first-child:visited,
+.navigation-menu-bar ul li.active > a:first-child.active,
+.navigation-menu-bar ul li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-bar ul li.active > .toggle::after,
+.navigation-menu-bar ul li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar ul li.disabled > a:first-child,
+.navigation-menu-bar ul li.disabled > a:first-child:visited,
+.navigation-menu-bar ul li.disabled > a:first-child.active,
+.navigation-menu-bar ul li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar ul li.disabled > .toggle,
+.navigation-menu-bar ul li.disabled > .toggle.active,
+.navigation-menu-bar ul li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar ul li.disabled > .toggle::after,
+.navigation-menu-bar ul li.disabled > .toggle.active::after,
+.navigation-menu-bar ul li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-bar,
+.navigation-menu-bar * {
+	overflow: visible;
+}
+.navigation-menu-bar,
+.navigation-menu-bar ul {
+	position: relative;
+	margin: 0px;
+}
+.navigation-menu-bar,
+.navigation-menu-bar ul {
+	font-size: 0%;
+}
+.navigation-menu-bar ul {
+	position: absolute;
+	top: 99.99999%;
+}
+.navigation-menu-bar li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-bar li a:first-child {
+	display: inline-block;
+}
+.navigation-menu-bar > * {
+	vertical-align: middle;
+}
+/* Column navigation menu */
+.navigation-menu-col {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-col,
+.navigation-menu-col * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-col li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li > a,
+.navigation-menu-col li > button {
+	max-height: 999999px;
+}
+.navigation-menu-col li > a:focus:not(.mouse-focused),
+.navigation-menu-col li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-col li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-col li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-col li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-col li > a:first-child,
+.navigation-menu-col li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-col li > a:first-child:active,
+.navigation-menu-col li > a:first-child:visited:active,
+.navigation-menu-col li > a:first-child.active,
+.navigation-menu-col li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-col li > a:first-child:hover,
+.navigation-menu-col li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-col li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-col li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-col li > .toggle,
+.navigation-menu-col li > .toggle:active,
+.navigation-menu-col li > .toggle.active,
+.navigation-menu-col li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-col li.has-children > a:first-child,
+.navigation-menu-col li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col li.has-children > a:first-child::after,
+.navigation-menu-col li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-col li > a:first-child,
+.navigation-menu-col li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li > a:first-child.active,
+.navigation-menu-col li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col li > a:first-child:hover,
+.navigation-menu-col li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-col li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col li.active-trail > a:first-child,
+.navigation-menu-col li.current-menu-ancestor > a:first-child,
+.navigation-menu-col li.active-trail > a:first-child:visited,
+.navigation-menu-col li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li.active-trail > .toggle::after,
+.navigation-menu-col li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li.expanded > a:first-child,
+.navigation-menu-col li.hovering > a:first-child,
+.navigation-menu-col li.expanded > a:first-child:visited,
+.navigation-menu-col li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li.expanded > .toggle::after,
+.navigation-menu-col li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col li.active > a:first-child,
+.navigation-menu-col li.current-menu-item > a:first-child,
+.navigation-menu-col li.active > a:first-child:visited,
+.navigation-menu-col li.current-menu-item > a:first-child:visited,
+.navigation-menu-col li.active > a:first-child.active,
+.navigation-menu-col li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-col li.active > .toggle::after,
+.navigation-menu-col li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col li.disabled > a:first-child,
+.navigation-menu-col li.disabled > a:first-child:visited,
+.navigation-menu-col li.disabled > a:first-child.active,
+.navigation-menu-col li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col li.disabled > .toggle,
+.navigation-menu-col li.disabled > .toggle.active,
+.navigation-menu-col li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col li.disabled > .toggle::after,
+.navigation-menu-col li.disabled > .toggle.active::after,
+.navigation-menu-col li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col ul {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-col ul,
+.navigation-menu-col ul * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-col ul li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li > a,
+.navigation-menu-col ul li > button {
+	max-height: 999999px;
+}
+.navigation-menu-col ul li > a:focus:not(.mouse-focused),
+.navigation-menu-col ul li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-col ul li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-col ul li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-col ul li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-col ul li > a:first-child,
+.navigation-menu-col ul li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-col ul li > a:first-child:active,
+.navigation-menu-col ul li > a:first-child:visited:active,
+.navigation-menu-col ul li > a:first-child.active,
+.navigation-menu-col ul li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-col ul li > a:first-child:hover,
+.navigation-menu-col ul li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-col ul li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-col ul li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-col ul li > .toggle,
+.navigation-menu-col ul li > .toggle:active,
+.navigation-menu-col ul li > .toggle.active,
+.navigation-menu-col ul li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-col ul li.has-children > a:first-child,
+.navigation-menu-col ul li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col ul li.has-children > a:first-child::after,
+.navigation-menu-col ul li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-col ul li > a:first-child,
+.navigation-menu-col ul li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li > a:first-child.active,
+.navigation-menu-col ul li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col ul li > a:first-child:hover,
+.navigation-menu-col ul li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col ul li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-col ul li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col ul li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col ul li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col ul li.active-trail > a:first-child,
+.navigation-menu-col ul li.current-menu-ancestor > a:first-child,
+.navigation-menu-col ul li.active-trail > a:first-child:visited,
+.navigation-menu-col ul li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li.active-trail > .toggle::after,
+.navigation-menu-col ul li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li.expanded > a:first-child,
+.navigation-menu-col ul li.hovering > a:first-child,
+.navigation-menu-col ul li.expanded > a:first-child:visited,
+.navigation-menu-col ul li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li.expanded > .toggle::after,
+.navigation-menu-col ul li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col ul li.active > a:first-child,
+.navigation-menu-col ul li.current-menu-item > a:first-child,
+.navigation-menu-col ul li.active > a:first-child:visited,
+.navigation-menu-col ul li.current-menu-item > a:first-child:visited,
+.navigation-menu-col ul li.active > a:first-child.active,
+.navigation-menu-col ul li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-col ul li.active > .toggle::after,
+.navigation-menu-col ul li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col ul li.disabled > a:first-child,
+.navigation-menu-col ul li.disabled > a:first-child:visited,
+.navigation-menu-col ul li.disabled > a:first-child.active,
+.navigation-menu-col ul li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col ul li.disabled > .toggle,
+.navigation-menu-col ul li.disabled > .toggle.active,
+.navigation-menu-col ul li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col ul li.disabled > .toggle::after,
+.navigation-menu-col ul li.disabled > .toggle.active::after,
+.navigation-menu-col ul li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-col,
+.navigation-menu-col * {
+	overflow: visible;
+}
+.navigation-menu-col,
+.navigation-menu-col ul {
+	position: relative;
+	margin: 0px;
+}
+.navigation-menu-col li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-col li.has-children > a:first-child,
+.navigation-menu-col li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col li li > a:first-child {
+	padding-left: 1.75rem;
+}
+.navigation-menu-col li li li > a:first-child {
+	padding-left: 2.75rem;
+}
+.navigation-menu-col li li li li > a:first-child {
+	padding-left: 3.75rem;
+}
+.navigation-menu-col li li li li li > a:first-child {
+	padding-left: 4.75rem;
+}
+/* Dropdown navigation menu bar */
+.navigation-menu-bar-dropdown {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 0px;
+	position: relative;
+}
+.navigation-menu-bar-dropdown,
+.navigation-menu-bar-dropdown * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-bar-dropdown li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li > a,
+.navigation-menu-bar-dropdown li > button {
+	max-height: 999999px;
+}
+.navigation-menu-bar-dropdown li > a:focus:not(.mouse-focused),
+.navigation-menu-bar-dropdown li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-bar-dropdown li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-bar-dropdown li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-bar-dropdown li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-bar-dropdown li > a:first-child,
+.navigation-menu-bar-dropdown li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown li > a:first-child:active,
+.navigation-menu-bar-dropdown li > a:first-child:visited:active,
+.navigation-menu-bar-dropdown li > a:first-child.active,
+.navigation-menu-bar-dropdown li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown li > a:first-child:hover,
+.navigation-menu-bar-dropdown li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-bar-dropdown li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-bar-dropdown li > .toggle,
+.navigation-menu-bar-dropdown li > .toggle:active,
+.navigation-menu-bar-dropdown li > .toggle.active,
+.navigation-menu-bar-dropdown li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown li.has-children > a:first-child,
+.navigation-menu-bar-dropdown li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-bar-dropdown li.has-children > a:first-child::after,
+.navigation-menu-bar-dropdown li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-bar-dropdown li > a:first-child,
+.navigation-menu-bar-dropdown li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li > a:first-child.active,
+.navigation-menu-bar-dropdown li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar-dropdown li > a:first-child:hover,
+.navigation-menu-bar-dropdown li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar-dropdown li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar-dropdown li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar-dropdown li.active-trail > a:first-child,
+.navigation-menu-bar-dropdown li.current-menu-ancestor > a:first-child,
+.navigation-menu-bar-dropdown li.active-trail > a:first-child:visited,
+.navigation-menu-bar-dropdown li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li.active-trail > .toggle::after,
+.navigation-menu-bar-dropdown li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li.expanded > a:first-child,
+.navigation-menu-bar-dropdown li.hovering > a:first-child,
+.navigation-menu-bar-dropdown li.expanded > a:first-child:visited,
+.navigation-menu-bar-dropdown li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li.expanded > .toggle::after,
+.navigation-menu-bar-dropdown li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown li.active > a:first-child,
+.navigation-menu-bar-dropdown li.current-menu-item > a:first-child,
+.navigation-menu-bar-dropdown li.active > a:first-child:visited,
+.navigation-menu-bar-dropdown li.current-menu-item > a:first-child:visited,
+.navigation-menu-bar-dropdown li.active > a:first-child.active,
+.navigation-menu-bar-dropdown li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-bar-dropdown li.active > .toggle::after,
+.navigation-menu-bar-dropdown li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown li.disabled > a:first-child,
+.navigation-menu-bar-dropdown li.disabled > a:first-child:visited,
+.navigation-menu-bar-dropdown li.disabled > a:first-child.active,
+.navigation-menu-bar-dropdown li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown li.disabled > .toggle,
+.navigation-menu-bar-dropdown li.disabled > .toggle.active,
+.navigation-menu-bar-dropdown li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown li.disabled > .toggle::after,
+.navigation-menu-bar-dropdown li.disabled > .toggle.active::after,
+.navigation-menu-bar-dropdown li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown ul {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-bar-dropdown ul,
+.navigation-menu-bar-dropdown ul * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-bar-dropdown ul li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li > a,
+.navigation-menu-bar-dropdown ul li > button {
+	max-height: 999999px;
+}
+.navigation-menu-bar-dropdown ul li > a:focus:not(.mouse-focused),
+.navigation-menu-bar-dropdown ul li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-bar-dropdown ul li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-bar-dropdown ul li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child:active,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited:active,
+.navigation-menu-bar-dropdown ul li > a:first-child.active,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child:hover,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown ul li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-bar-dropdown ul li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-bar-dropdown ul li > .toggle,
+.navigation-menu-bar-dropdown ul li > .toggle:active,
+.navigation-menu-bar-dropdown ul li > .toggle.active,
+.navigation-menu-bar-dropdown ul li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-bar-dropdown ul li.has-children > a:first-child,
+.navigation-menu-bar-dropdown ul li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-bar-dropdown ul li.has-children > a:first-child::after,
+.navigation-menu-bar-dropdown ul li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li > a:first-child.active,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar-dropdown ul li > a:first-child:hover,
+.navigation-menu-bar-dropdown ul li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-bar-dropdown ul li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown ul li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown ul li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar-dropdown ul li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-bar-dropdown ul li.active-trail > a:first-child,
+.navigation-menu-bar-dropdown ul li.current-menu-ancestor > a:first-child,
+.navigation-menu-bar-dropdown ul li.active-trail > a:first-child:visited,
+.navigation-menu-bar-dropdown ul li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li.active-trail > .toggle::after,
+.navigation-menu-bar-dropdown ul li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li.expanded > a:first-child,
+.navigation-menu-bar-dropdown ul li.hovering > a:first-child,
+.navigation-menu-bar-dropdown ul li.expanded > a:first-child:visited,
+.navigation-menu-bar-dropdown ul li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li.expanded > .toggle::after,
+.navigation-menu-bar-dropdown ul li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-bar-dropdown ul li.active > a:first-child,
+.navigation-menu-bar-dropdown ul li.current-menu-item > a:first-child,
+.navigation-menu-bar-dropdown ul li.active > a:first-child:visited,
+.navigation-menu-bar-dropdown ul li.current-menu-item > a:first-child:visited,
+.navigation-menu-bar-dropdown ul li.active > a:first-child.active,
+.navigation-menu-bar-dropdown ul li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-bar-dropdown ul li.active > .toggle::after,
+.navigation-menu-bar-dropdown ul li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-bar-dropdown ul li.disabled > a:first-child,
+.navigation-menu-bar-dropdown ul li.disabled > a:first-child:visited,
+.navigation-menu-bar-dropdown ul li.disabled > a:first-child.active,
+.navigation-menu-bar-dropdown ul li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown ul li.disabled > .toggle,
+.navigation-menu-bar-dropdown ul li.disabled > .toggle.active,
+.navigation-menu-bar-dropdown ul li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown ul li.disabled > .toggle::after,
+.navigation-menu-bar-dropdown ul li.disabled > .toggle.active::after,
+.navigation-menu-bar-dropdown ul li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-bar-dropdown li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-bar-dropdown,
+.navigation-menu-bar-dropdown * {
+	overflow: visible;
+}
+.navigation-menu-bar-dropdown,
+.navigation-menu-bar-dropdown ul {
+	position: relative;
+	margin: 0px;
+}
+.navigation-menu-bar-dropdown,
+.navigation-menu-bar-dropdown ul {
+	font-size: 0%;
+}
+.navigation-menu-bar-dropdown ul {
+	position: absolute;
+	top: 99.99999%;
+}
+.navigation-menu-bar-dropdown li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-bar-dropdown li a:first-child {
+	display: inline-block;
+}
+.navigation-menu-bar-dropdown > * {
+	vertical-align: middle;
+}
+.navigation-menu-bar-dropdown .assistive {
+	position: absolute !important;
+	left: -10000px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+}
+.navigation-menu-bar-dropdown .assistive:focus {
+	position: static !important;
+	left: auto !important;
+	top: auto !important;
+	width: auto !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+@media (--small) {
+	.navigation-menu-bar-dropdown,
+	.navigation-menu-bar-dropdown * {
+		font-size: 1rem;
+	}
+}
+@media (--small) {
+	.navigation-menu-bar-dropdown ul,
+	.navigation-menu-bar-dropdown ul * {
+		font-size: 1rem;
+	}
+}
+.navigation-menu-bar-dropdown.no-script li.has-children > a:first-child::after,
+.navigation-menu-bar-dropdown.no-script li.menu-item-has-children > a:first-child::after {
+	content: '\f107';
+	content: '\f107' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+.navigation-menu-bar-dropdown li.has-children > a:first-child::after,
+.navigation-menu-bar-dropdown li.menu-item-has-children > a:first-child::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-bar-dropdown li > .toggle {
+	height: 2.625rem;
+	width: 2.625rem;
+}
+.navigation-menu-bar-dropdown li > .toggle::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-bar-dropdown li > .toggle::after {
+	content: '\f107';
+	content: '\f107' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+.navigation-menu-bar-dropdown li > .toggle.active::after {
+	content: '\f106';
+	content: '\f106' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+	line-height: 1.44375rem;
+	text-indent: 0rem;
+}
+.navigation-menu-bar-dropdown li li.has-children > a:first-child::after,
+.navigation-menu-bar-dropdown li li.menu-item-has-children > a:first-child::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-bar-dropdown li li > .toggle {
+	height: 2.625rem;
+	width: 2.625rem;
+}
+.navigation-menu-bar-dropdown li li > .toggle::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-bar-dropdown li li > .toggle.active::after {
+	line-height: 1.44375rem;
+}
+.navigation-menu-bar-dropdown ul {
+	display: none;
+	left: 0px;
+	overflow: visible clip;
+	position: absolute;
+	max-width: 328px;
+	width: max-content;
+	z-index: 9999;
+}
+.navigation-menu-bar-dropdown ul.finished {
+	overflow: visible;
+}
+.navigation-menu-bar-dropdown ul ul {
+	left: 99.99999%;
+	overflow: clip visible;
+	top: 0px;
+}
+.navigation-menu-bar-dropdown ul ul.finished {
+	overflow: visible;
+}
+.navigation-menu-bar-dropdown ul li {
+	display: block;
+	max-width: 328px;
+	min-width: 152px;
+}
+.navigation-menu-bar-dropdown ul li,
+.navigation-menu-bar-dropdown ul a:first-child {
+	display: block !important;
+}
+/* Dropdown column navigation menu */
+.navigation-menu-col-dropdown {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-col-dropdown,
+.navigation-menu-col-dropdown * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-col-dropdown li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li > a,
+.navigation-menu-col-dropdown li > button {
+	max-height: 999999px;
+}
+.navigation-menu-col-dropdown li > a:focus:not(.mouse-focused),
+.navigation-menu-col-dropdown li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-col-dropdown li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-col-dropdown li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-col-dropdown li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-col-dropdown li > a:first-child,
+.navigation-menu-col-dropdown li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown li > a:first-child:active,
+.navigation-menu-col-dropdown li > a:first-child:visited:active,
+.navigation-menu-col-dropdown li > a:first-child.active,
+.navigation-menu-col-dropdown li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown li > a:first-child:hover,
+.navigation-menu-col-dropdown li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-col-dropdown li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-col-dropdown li > .toggle,
+.navigation-menu-col-dropdown li > .toggle:active,
+.navigation-menu-col-dropdown li > .toggle.active,
+.navigation-menu-col-dropdown li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown li.has-children > a:first-child,
+.navigation-menu-col-dropdown li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col-dropdown li.has-children > a:first-child::after,
+.navigation-menu-col-dropdown li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-col-dropdown li > a:first-child,
+.navigation-menu-col-dropdown li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li > a:first-child.active,
+.navigation-menu-col-dropdown li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col-dropdown li > a:first-child:hover,
+.navigation-menu-col-dropdown li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col-dropdown li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col-dropdown li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col-dropdown li.active-trail > a:first-child,
+.navigation-menu-col-dropdown li.current-menu-ancestor > a:first-child,
+.navigation-menu-col-dropdown li.active-trail > a:first-child:visited,
+.navigation-menu-col-dropdown li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li.active-trail > .toggle::after,
+.navigation-menu-col-dropdown li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li.expanded > a:first-child,
+.navigation-menu-col-dropdown li.hovering > a:first-child,
+.navigation-menu-col-dropdown li.expanded > a:first-child:visited,
+.navigation-menu-col-dropdown li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li.expanded > .toggle::after,
+.navigation-menu-col-dropdown li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown li.active > a:first-child,
+.navigation-menu-col-dropdown li.current-menu-item > a:first-child,
+.navigation-menu-col-dropdown li.active > a:first-child:visited,
+.navigation-menu-col-dropdown li.current-menu-item > a:first-child:visited,
+.navigation-menu-col-dropdown li.active > a:first-child.active,
+.navigation-menu-col-dropdown li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-col-dropdown li.active > .toggle::after,
+.navigation-menu-col-dropdown li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown li.disabled > a:first-child,
+.navigation-menu-col-dropdown li.disabled > a:first-child:visited,
+.navigation-menu-col-dropdown li.disabled > a:first-child.active,
+.navigation-menu-col-dropdown li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown li.disabled > .toggle,
+.navigation-menu-col-dropdown li.disabled > .toggle.active,
+.navigation-menu-col-dropdown li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown li.disabled > .toggle::after,
+.navigation-menu-col-dropdown li.disabled > .toggle.active::after,
+.navigation-menu-col-dropdown li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown ul {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-col-dropdown ul,
+.navigation-menu-col-dropdown ul * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-col-dropdown ul li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li > a,
+.navigation-menu-col-dropdown ul li > button {
+	max-height: 999999px;
+}
+.navigation-menu-col-dropdown ul li > a:focus:not(.mouse-focused),
+.navigation-menu-col-dropdown ul li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-col-dropdown ul li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-col-dropdown ul li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-col-dropdown ul li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-col-dropdown ul li > a:first-child,
+.navigation-menu-col-dropdown ul li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown ul li > a:first-child:active,
+.navigation-menu-col-dropdown ul li > a:first-child:visited:active,
+.navigation-menu-col-dropdown ul li > a:first-child.active,
+.navigation-menu-col-dropdown ul li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown ul li > a:first-child:hover,
+.navigation-menu-col-dropdown ul li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown ul li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-col-dropdown ul li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-col-dropdown ul li > .toggle,
+.navigation-menu-col-dropdown ul li > .toggle:active,
+.navigation-menu-col-dropdown ul li > .toggle.active,
+.navigation-menu-col-dropdown ul li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-col-dropdown ul li.has-children > a:first-child,
+.navigation-menu-col-dropdown ul li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col-dropdown ul li.has-children > a:first-child::after,
+.navigation-menu-col-dropdown ul li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-col-dropdown ul li > a:first-child,
+.navigation-menu-col-dropdown ul li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li > a:first-child.active,
+.navigation-menu-col-dropdown ul li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col-dropdown ul li > a:first-child:hover,
+.navigation-menu-col-dropdown ul li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-col-dropdown ul li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown ul li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown ul li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col-dropdown ul li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-col-dropdown ul li.active-trail > a:first-child,
+.navigation-menu-col-dropdown ul li.current-menu-ancestor > a:first-child,
+.navigation-menu-col-dropdown ul li.active-trail > a:first-child:visited,
+.navigation-menu-col-dropdown ul li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li.active-trail > .toggle::after,
+.navigation-menu-col-dropdown ul li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li.expanded > a:first-child,
+.navigation-menu-col-dropdown ul li.hovering > a:first-child,
+.navigation-menu-col-dropdown ul li.expanded > a:first-child:visited,
+.navigation-menu-col-dropdown ul li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li.expanded > .toggle::after,
+.navigation-menu-col-dropdown ul li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-col-dropdown ul li.active > a:first-child,
+.navigation-menu-col-dropdown ul li.current-menu-item > a:first-child,
+.navigation-menu-col-dropdown ul li.active > a:first-child:visited,
+.navigation-menu-col-dropdown ul li.current-menu-item > a:first-child:visited,
+.navigation-menu-col-dropdown ul li.active > a:first-child.active,
+.navigation-menu-col-dropdown ul li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-col-dropdown ul li.active > .toggle::after,
+.navigation-menu-col-dropdown ul li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-col-dropdown ul li.disabled > a:first-child,
+.navigation-menu-col-dropdown ul li.disabled > a:first-child:visited,
+.navigation-menu-col-dropdown ul li.disabled > a:first-child.active,
+.navigation-menu-col-dropdown ul li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown ul li.disabled > .toggle,
+.navigation-menu-col-dropdown ul li.disabled > .toggle.active,
+.navigation-menu-col-dropdown ul li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown ul li.disabled > .toggle::after,
+.navigation-menu-col-dropdown ul li.disabled > .toggle.active::after,
+.navigation-menu-col-dropdown ul li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-col-dropdown li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-col-dropdown,
+.navigation-menu-col-dropdown * {
+	overflow: visible;
+}
+.navigation-menu-col-dropdown,
+.navigation-menu-col-dropdown ul {
+	position: relative;
+	margin: 0px;
+}
+.navigation-menu-col-dropdown li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-col-dropdown li.has-children > a:first-child,
+.navigation-menu-col-dropdown li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-col-dropdown li li > a:first-child {
+	padding-left: 1.75rem;
+}
+.navigation-menu-col-dropdown li li li > a:first-child {
+	padding-left: 2.75rem;
+}
+.navigation-menu-col-dropdown li li li li > a:first-child {
+	padding-left: 3.75rem;
+}
+.navigation-menu-col-dropdown li li li li li > a:first-child {
+	padding-left: 4.75rem;
+}
+.navigation-menu-col-dropdown .assistive {
+	position: absolute !important;
+	left: -10000px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+}
+.navigation-menu-col-dropdown .assistive:focus {
+	position: static !important;
+	left: auto !important;
+	top: auto !important;
+	width: auto !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+@media (--small) {
+	.navigation-menu-col-dropdown,
+	.navigation-menu-col-dropdown * {
+		font-size: 1rem;
+	}
+}
+@media (--small) {
+	.navigation-menu-col-dropdown ul,
+	.navigation-menu-col-dropdown ul * {
+		font-size: 1rem;
+	}
+}
+.navigation-menu-col-dropdown.no-script li.has-children > a:first-child::after,
+.navigation-menu-col-dropdown.no-script li.menu-item-has-children > a:first-child::after {
+	content: '\f107';
+	content: '\f107' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+.navigation-menu-col-dropdown li.has-children > a:first-child::after,
+.navigation-menu-col-dropdown li.menu-item-has-children > a:first-child::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-col-dropdown li > .toggle {
+	height: 2.625rem;
+	width: 2.625rem;
+}
+.navigation-menu-col-dropdown li > .toggle::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-col-dropdown li > .toggle::after {
+	content: '\f107';
+	content: '\f107' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+}
+.navigation-menu-col-dropdown li > .toggle.active::after {
+	content: '\f106';
+	content: '\f106' / '';
+	font-family: 'Font Awesome 6';
+	font-style: normal;
+	font-weight: normal;
+	speak: never;
+	text-align: center;
+	text-decoration: none;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: auto;
+	line-height: 1.44375rem;
+	text-indent: 0rem;
+}
+.navigation-menu-col-dropdown li li.has-children > a:first-child::after,
+.navigation-menu-col-dropdown li li.menu-item-has-children > a:first-child::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-col-dropdown li li > .toggle {
+	height: 2.625rem;
+	width: 2.625rem;
+}
+.navigation-menu-col-dropdown li li > .toggle::after {
+	width: 1.75rem;
+	height: 1.75rem;
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	line-height: 1.5rem;
+	margin: 0.4375rem;
+	padding: 0.125rem;
+	border-radius: 100%;
+	overflow: hidden;
+	line-height: 1.575rem;
+	text-indent: 0.05rem;
+}
+.navigation-menu-col-dropdown li li > .toggle.active::after {
+	line-height: 1.44375rem;
+}
+.navigation-menu-col-dropdown ul {
+	display: none;
+	width: 100%;
+	z-index: 9999;
+	left: 0px;
+}
+.navigation-menu-col-dropdown ul ul {
+	left: 0px;
+}
+/* Megamenu navigation menu *
+// See https://bugs.jquery.com/ticket/11635
+.navigation-menu-megamenu {
+	.navigation-menu();
+	> li {
+		.navigation-menu-item(
+		);
+		.navigation-menu-item-color();
+	}
+	ul {
+		.navigation-menu(
+			@navigation-submenu-color;
+			@navigation-submenu-text-color;
+			@navigation-submenu-font-size;
+			@navigation-submenu-line-height;
+			@navigation-submenu-font-family;
+			@navigation-submenu-font-weight;
+		);
+	}
+	.list-horizontal();
+	margin-bottom: 0px;
+	position: relative;
+	&,
+	ul {
+		font-size: 0%;
+	}
+	> li > ul {
+		position: absolute;
+		// Chrome 1-pixel misplacement fix 21.9.2020
+		//top: 100%;
+		top: 99.99999%;
+		max-width: 100% !important;
+		padding: @navigation-menu-megamenu-padding;
+		width: 100% !important;
+		display: flex !important;
+		gap: @navigation-menu-megamenu-gap;
+		ul {
+			position: static !important;
+			display: block !important;
+			max-width: 100% !important;
+			width: 100% !important;
+			height: 100% !important;
+			margin-left: @navigation-menu-megamenu-indent;
+		}
+	}
+	> li {
+		position: static;
+		list-style: none;
+		margin-left: 0px;
+		a:first-child {
+			display: inline-block;
+		}
+	}
+	> * {
+		vertical-align: middle;
+	}
+	ul {
+		margin: 0px;
+		display: none;
+		left: 0px;
+		//overflow: visible clip !important;
+		//position: absolute;
+		//max-width: @navigation-menu-bar-dropdown-max-width;
+		//min-width: @navigation-menu-bar-dropdown-min-width;
+		// Fix IE that does not understand 'width: max-content'
+		//width: @navigation-menu-bar-dropdown-max-width;
+		//width: max-content;
+		z-index: 9999;
+		&.finished {
+			//overflow: visible !important;
+		}
+		ul {
+			display: block !important;
+			// Chrome 1-pixel misplacement fix 21.9.2020
+			//left: 100%;
+			//left: 99.99999%;
+			//overflow: clip visible !important;
+			//top: 0px;
+			&.finished {
+				//overflow: visible !important;
+			}
+		}
+		li {
+			//display: block;
+			//max-width: @navigation-menu-bar-dropdown-max-width;
+			//min-width: @navigation-menu-bar-dropdown-min-width;
+		}
+		li,
+		a:first-child {
+			display: block !important;
+		}
+		.toggle {
+			display: none;
+		}
+	}
+	> li > .toggle {
+		position: absolute !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
+		margin-left: -@navigation-menu-toggle-width !important;
+	}
+}
+
+/* Mobile navigation menu */
+.navigation-menu-mobile {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-mobile,
+.navigation-menu-mobile * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-mobile li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li > a,
+.navigation-menu-mobile li > button {
+	max-height: 999999px;
+}
+.navigation-menu-mobile li > a:focus:not(.mouse-focused),
+.navigation-menu-mobile li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-mobile li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-mobile li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-mobile li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-mobile li > a:first-child,
+.navigation-menu-mobile li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-mobile li > a:first-child:active,
+.navigation-menu-mobile li > a:first-child:visited:active,
+.navigation-menu-mobile li > a:first-child.active,
+.navigation-menu-mobile li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-mobile li > a:first-child:hover,
+.navigation-menu-mobile li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-mobile li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-mobile li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-mobile li > .toggle,
+.navigation-menu-mobile li > .toggle:active,
+.navigation-menu-mobile li > .toggle.active,
+.navigation-menu-mobile li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-mobile li.has-children > a:first-child,
+.navigation-menu-mobile li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-mobile li.has-children > a:first-child::after,
+.navigation-menu-mobile li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-mobile li > a:first-child,
+.navigation-menu-mobile li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li > a:first-child.active,
+.navigation-menu-mobile li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-mobile li > a:first-child:hover,
+.navigation-menu-mobile li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-mobile li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-mobile li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-mobile li.active-trail > a:first-child,
+.navigation-menu-mobile li.current-menu-ancestor > a:first-child,
+.navigation-menu-mobile li.active-trail > a:first-child:visited,
+.navigation-menu-mobile li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li.active-trail > .toggle::after,
+.navigation-menu-mobile li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li.expanded > a:first-child,
+.navigation-menu-mobile li.hovering > a:first-child,
+.navigation-menu-mobile li.expanded > a:first-child:visited,
+.navigation-menu-mobile li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li.expanded > .toggle::after,
+.navigation-menu-mobile li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile li.active > a:first-child,
+.navigation-menu-mobile li.current-menu-item > a:first-child,
+.navigation-menu-mobile li.active > a:first-child:visited,
+.navigation-menu-mobile li.current-menu-item > a:first-child:visited,
+.navigation-menu-mobile li.active > a:first-child.active,
+.navigation-menu-mobile li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-mobile li.active > .toggle::after,
+.navigation-menu-mobile li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile li.disabled > a:first-child,
+.navigation-menu-mobile li.disabled > a:first-child:visited,
+.navigation-menu-mobile li.disabled > a:first-child.active,
+.navigation-menu-mobile li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-93) !important;
+}
+.navigation-menu-mobile li.disabled > .toggle,
+.navigation-menu-mobile li.disabled > .toggle.active,
+.navigation-menu-mobile li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-mobile li.disabled > .toggle::after,
+.navigation-menu-mobile li.disabled > .toggle.active::after,
+.navigation-menu-mobile li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-mobile ul {
+	color: var(--ff-color-text-primary);
+	background-color: var(--ff-color-nav-bg-default);
+}
+.navigation-menu-mobile ul,
+.navigation-menu-mobile ul * {
+	font-size: 1.125rem;
+	line-height: 1.5;
+	font-family: var(--ff-font-body);
+	font-weight: normal;
+}
+.navigation-menu-mobile ul li {
+	position: relative;
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li > a,
+.navigation-menu-mobile ul li > button {
+	max-height: 999999px;
+}
+.navigation-menu-mobile ul li > a:focus:not(.mouse-focused),
+.navigation-menu-mobile ul li > button:focus:not(.mouse-focused) {
+	z-index: 100000;
+}
+.navigation-menu-mobile ul li > a:focus:not(.mouse-focused) + .toggle,
+.navigation-menu-mobile ul li > button:focus:not(.mouse-focused) + .toggle {
+	z-index: 100001;
+}
+.navigation-menu-mobile ul li > a:first-child {
+	min-height: 2rem;
+	position: relative;
+	display: block;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.navigation-menu-mobile ul li > a:first-child,
+.navigation-menu-mobile ul li > a:first-child:visited {
+	text-decoration: none;
+}
+.navigation-menu-mobile ul li > a:first-child:active,
+.navigation-menu-mobile ul li > a:first-child:visited:active,
+.navigation-menu-mobile ul li > a:first-child.active,
+.navigation-menu-mobile ul li > a:first-child:visited.active {
+	text-decoration: none;
+}
+.navigation-menu-mobile ul li > a:first-child:hover,
+.navigation-menu-mobile ul li > a:first-child:visited:hover {
+	text-decoration: none;
+}
+.navigation-menu-mobile ul li > .toggle {
+	background-color: transparent;
+	border: 0px;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	z-index: 1;
+}
+.navigation-menu-mobile ul li > .toggle::after {
+	display: block;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	z-index: 1;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+.navigation-menu-mobile ul li > .toggle,
+.navigation-menu-mobile ul li > .toggle:active,
+.navigation-menu-mobile ul li > .toggle.active,
+.navigation-menu-mobile ul li > .toggle:hover {
+	text-decoration: none;
+}
+.navigation-menu-mobile ul li.has-children > a:first-child,
+.navigation-menu-mobile ul li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-mobile ul li.has-children > a:first-child::after,
+.navigation-menu-mobile ul li.menu-item-has-children > a:first-child::after {
+	text-align: center;
+	position: absolute;
+	min-height: 2.625rem;
+	min-width: 2.625rem;
+	padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	right: 0px;
+	top: 0px;
+}
+.navigation-menu-mobile ul li > a:first-child,
+.navigation-menu-mobile ul li > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-default);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li > a:first-child.active,
+.navigation-menu-mobile ul li > a:first-child:visited.active {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-mobile ul li > a:first-child:hover,
+.navigation-menu-mobile ul li > a:first-child:visited:hover {
+	background-color: var(--ff-color-nav-bg-hover) !important;
+	color: var(--ff-color-text-inverse) !important;
+}
+.navigation-menu-mobile ul li > .toggle {
+	background-color: transparent;
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile ul li > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile ul li > .toggle.active::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-mobile ul li > .toggle:hover::after {
+	background-color: var(--ff-color-2) !important;
+	color: var(--ff-color-1) !important;
+}
+.navigation-menu-mobile ul li.active-trail > a:first-child,
+.navigation-menu-mobile ul li.current-menu-ancestor > a:first-child,
+.navigation-menu-mobile ul li.active-trail > a:first-child:visited,
+.navigation-menu-mobile ul li.current-menu-ancestor > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li.active-trail > .toggle::after,
+.navigation-menu-mobile ul li.current-menu-ancestor > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li.expanded > a:first-child,
+.navigation-menu-mobile ul li.hovering > a:first-child,
+.navigation-menu-mobile ul li.expanded > a:first-child:visited,
+.navigation-menu-mobile ul li.hovering > a:first-child:visited {
+	background-color: var(--ff-color-nav-bg-active-trail);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li.expanded > .toggle::after,
+.navigation-menu-mobile ul li.hovering > .toggle::after {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-color-text-primary);
+}
+.navigation-menu-mobile ul li.active > a:first-child,
+.navigation-menu-mobile ul li.current-menu-item > a:first-child,
+.navigation-menu-mobile ul li.active > a:first-child:visited,
+.navigation-menu-mobile ul li.current-menu-item > a:first-child:visited,
+.navigation-menu-mobile ul li.active > a:first-child.active,
+.navigation-menu-mobile ul li.current-menu-item > a:first-child.active {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-text-inverse);
+}
+.navigation-menu-mobile ul li.active > .toggle::after,
+.navigation-menu-mobile ul li.current-menu-item > .toggle::after {
+	background-color: var(--ff-color-2);
+	color: var(--ff-color-1);
+}
+.navigation-menu-mobile ul li.disabled > a:first-child,
+.navigation-menu-mobile ul li.disabled > a:first-child:visited,
+.navigation-menu-mobile ul li.disabled > a:first-child.active,
+.navigation-menu-mobile ul li.disabled > a:first-child:hover {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-93) !important;
+}
+.navigation-menu-mobile ul li.disabled > .toggle,
+.navigation-menu-mobile ul li.disabled > .toggle.active,
+.navigation-menu-mobile ul li.disabled > .toggle:hover {
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-mobile ul li.disabled > .toggle::after,
+.navigation-menu-mobile ul li.disabled > .toggle.active::after,
+.navigation-menu-mobile ul li.disabled > .toggle:hover::after {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+.navigation-menu-mobile li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-mobile,
+.navigation-menu-mobile * {
+	overflow: visible;
+}
+.navigation-menu-mobile,
+.navigation-menu-mobile ul {
+	position: relative;
+	margin: 0px;
+}
+.navigation-menu-mobile ul {
+	display: none;
+}
+.navigation-menu-mobile li {
+	list-style: none;
+	margin-left: 0px;
+}
+.navigation-menu-mobile li.has-children > a:first-child,
+.navigation-menu-mobile li.menu-item-has-children > a:first-child {
+	padding-right: 3.125rem;
+}
+.navigation-menu-mobile li li > a:first-child {
+	padding-left: 1.75rem;
+}
+.navigation-menu-mobile li li li > a:first-child {
+	padding-left: 2.75rem;
+}
+.navigation-menu-mobile li li li li > a:first-child {
+	padding-left: 3.75rem;
+}
+.navigation-menu-mobile li li li li li > a:first-child {
+	padding-left: 4.75rem;
+}
+/* Dropdown navigation menu open right to left styles (apply to the whole menu or the individual LI elements) */

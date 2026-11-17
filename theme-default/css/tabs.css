@@ -1,0 +1,18 @@
+/* Tabs: native port of front-end-framework theme-default/less/component-tabs.less */
+
+/* Tabs links theme settings */
+/* Panel tabs links theme settings */
+/* Tabs theme styles */
+/* Tabs links theme styles */
+@media (--small) {
+	.tabs-links li {
+		font-size: 1rem;
+	}
+}
+/* Panel tabs links theme styles */
+@media (--small) {
+	.tabs-links-panel li {
+		font-size: 1rem;
+	}
+}
+/* Tabs content theme styles */

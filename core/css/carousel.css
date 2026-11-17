@@ -1,0 +1,110 @@
+/* Carousel: native port of front-end-framework core/less/component-carousel-core.less */
+
+/* Carousel */
+.carousel {
+	position: relative;
+}
+.carousel .views-slideshow-controls-text-previous,
+.carousel .views-slideshow-controls-text-next,
+.carousel .views-slideshow-controls-text-pause {
+	position: absolute;
+	z-index: 50;
+}
+.carousel .views-slideshow-controls-text-previous a,
+.carousel .views-slideshow-controls-text-next a,
+.carousel .views-slideshow-controls-text-pause a {
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: block;
+	height: 24px;
+	overflow: hidden;
+	text-indent: -9999px;
+	width: 24px;
+}
+.carousel .views-slideshow-controls-text-previous,
+.carousel .views-slideshow-controls-text-next {
+	margin-top: -12px;
+	top: 50%;
+}
+.carousel .views-slideshow-controls-text-previous {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-arrow-left.png');
+	left: 8px;
+}
+.carousel .views-slideshow-controls-text-next {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-arrow-right.png');
+	right: 8px;
+}
+.carousel .views-slideshow-controls-text-pause {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-pause.png');
+	bottom: 8px;
+	right: 8px;
+}
+.carousel .views-slideshow-controls-text-pause.active {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-pause-active.png');
+}
+.carousel.pager-bullets .widget_pager,
+.carousel.pager-images .widget_pager {
+	position: absolute;
+	z-index: 50;
+}
+.carousel.pager-bullets .widget_pager div,
+.carousel.pager-images .widget_pager div {
+	display: inline;
+}
+.carousel.pager-bullets .widget_pager .views-slideshow-pager-field-item,
+.carousel.pager-images .widget_pager .views-slideshow-pager-field-item {
+	cursor: pointer;
+	display: inline-block;
+}
+.carousel.pager-bullets .widget_pager {
+	padding: 12px 0px;
+}
+.carousel.pager-bullets .widget_pager .views-slideshow-pager-field-item {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-pager.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 16px;
+	overflow: hidden;
+	text-indent: -9999px;
+	width: 16px;
+}
+.carousel.pager-bullets .widget_pager .views-slideshow-pager-field-item.active {
+	background-image: url('/wp-content/themes/front-end-framework/theme-default/img/carousel-pager-active.png');
+}
+.carousel.pager-images .widget_pager {
+	padding: 4px 4px;
+}
+.carousel.pager-images .widget_pager .views-slideshow-pager-field-item {
+	padding: 4px 4px;
+}
+.carousel.pager-center .widget_pager {
+	left: 25%;
+	width: 50%;
+	text-align: center;
+}
+.carousel.pager-center .widget_pager .views-slideshow-pager-field-item {
+	margin-left: -2px;
+	margin-right: -2px;
+}
+.carousel.pager-top .widget_pager {
+	top: 0px;
+}
+.carousel.pager-bottom .widget_pager {
+	bottom: 0px;
+}
+.carousel.pager-left .widget_pager {
+	left: 0px;
+}
+.carousel.pager-left .widget_pager .views-slideshow-pager-field-item {
+	margin-right: -4px;
+}
+.carousel.pager-right .widget_pager {
+	right: 0px;
+}
+.carousel.pager-right .widget_pager .views-slideshow-pager-field-item {
+	margin-left: -4px;
+}
+* + html .carousel.pager-bullets .widget_pager .views-slideshow-pager-field-item,
+* + html .carousel.pager-images .widget_pager .views-slideshow-pager-field-item {
+	display: inline;
+}

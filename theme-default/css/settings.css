@@ -36,11 +36,15 @@
 	/* Colors (LESS @color-1 …, @color-grayscale-N) */
 	--ff-color-1: #FFFFFF;
 	--ff-color-2: #000000;
+	--ff-gray-0: #000000;
 	--ff-gray-40: #666666;
+	--ff-gray-60: #999999;
+	--ff-gray-67: #AAAAAA;
 	--ff-gray-73: #BBBBBB;
 	--ff-gray-80: #CCCCCC;
 	--ff-gray-87: #DDDDDD;
 	--ff-gray-93: #EEEEEE;
+	--ff-gray-100: #FFFFFF;
 
 	/* Semantic colors */
 	--ff-color-text-primary: #000000;
@@ -57,6 +61,9 @@
 	--ff-color-input-bg-default: #FFFFFF;
 	--ff-color-input-bg-required: #FFFFCC;
 	--ff-color-input-bg-disabled: #EEEEEE;
+	--ff-color-nav-bg-default: #FFFFFF;
+	--ff-color-nav-bg-hover: #000000;
+	--ff-color-nav-bg-active-trail: #CCCCCC;
 	--ff-color-message-default-bg: #EEEEEE;
 	--ff-color-message-default-text: #000000;
 	--ff-color-message-success-bg: #CCFFCC;

@@ -1,0 +1,10 @@
+/* Panel: native port of front-end-framework core/less/component-panel-core.less */
+
+/* Panel */
+.panel {
+	background-color: var(--ff-gray-93);
+	border-color: var(--ff-gray-73);
+	border-style: solid;
+	border-width: 0px;
+	padding: 16px 16px;
+}

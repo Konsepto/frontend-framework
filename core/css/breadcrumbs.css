@@ -1,0 +1,58 @@
+/* Breadcrumbs: native port of front-end-framework core/less/component-breadcrumbs-core.less */
+
+/* Breadcrumbs */
+.breadcrumbs {
+	color: var(--ff-gray-40);
+	font-family: var(--ff-font-body);
+	font-size: 1.0125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	text-decoration: none;
+}
+.breadcrumbs::after {
+	clear: both;
+	content: ' ';
+	display: table;
+}
+.breadcrumbs li {
+	display: block;
+	float: left;
+	list-style: none;
+	margin-left: 0px;
+}
+.breadcrumbs li {
+	margin-left: 8px;
+}
+.breadcrumbs li:first-child {
+	margin-left: 0px;
+}
+.breadcrumbs li > a {
+	cursor: pointer;
+}
+.breadcrumbs li > a:focus {
+	outline: 0px;
+}
+.breadcrumbs li > a,
+.breadcrumbs li > a:visited,
+.breadcrumbs li > a:hover,
+.breadcrumbs li > a:active {
+	color: var(--ff-gray-40);
+	text-decoration: none;
+}
+.breadcrumbs li > a:hover {
+	color: var(--ff-color-text-link);
+	text-decoration: underline;
+}
+.breadcrumbs li.active,
+.breadcrumbs li.active > a,
+.breadcrumbs li.active > a:visited,
+.breadcrumbs li.active > a:hover,
+.breadcrumbs li.active > a:active {
+	color: var(--ff-gray-40);
+	font-style: normal;
+	font-weight: bold;
+}
+.breadcrumbs li.active > a:hover {
+	color: var(--ff-color-text-link);
+	text-decoration: underline;
+}

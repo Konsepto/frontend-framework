@@ -1,0 +1,151 @@
+/* Tabs: native port of front-end-framework core/less/component-tabs-core.less */
+
+/* Tabs */
+/* Tabs links */
+.tabs-links {
+	border-color: var(--ff-gray-73);
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	height: 24px;
+	padding: 0px 8px;
+}
+.tabs-links::after {
+	clear: both;
+	content: ' ';
+	display: table;
+}
+.tabs-links li {
+	list-style: none;
+	margin-left: 0px;
+}
+.tabs-links,
+.tabs-links:last-child {
+	margin-bottom: 14px;
+}
+.tabs-links a {
+	line-height: 1.5;
+}
+.tabs-links a,
+.tabs-links a:visited,
+.tabs-links a:hover,
+.tabs-links a:active {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	cursor: pointer;
+	display: block;
+	padding: 4px 8px;
+	text-decoration: none;
+}
+.tabs-links a:focus,
+.tabs-links a:visited:focus,
+.tabs-links a:hover:focus,
+.tabs-links a:active:focus {
+	outline: 0px;
+}
+.tabs-links li {
+	float: left;
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px 0px 0px 8px;
+}
+.tabs-links li:first-child {
+	margin-left: 0px;
+}
+.tabs-links li:hover > a,
+.tabs-links li:hover > a:visited,
+.tabs-links li:hover > a:hover,
+.tabs-links li:hover > a:active {
+	background-color: var(--ff-gray-80);
+	color: var(--ff-gray-0);
+}
+.tabs-links li.active > a,
+.tabs-links li.active > a:visited,
+.tabs-links li.active > a:hover,
+.tabs-links li.active > a:active {
+	background-color: var(--ff-gray-73);
+	color: var(--ff-gray-0);
+	padding-bottom: 4px;
+}
+.tabs-links li.disabled > a,
+.tabs-links li.disabled > a:visited,
+.tabs-links li.disabled > a:hover,
+.tabs-links li.disabled > a:active {
+	background-color: var(--ff-gray-93) !important;
+	color: var(--ff-gray-67) !important;
+}
+/* Panel tabs links */
+.tabs-links-panel {
+	border-bottom: 0px;
+	height: 24px;
+	line-height: 24px;
+	margin-bottom: 0px;
+	padding: 0px 8px;
+}
+.tabs-links-panel::after {
+	clear: both;
+	content: ' ';
+	display: table;
+}
+.tabs-links-panel li {
+	list-style: none;
+	margin-left: 0px;
+}
+.tabs-links-panel a,
+.tabs-links-panel a:visited,
+.tabs-links-panel a:hover,
+.tabs-links-panel a:active {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	cursor: pointer;
+	display: block;
+	padding: 4px 8px;
+	text-decoration: none;
+}
+.tabs-links-panel a:focus,
+.tabs-links-panel a:visited:focus,
+.tabs-links-panel a:hover:focus,
+.tabs-links-panel a:active:focus {
+	outline: 0px;
+}
+.tabs-links-panel li {
+	float: left;
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px 0px 0px 8px;
+}
+.tabs-links-panel li:first-child {
+	margin-left: 0px;
+}
+.tabs-links-panel li:hover > a,
+.tabs-links-panel li:hover > a:visited,
+.tabs-links-panel li:hover > a:hover,
+.tabs-links-panel li:hover > a:active {
+	background-color: var(--ff-gray-80);
+	background-color: var(--ff-gray-0);
+}
+.tabs-links-panel li.active > a,
+.tabs-links-panel li.active > a:visited,
+.tabs-links-panel li.active > a:hover,
+.tabs-links-panel li.active > a:active {
+	background-color: var(--ff-gray-93);
+	color: var(--ff-gray-0);
+	padding-bottom: 4px;
+}
+.tabs-links-panel li.disabled > a,
+.tabs-links-panel li.disabled > a:visited,
+.tabs-links-panel li.disabled > a:hover,
+.tabs-links-panel li.disabled > a:active {
+	background-color: var(--ff-gray-73) !important;
+	color: var(--ff-gray-67) !important;
+}
+/* Tabs content */
+.tabs-content {
+	display: none;
+}
+.tabs-content.active {
+	display: block;
+}

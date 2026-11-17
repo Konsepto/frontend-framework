@@ -1,0 +1,251 @@
+/* Speech balloon: native port of front-end-framework core/less/component-speech-balloon-core.less */
+
+/* See http://nicolasgallagher.com/pure-css-speech-balloons/ */
+/* Speech balloon */
+.speech-balloon {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	position: absolute;
+	display: none;
+	width: 240px;
+	z-index: 100;
+	/*
+	&:hover {
+		display: block;
+	}
+	*/
+}
+@media print {
+	.speech-balloon {
+		display: none !important;
+		/*
+		&:hover {
+			display: none !important;
+		}
+		*/
+	}
+}
+/* Speech balloon on top */
+.speech-balloon-top {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	position: absolute;
+	display: none;
+	width: 240px;
+	z-index: 100;
+	/*
+	&:hover {
+		display: block;
+	}
+	*/
+	margin-bottom: 4px;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -240px / 2 - 8px;
+}
+@media print {
+	.speech-balloon-top {
+		display: none !important;
+		/*
+		&:hover {
+			display: none !important;
+		}
+		*/
+	}
+}
+.speech-balloon-top::after {
+	border-style: solid;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+}
+.speech-balloon-top::after {
+	border-color: var(--ff-gray-87) transparent;
+	border-color: var(--ff-gray-87) transparent;
+	border-width: 8px 8px 0px 8px;
+	left: 50%;
+	margin-left: -8px;
+	top: 100%;
+}
+/* Speech balloon on right */
+.speech-balloon-right {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	position: absolute;
+	display: none;
+	width: 240px;
+	z-index: 100;
+	/*
+	&:hover {
+		display: block;
+	}
+	*/
+	margin-left: 4px;
+	left: 100%;
+	top: 0px;
+}
+@media print {
+	.speech-balloon-right {
+		display: none !important;
+		/*
+		&:hover {
+			display: none !important;
+		}
+		*/
+	}
+}
+.speech-balloon-right::after {
+	border-style: solid;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+}
+.speech-balloon-right::after {
+	border-color: transparent var(--ff-gray-87);
+	border-color: transparent var(--ff-gray-87);
+	border-width: 4px 16px 4px 0px;
+	right: 100%;
+	top: 8px;
+}
+/* Speech balloon on bottom */
+.speech-balloon-bottom {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	position: absolute;
+	display: none;
+	width: 240px;
+	z-index: 100;
+	/*
+	&:hover {
+		display: block;
+	}
+	*/
+	margin-top: 4px;
+	left: 50%;
+	margin-left: -240px / 2 - 8px;
+	top: 100%;
+}
+@media print {
+	.speech-balloon-bottom {
+		display: none !important;
+		/*
+		&:hover {
+			display: none !important;
+		}
+		*/
+	}
+}
+.speech-balloon-bottom::after {
+	border-style: solid;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+}
+.speech-balloon-bottom::after {
+	border-color: var(--ff-gray-87) transparent;
+	border-color: var(--ff-gray-87) transparent;
+	border-width: 0px 8px 8px 8px;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -8px;
+}
+/* Speech balloon on left */
+.speech-balloon-left {
+	background-color: var(--ff-gray-87);
+	color: var(--ff-gray-0);
+	font-family: var(--ff-font-body);
+	font-size: 1.125rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 0px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	position: absolute;
+	display: none;
+	width: 240px;
+	z-index: 100;
+	/*
+	&:hover {
+		display: block;
+	}
+	*/
+	margin-right: 4px;
+	right: 100%;
+	top: 0px;
+}
+@media print {
+	.speech-balloon-left {
+		display: none !important;
+		/*
+		&:hover {
+			display: none !important;
+		}
+		*/
+	}
+}
+.speech-balloon-left::after {
+	border-style: solid;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+}
+.speech-balloon-left::after {
+	border-color: transparent var(--ff-gray-87);
+	border-color: transparent var(--ff-gray-87);
+	border-width: 4px 0px 4px 16px;
+	left: 100%;
+	top: 8px;
+}
+.speech-balloon-target {
+	position: relative;
+}
+.speech-balloon-display-on-hover:hover .speech-balloon,
+.speech-balloon-display-on-hover:hover .speech-balloon-top,
+.speech-balloon-display-on-hover:hover .speech-balloon-right,
+.speech-balloon-display-on-hover:hover .speech-balloon-bottom,
+.speech-balloon-display-on-hover:hover .speech-balloon-left {
+	display: block;
+}
+/* Speech balloon tip */

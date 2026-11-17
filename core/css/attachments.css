@@ -1,0 +1,14 @@
+/* Attachments: native port of front-end-framework core/less/component-attachments-core.less */
+
+/* Attachments */
+.attachments .label,
+.attachments .item {
+	margin-bottom: 8px;
+}
+.attachments .label:last-child,
+.attachments .item:last-child {
+	margin-bottom: 0px !important;
+}
+.attachments .item * {
+	vertical-align: middle;
+}

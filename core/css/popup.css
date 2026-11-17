@@ -1,0 +1,13 @@
+/* Popup: native port of front-end-framework core/less/component-popup-core.less */
+
+/* Popup */
+/* Popup zoom feature */
+#fancybox-loading {
+	opacity: 0.5;
+}
+#fancybox-outer {
+	background-color: var(--ff-gray-93) !important;
+}
+#fancybox-content {
+	background-color: var(--ff-gray-100) !important;
+}
