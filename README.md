@@ -31,6 +31,10 @@ Native CSS version
 - `theme-default/css/*.css`: the default theme (looks), one file per `theme-default/less/*.less`.
 - `theme-default/css/framework.css`: imports `settings.css` and every component in the LESS cascade
   order. LESS files that only define variables or mixins have no native file.
+- `core/css/navigation-menu-responsive.css`, `theme-default/css/navigation-menu-responsive.css`:
+  `.navigation-menu-responsive`, the mobile menu below `--large` and the dropdown menu bar from
+  `--large` (what Protosite's main navigation used through the LESS mixins). An alternative to
+  `navigation-menu.css` for sites that need only this variant; not in `framework.css`.
 
 Image and font URLs are root-relative (`/wp-content/themes/front-end-framework/theme-default/…`),
 like the LESS version's paths in a WordPress install.
@@ -143,6 +147,7 @@ Moving a site from LESS to the native version
 | `.flex-middle()`, `.flex-grid(N)` | `.flex-middle`, `.flex-grid-N` (`core/css/grid.css`) |
 | `.centered-content()` | `.centered-content` (`core/css/tricks.css`) |
 | `.navigation-menu-mobile()`, `.navigation-menu-bar-dropdown()` | `.navigation-menu-mobile`, `.navigation-menu-bar-dropdown` (`navigation-menu.css`) |
+| `.navigation-menu-mobile()` below a breakpoint and `.navigation-menu-bar-dropdown()` above it | `.navigation-menu-responsive` (`navigation-menu-responsive.css`, breakpoint `--large`) |
 | `.listing-grid()` | `.listing-grid` (`listing.css`) |
 | `.link-unmarked()` | `.link-unmarked` (`link.css`) |
 | `.field()` | `.field` (`article.css`) |

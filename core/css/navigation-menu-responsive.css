@@ -1,0 +1,949 @@
+/* Responsive navigation menu (core): native version of the LESS mixins .navigation-menu-mobile() and
+   .navigation-menu-bar-dropdown(), core part (structure).
+   .navigation-menu-responsive is the mobile menu below --large and the dropdown menu bar from --large
+   (breakpoints from settings.css). Use it instead of navigation-menu.css when a site needs only this
+   variant: put the class on the menu's UL (with the navigation-menu.js module for the toggles).
+   Generated from the LESS sources (core/less/component-navigation-menu-core.less,
+   theme-default/less/component-navigation-menu.less); see README.md. */
+
+@media (--below-large) {
+	.navigation-menu-responsive {
+		color: var(--ff-color-text-primary);
+		background-color: var(--ff-color-nav-bg-default);
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		font-size: var(--ff-body-font-size);
+		line-height: var(--ff-body-line-height);
+		font-family: var(--ff-font-body);
+		font-weight: normal;
+	}
+	.navigation-menu-responsive li {
+		position: relative;
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li > a,
+	.navigation-menu-responsive li > button {
+		max-height: 999999px;
+	}
+	.navigation-menu-responsive li > a:focus:not(.mouse-focused),
+	.navigation-menu-responsive li > button:focus:not(.mouse-focused) {
+		z-index: 100000;
+	}
+	.navigation-menu-responsive li > a:focus:not(.mouse-focused) + .toggle,
+	.navigation-menu-responsive li > button:focus:not(.mouse-focused) + .toggle {
+		z-index: 100001;
+	}
+	.navigation-menu-responsive li > a:first-child {
+		min-height: 2rem;
+		position: relative;
+		display: block;
+		padding: 0.5rem 1rem 0.5rem 1rem;
+	}
+	.navigation-menu-responsive li > a:first-child,
+	.navigation-menu-responsive li > a:first-child:visited {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > a:first-child:active,
+	.navigation-menu-responsive li > a:first-child:visited:active,
+	.navigation-menu-responsive li > a:first-child.active,
+	.navigation-menu-responsive li > a:first-child:visited.active {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > a:first-child:hover,
+	.navigation-menu-responsive li > a:first-child:visited:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > .toggle {
+		background-color: transparent;
+		border: 0px;
+		cursor: pointer;
+		line-height: var(--ff-body-line-height);
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		text-align: center;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		display: block;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		z-index: 1;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	}
+	.navigation-menu-responsive li > .toggle,
+	.navigation-menu-responsive li > .toggle:active,
+	.navigation-menu-responsive li > .toggle.active,
+	.navigation-menu-responsive li > .toggle:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child {
+		padding-right: 3.125rem;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child::after,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child::after {
+		text-align: center;
+		position: absolute;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+		right: 0px;
+		top: 0px;
+	}
+	.navigation-menu-responsive li > a:first-child,
+	.navigation-menu-responsive li > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li > a:first-child.active,
+	.navigation-menu-responsive li > a:first-child:visited.active {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive li > a:first-child:hover,
+	.navigation-menu-responsive li > a:first-child:visited:hover {
+		background-color: var(--ff-color-nav-bg-hover) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive li > .toggle {
+		background-color: transparent;
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li > .toggle.active::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive li > .toggle:hover::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive li.active-trail > a:first-child,
+	.navigation-menu-responsive li.current-menu-ancestor > a:first-child,
+	.navigation-menu-responsive li.active-trail > a:first-child:visited,
+	.navigation-menu-responsive li.current-menu-ancestor > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.active-trail > .toggle::after,
+	.navigation-menu-responsive li.current-menu-ancestor > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.expanded > a:first-child,
+	.navigation-menu-responsive li.hovering > a:first-child,
+	.navigation-menu-responsive li.expanded > a:first-child:visited,
+	.navigation-menu-responsive li.hovering > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.expanded > .toggle::after,
+	.navigation-menu-responsive li.hovering > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.active > a:first-child,
+	.navigation-menu-responsive li.current-menu-item > a:first-child,
+	.navigation-menu-responsive li.active > a:first-child:visited,
+	.navigation-menu-responsive li.current-menu-item > a:first-child:visited,
+	.navigation-menu-responsive li.active > a:first-child.active,
+	.navigation-menu-responsive li.current-menu-item > a:first-child.active {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-text-inverse);
+	}
+	.navigation-menu-responsive li.active > .toggle::after,
+	.navigation-menu-responsive li.current-menu-item > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li.disabled > a:first-child,
+	.navigation-menu-responsive li.disabled > a:first-child:visited,
+	.navigation-menu-responsive li.disabled > a:first-child.active,
+	.navigation-menu-responsive li.disabled > a:first-child:hover {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-93) !important;
+	}
+	.navigation-menu-responsive li.disabled > .toggle,
+	.navigation-menu-responsive li.disabled > .toggle.active,
+	.navigation-menu-responsive li.disabled > .toggle:hover {
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive li.disabled > .toggle::after,
+	.navigation-menu-responsive li.disabled > .toggle.active::after,
+	.navigation-menu-responsive li.disabled > .toggle:hover::after {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive ul {
+		color: var(--ff-color-text-primary);
+		background-color: var(--ff-color-nav-bg-default);
+	}
+	.navigation-menu-responsive ul,
+	.navigation-menu-responsive ul * {
+		font-size: var(--ff-body-font-size);
+		line-height: var(--ff-body-line-height);
+		font-family: var(--ff-font-body);
+		font-weight: normal;
+	}
+	.navigation-menu-responsive ul li {
+		position: relative;
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li > a,
+	.navigation-menu-responsive ul li > button {
+		max-height: 999999px;
+	}
+	.navigation-menu-responsive ul li > a:focus:not(.mouse-focused),
+	.navigation-menu-responsive ul li > button:focus:not(.mouse-focused) {
+		z-index: 100000;
+	}
+	.navigation-menu-responsive ul li > a:focus:not(.mouse-focused) + .toggle,
+	.navigation-menu-responsive ul li > button:focus:not(.mouse-focused) + .toggle {
+		z-index: 100001;
+	}
+	.navigation-menu-responsive ul li > a:first-child {
+		min-height: 2rem;
+		position: relative;
+		display: block;
+		padding: 0.5rem 1rem 0.5rem 1rem;
+	}
+	.navigation-menu-responsive ul li > a:first-child,
+	.navigation-menu-responsive ul li > a:first-child:visited {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > a:first-child:active,
+	.navigation-menu-responsive ul li > a:first-child:visited:active,
+	.navigation-menu-responsive ul li > a:first-child.active,
+	.navigation-menu-responsive ul li > a:first-child:visited.active {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > a:first-child:hover,
+	.navigation-menu-responsive ul li > a:first-child:visited:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > .toggle {
+		background-color: transparent;
+		border: 0px;
+		cursor: pointer;
+		line-height: var(--ff-body-line-height);
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		text-align: center;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+	}
+	.navigation-menu-responsive ul li > .toggle::after {
+		display: block;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		z-index: 1;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	}
+	.navigation-menu-responsive ul li > .toggle,
+	.navigation-menu-responsive ul li > .toggle:active,
+	.navigation-menu-responsive ul li > .toggle.active,
+	.navigation-menu-responsive ul li > .toggle:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li.has-children > a:first-child,
+	.navigation-menu-responsive ul li.menu-item-has-children > a:first-child {
+		padding-right: 3.125rem;
+	}
+	.navigation-menu-responsive ul li.has-children > a:first-child::after,
+	.navigation-menu-responsive ul li.menu-item-has-children > a:first-child::after {
+		text-align: center;
+		position: absolute;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+		right: 0px;
+		top: 0px;
+	}
+	.navigation-menu-responsive ul li > a:first-child,
+	.navigation-menu-responsive ul li > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li > a:first-child.active,
+	.navigation-menu-responsive ul li > a:first-child:visited.active {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive ul li > a:first-child:hover,
+	.navigation-menu-responsive ul li > a:first-child:visited:hover {
+		background-color: var(--ff-color-nav-bg-hover) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive ul li > .toggle {
+		background-color: transparent;
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li > .toggle.active::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive ul li > .toggle:hover::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive ul li.active-trail > a:first-child,
+	.navigation-menu-responsive ul li.current-menu-ancestor > a:first-child,
+	.navigation-menu-responsive ul li.active-trail > a:first-child:visited,
+	.navigation-menu-responsive ul li.current-menu-ancestor > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.active-trail > .toggle::after,
+	.navigation-menu-responsive ul li.current-menu-ancestor > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.expanded > a:first-child,
+	.navigation-menu-responsive ul li.hovering > a:first-child,
+	.navigation-menu-responsive ul li.expanded > a:first-child:visited,
+	.navigation-menu-responsive ul li.hovering > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.expanded > .toggle::after,
+	.navigation-menu-responsive ul li.hovering > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.active > a:first-child,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child,
+	.navigation-menu-responsive ul li.active > a:first-child:visited,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child:visited,
+	.navigation-menu-responsive ul li.active > a:first-child.active,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child.active {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-text-inverse);
+	}
+	.navigation-menu-responsive ul li.active > .toggle::after,
+	.navigation-menu-responsive ul li.current-menu-item > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li.disabled > a:first-child,
+	.navigation-menu-responsive ul li.disabled > a:first-child:visited,
+	.navigation-menu-responsive ul li.disabled > a:first-child.active,
+	.navigation-menu-responsive ul li.disabled > a:first-child:hover {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-93) !important;
+	}
+	.navigation-menu-responsive ul li.disabled > .toggle,
+	.navigation-menu-responsive ul li.disabled > .toggle.active,
+	.navigation-menu-responsive ul li.disabled > .toggle:hover {
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive ul li.disabled > .toggle::after,
+	.navigation-menu-responsive ul li.disabled > .toggle.active::after,
+	.navigation-menu-responsive ul li.disabled > .toggle:hover::after {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive li {
+		list-style: none;
+		margin-left: 0px;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		overflow: visible;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive ul {
+		position: relative;
+		margin: 0px;
+	}
+	.navigation-menu-responsive ul {
+		display: none;
+	}
+	.navigation-menu-responsive li {
+		list-style: none;
+		margin-left: 0px;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child {
+		padding-right: 3.125rem;
+	}
+	.navigation-menu-responsive li li > a:first-child {
+		padding-left: 1.75rem;
+	}
+	.navigation-menu-responsive li li li > a:first-child {
+		padding-left: 2.75rem;
+	}
+	.navigation-menu-responsive li li li li > a:first-child {
+		padding-left: 3.75rem;
+	}
+	.navigation-menu-responsive li li li li li > a:first-child {
+		padding-left: 4.75rem;
+	}
+}
+@media (--large) {
+	.navigation-menu-responsive {
+		color: var(--ff-color-text-primary);
+		background-color: var(--ff-color-nav-bg-default);
+		display: flex;
+		flex-flow: row wrap;
+		margin-bottom: 0px;
+		position: relative;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		font-size: var(--ff-body-font-size);
+		line-height: var(--ff-body-line-height);
+		font-family: var(--ff-font-body);
+		font-weight: normal;
+	}
+	.navigation-menu-responsive li {
+		position: relative;
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li > a,
+	.navigation-menu-responsive li > button {
+		max-height: 999999px;
+	}
+	.navigation-menu-responsive li > a:focus:not(.mouse-focused),
+	.navigation-menu-responsive li > button:focus:not(.mouse-focused) {
+		z-index: 100000;
+	}
+	.navigation-menu-responsive li > a:focus:not(.mouse-focused) + .toggle,
+	.navigation-menu-responsive li > button:focus:not(.mouse-focused) + .toggle {
+		z-index: 100001;
+	}
+	.navigation-menu-responsive li > a:first-child {
+		min-height: 2rem;
+		position: relative;
+		display: block;
+		padding: 0.5rem 1rem 0.5rem 1rem;
+	}
+	.navigation-menu-responsive li > a:first-child,
+	.navigation-menu-responsive li > a:first-child:visited {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > a:first-child:active,
+	.navigation-menu-responsive li > a:first-child:visited:active,
+	.navigation-menu-responsive li > a:first-child.active,
+	.navigation-menu-responsive li > a:first-child:visited.active {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > a:first-child:hover,
+	.navigation-menu-responsive li > a:first-child:visited:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li > .toggle {
+		background-color: transparent;
+		border: 0px;
+		cursor: pointer;
+		line-height: var(--ff-body-line-height);
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		text-align: center;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		display: block;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		z-index: 1;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	}
+	.navigation-menu-responsive li > .toggle,
+	.navigation-menu-responsive li > .toggle:active,
+	.navigation-menu-responsive li > .toggle.active,
+	.navigation-menu-responsive li > .toggle:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child {
+		padding-right: 3.125rem;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child::after,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child::after {
+		text-align: center;
+		position: absolute;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+		right: 0px;
+		top: 0px;
+	}
+	.navigation-menu-responsive li > a:first-child,
+	.navigation-menu-responsive li > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li > a:first-child.active,
+	.navigation-menu-responsive li > a:first-child:visited.active {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive li > a:first-child:hover,
+	.navigation-menu-responsive li > a:first-child:visited:hover {
+		background-color: var(--ff-color-nav-bg-hover) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive li > .toggle {
+		background-color: transparent;
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li > .toggle.active::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive li > .toggle:hover::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive li.active-trail > a:first-child,
+	.navigation-menu-responsive li.current-menu-ancestor > a:first-child,
+	.navigation-menu-responsive li.active-trail > a:first-child:visited,
+	.navigation-menu-responsive li.current-menu-ancestor > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.active-trail > .toggle::after,
+	.navigation-menu-responsive li.current-menu-ancestor > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.expanded > a:first-child,
+	.navigation-menu-responsive li.hovering > a:first-child,
+	.navigation-menu-responsive li.expanded > a:first-child:visited,
+	.navigation-menu-responsive li.hovering > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.expanded > .toggle::after,
+	.navigation-menu-responsive li.hovering > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive li.active > a:first-child,
+	.navigation-menu-responsive li.current-menu-item > a:first-child,
+	.navigation-menu-responsive li.active > a:first-child:visited,
+	.navigation-menu-responsive li.current-menu-item > a:first-child:visited,
+	.navigation-menu-responsive li.active > a:first-child.active,
+	.navigation-menu-responsive li.current-menu-item > a:first-child.active {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-text-inverse);
+	}
+	.navigation-menu-responsive li.active > .toggle::after,
+	.navigation-menu-responsive li.current-menu-item > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive li.disabled > a:first-child,
+	.navigation-menu-responsive li.disabled > a:first-child:visited,
+	.navigation-menu-responsive li.disabled > a:first-child.active,
+	.navigation-menu-responsive li.disabled > a:first-child:hover {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive li.disabled > .toggle,
+	.navigation-menu-responsive li.disabled > .toggle.active,
+	.navigation-menu-responsive li.disabled > .toggle:hover {
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive li.disabled > .toggle::after,
+	.navigation-menu-responsive li.disabled > .toggle.active::after,
+	.navigation-menu-responsive li.disabled > .toggle:hover::after {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive ul {
+		color: var(--ff-color-text-primary);
+		background-color: var(--ff-color-nav-bg-default);
+	}
+	.navigation-menu-responsive ul,
+	.navigation-menu-responsive ul * {
+		font-size: var(--ff-body-font-size);
+		line-height: var(--ff-body-line-height);
+		font-family: var(--ff-font-body);
+		font-weight: normal;
+	}
+	.navigation-menu-responsive ul li {
+		position: relative;
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li > a,
+	.navigation-menu-responsive ul li > button {
+		max-height: 999999px;
+	}
+	.navigation-menu-responsive ul li > a:focus:not(.mouse-focused),
+	.navigation-menu-responsive ul li > button:focus:not(.mouse-focused) {
+		z-index: 100000;
+	}
+	.navigation-menu-responsive ul li > a:focus:not(.mouse-focused) + .toggle,
+	.navigation-menu-responsive ul li > button:focus:not(.mouse-focused) + .toggle {
+		z-index: 100001;
+	}
+	.navigation-menu-responsive ul li > a:first-child {
+		min-height: 2rem;
+		position: relative;
+		display: block;
+		padding: 0.5rem 1rem 0.5rem 1rem;
+	}
+	.navigation-menu-responsive ul li > a:first-child,
+	.navigation-menu-responsive ul li > a:first-child:visited {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > a:first-child:active,
+	.navigation-menu-responsive ul li > a:first-child:visited:active,
+	.navigation-menu-responsive ul li > a:first-child.active,
+	.navigation-menu-responsive ul li > a:first-child:visited.active {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > a:first-child:hover,
+	.navigation-menu-responsive ul li > a:first-child:visited:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li > .toggle {
+		background-color: transparent;
+		border: 0px;
+		cursor: pointer;
+		line-height: var(--ff-body-line-height);
+		margin: 0px;
+		padding: 0px;
+		position: absolute;
+		text-align: center;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+	}
+	.navigation-menu-responsive ul li > .toggle::after {
+		display: block;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		z-index: 1;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+	}
+	.navigation-menu-responsive ul li > .toggle,
+	.navigation-menu-responsive ul li > .toggle:active,
+	.navigation-menu-responsive ul li > .toggle.active,
+	.navigation-menu-responsive ul li > .toggle:hover {
+		text-decoration: none;
+	}
+	.navigation-menu-responsive ul li.has-children > a:first-child,
+	.navigation-menu-responsive ul li.menu-item-has-children > a:first-child {
+		padding-right: 3.125rem;
+	}
+	.navigation-menu-responsive ul li.has-children > a:first-child::after,
+	.navigation-menu-responsive ul li.menu-item-has-children > a:first-child::after {
+		text-align: center;
+		position: absolute;
+		min-height: 2.625rem;
+		min-width: 2.625rem;
+		padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+		right: 0px;
+		top: 0px;
+	}
+	.navigation-menu-responsive ul li > a:first-child,
+	.navigation-menu-responsive ul li > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-default);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li > a:first-child.active,
+	.navigation-menu-responsive ul li > a:first-child:visited.active {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive ul li > a:first-child:hover,
+	.navigation-menu-responsive ul li > a:first-child:visited:hover {
+		background-color: var(--ff-color-nav-bg-hover) !important;
+		color: var(--ff-color-text-inverse) !important;
+	}
+	.navigation-menu-responsive ul li > .toggle {
+		background-color: transparent;
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li > .toggle.active::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive ul li > .toggle:hover::after {
+		background-color: var(--ff-color-2) !important;
+		color: var(--ff-color-1) !important;
+	}
+	.navigation-menu-responsive ul li.active-trail > a:first-child,
+	.navigation-menu-responsive ul li.current-menu-ancestor > a:first-child,
+	.navigation-menu-responsive ul li.active-trail > a:first-child:visited,
+	.navigation-menu-responsive ul li.current-menu-ancestor > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.active-trail > .toggle::after,
+	.navigation-menu-responsive ul li.current-menu-ancestor > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.expanded > a:first-child,
+	.navigation-menu-responsive ul li.hovering > a:first-child,
+	.navigation-menu-responsive ul li.expanded > a:first-child:visited,
+	.navigation-menu-responsive ul li.hovering > a:first-child:visited {
+		background-color: var(--ff-color-nav-bg-active-trail);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.expanded > .toggle::after,
+	.navigation-menu-responsive ul li.hovering > .toggle::after {
+		background-color: var(--ff-gray-80);
+		color: var(--ff-color-text-primary);
+	}
+	.navigation-menu-responsive ul li.active > a:first-child,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child,
+	.navigation-menu-responsive ul li.active > a:first-child:visited,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child:visited,
+	.navigation-menu-responsive ul li.active > a:first-child.active,
+	.navigation-menu-responsive ul li.current-menu-item > a:first-child.active {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-text-inverse);
+	}
+	.navigation-menu-responsive ul li.active > .toggle::after,
+	.navigation-menu-responsive ul li.current-menu-item > .toggle::after {
+		background-color: var(--ff-color-2);
+		color: var(--ff-color-1);
+	}
+	.navigation-menu-responsive ul li.disabled > a:first-child,
+	.navigation-menu-responsive ul li.disabled > a:first-child:visited,
+	.navigation-menu-responsive ul li.disabled > a:first-child.active,
+	.navigation-menu-responsive ul li.disabled > a:first-child:hover {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive ul li.disabled > .toggle,
+	.navigation-menu-responsive ul li.disabled > .toggle.active,
+	.navigation-menu-responsive ul li.disabled > .toggle:hover {
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive ul li.disabled > .toggle::after,
+	.navigation-menu-responsive ul li.disabled > .toggle.active::after,
+	.navigation-menu-responsive ul li.disabled > .toggle:hover::after {
+		background-color: var(--ff-gray-93) !important;
+		color: var(--ff-gray-67) !important;
+	}
+	.navigation-menu-responsive li {
+		list-style: none;
+		margin-left: 0px;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		overflow: visible;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive ul {
+		position: relative;
+		margin: 0px;
+	}
+	.navigation-menu-responsive,
+	.navigation-menu-responsive ul {
+		font-size: 0%;
+	}
+	.navigation-menu-responsive ul {
+		position: absolute;
+		top: 99.99999%;
+	}
+	.navigation-menu-responsive li {
+		list-style: none;
+		margin-left: 0px;
+	}
+	.navigation-menu-responsive li a:first-child {
+		display: inline-block;
+	}
+	.navigation-menu-responsive > * {
+		vertical-align: middle;
+	}
+	.navigation-menu-responsive .assistive {
+		position: absolute !important;
+		left: -10000px !important;
+		width: 1px !important;
+		height: 1px !important;
+		overflow: hidden !important;
+	}
+	.navigation-menu-responsive .assistive:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+	.navigation-menu-responsive.no-script li.has-children > a:first-child::after,
+	.navigation-menu-responsive.no-script li.menu-item-has-children > a:first-child::after {
+		content: '\f107';
+		content: '\f107' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child::after,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		content: '\f107';
+		content: '\f107' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+	}
+	.navigation-menu-responsive li > .toggle.active::after {
+		content: '\f106';
+		content: '\f106' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+		line-height: 1.44375rem;
+		text-indent: 0rem;
+	}
+	.navigation-menu-responsive li li.has-children > a:first-child::after,
+	.navigation-menu-responsive li li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li > .toggle.active::after {
+		line-height: 1.44375rem;
+	}
+	.navigation-menu-responsive ul {
+		display: none;
+		left: 0px;
+		overflow: visible clip;
+		position: absolute;
+		max-width: 328px;
+		width: max-content;
+		z-index: 9999;
+	}
+	.navigation-menu-responsive ul.finished {
+		overflow: visible;
+	}
+	.navigation-menu-responsive ul ul {
+		left: 99.99999%;
+		overflow: clip visible;
+		top: 0px;
+	}
+	.navigation-menu-responsive ul ul.finished {
+		overflow: visible;
+	}
+	.navigation-menu-responsive ul li {
+		display: block;
+		max-width: 328px;
+		min-width: 152px;
+	}
+	.navigation-menu-responsive ul li,
+	.navigation-menu-responsive ul a:first-child {
+		display: block !important;
+	}
+}
+@media (--large) and (--small) {
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+@media (--large) and (--small) {
+	.navigation-menu-responsive ul,
+	.navigation-menu-responsive ul * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}

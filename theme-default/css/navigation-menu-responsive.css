@@ -1,0 +1,294 @@
+/* Responsive navigation menu (default theme): native version of the LESS mixins .navigation-menu-mobile() and
+   .navigation-menu-bar-dropdown(), default theme part (colours, sizes).
+   .navigation-menu-responsive is the mobile menu below --large and the dropdown menu bar from --large
+   (breakpoints from settings.css). Use it instead of navigation-menu.css when a site needs only this
+   variant: put the class on the menu's UL (with the navigation-menu.js module for the toggles).
+   Generated from the LESS sources (core/less/component-navigation-menu-core.less,
+   theme-default/less/component-navigation-menu.less); see README.md. */
+
+@media (--below-large) {
+	.navigation-menu-responsive .assistive {
+		position: absolute !important;
+		left: -10000px !important;
+		width: 1px !important;
+		height: 1px !important;
+		overflow: hidden !important;
+	}
+	.navigation-menu-responsive .assistive:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+	.navigation-menu-responsive ul {
+		width: 100% !important;
+		height: auto;
+	}
+	.navigation-menu-responsive.no-script li.has-children > a:first-child::after,
+	.navigation-menu-responsive.no-script li.menu-item-has-children > a:first-child::after {
+		content: '\f107';
+		content: '\f107' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child::after,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li.has-children > a:first-child::after,
+	.navigation-menu-responsive li li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		content: '\f107';
+		content: '\f107' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+	}
+	.navigation-menu-responsive li > .toggle.active::after {
+		content: '\f106';
+		content: '\f106' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+		line-height: 1.44375rem;
+		text-indent: 0rem;
+	}
+	.navigation-menu-responsive li li > .toggle.active::after {
+		line-height: 1.44375rem;
+	}
+}
+@media (--below-large) and (--small) {
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+@media (--below-large) and (--small) {
+	.navigation-menu-responsive ul,
+	.navigation-menu-responsive ul * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+@media (--large) {
+	.navigation-menu-responsive .assistive {
+		position: absolute !important;
+		left: -10000px !important;
+		width: 1px !important;
+		height: 1px !important;
+		overflow: hidden !important;
+	}
+	.navigation-menu-responsive .assistive:focus {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		width: auto !important;
+		height: auto !important;
+		overflow: visible !important;
+	}
+	.navigation-menu-responsive.no-script li:hover > ul,
+	.navigation-menu-responsive.no-script li:focus-within > ul {
+		display: block;
+		z-index: 9999;
+	}
+	.navigation-menu-responsive.no-script li li.has-children > a:first-child::after,
+	.navigation-menu-responsive.no-script li li.menu-item-has-children > a:first-child::after {
+		content: '\f105';
+		content: '\f105' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+	}
+	.navigation-menu-responsive li.has-children > a:first-child::after,
+	.navigation-menu-responsive li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li.has-children > a:first-child::after,
+	.navigation-menu-responsive li li.menu-item-has-children > a:first-child::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive li li > .toggle {
+		height: 2.625rem;
+		width: 2.625rem;
+	}
+	.navigation-menu-responsive li li > .toggle::after {
+		width: 1.75rem;
+		height: 1.75rem;
+		min-width: 1.75rem;
+		min-height: 1.75rem;
+		line-height: 1.5rem;
+		margin: 0.4375rem;
+		padding: 0.125rem;
+		border-radius: 100%;
+		overflow: hidden;
+		line-height: 1.575rem;
+		text-indent: 0.05rem;
+	}
+	.navigation-menu-responsive ul li > .toggle::after {
+		content: '\f105';
+		content: '\f105' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+		line-height: 1.44375rem;
+		text-indent: 0.075rem;
+	}
+	.navigation-menu-responsive ul li > .toggle.active::after {
+		content: '\f104';
+		content: '\f104' / '';
+		font-family: 'Font Awesome 6';
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
+		line-height: 1.509375rem;
+		text-indent: -0.125rem;
+	}
+}
+@media (--large) and (--small) {
+	.navigation-menu-responsive,
+	.navigation-menu-responsive * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
+@media (--large) and (--small) {
+	.navigation-menu-responsive ul,
+	.navigation-menu-responsive ul * {
+		font-size: var(--ff-small-screen-body-font-size);
+	}
+}
