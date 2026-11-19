@@ -306,59 +306,59 @@ npm run tokens:to-figma -- --site-editor   # myös Site Editorissa tallennetut t
 │   ├── theme-default/css/     oletusteeman ulkoasu + settings.css + framework.css
 │   ├── core/js/modules/       drawer.js, navigation-menu.js, accessible-links.js, animate.js
 │   └── core/less/, theme-default/less/   vanha LESS-versio (ei muutoksia)
-├── protosite/                 parent-teema (lohkoteema)
+├── protosite/                 parent-teema: lohkoteema ja koko Protosite-pohja
+│   ├── styles/main.css        CSS:n aloituspiste (asetukset + oletustokenit + base.css)
+│   ├── styles/base.css        frameworkin komponentit + styles/site/*.css
+│   ├── styles/site/*.css      Protosite-pohjan tyylit (kaikille sivustoille)
+│   ├── inc/features.php       yhteiset toiminnot (widget-alueet, skriptit, editori, lyhytkoodit …)
+│   ├── js/main.js             JavaScript-moduulien käyttö
+│   ├── fonts/                 Open Sans, Roboto Slab, Roboto Mono
 │   ├── templates/             sivupohjat (page, single, archive, search, 404 …)
 │   ├── parts/                 header ja footer widget-alueina (lapsiteema voi korvata)
 │   ├── inc/                   teeman lohkot (block-theme.php, content-blocks.php)
 │   ├── js/editor-blocks.js    teeman lohkojen editorinäkymä
-│   └── theme.json             sivupohjien ja osien rekisteröinti
-└── protosite-child/           sivusto
+│   └── theme.json             Protosite-oletustokenit, sivupohjat ja osat
+└── protosite-child/           sivusto: vain sivustokohtainen
     ├── parts/                 oma header ja footer natiiveina lohkoina
     ├── acf-json/              ACF-kentät ja -taksonomia (versionhallinnassa)
     ├── design-tokens/         Figma-vienti ja generaattorit
     ├── theme.json             generoitu token-osa + käsin kirjoitettu styles
     ├── styles/main.css        CSS:n aloituspiste
     ├── styles/tokens.css      generoitu
-    ├── styles/site/*.css      sivuston omat tyylit
-    ├── js/main.js             JavaScript-moduulien käyttö
     └── css/imports.css        build-tulos (ladataan sivulle)</pre>
 
 	<h3>CSS:n aloituspiste</h3>
-	<p><code>styles/main.css</code> tuo tiedostot järjestyksessä: frameworkin asetukset, sivuston tokenit (jotka korvaavat oletukset), vain käytetyt komponentit frameworkin järjestyksessä ja lopuksi sivuston omat tyylit.</p>
-	<pre data-code>/* protosite-child/styles/main.css (lyhennetty) */
+	<p>Protosite-pohjan tyylit ovat parent-teemassa: <code>protosite/styles/base.css</code> tuo frameworkin käytetyt komponentit frameworkin järjestyksessä ja sivuston tyylit (<code>styles/site/*.css</code>). Jokainen teema rakentaa oman <code>css/imports.css</code>:nsä: ensin frameworkin asetukset, sitten oman sivuston tokenit (jotka korvaavat oletukset), sitten <code>base.css</code> ja lopuksi mahdolliset omat lisäykset.</p>
+	<pre data-code>/* protosite-child/styles/main.css */
 @import "../../front-end-framework/theme-default/css/settings.css";
 @import "tokens.css";
+@import "../../protosite/styles/base.css";
 
-@import "../../front-end-framework/theme-default/css/base.css";
-@import "../../front-end-framework/core/css/normalize.css";
-@import "../../front-end-framework/core/css/elements.css";
-@import "../../front-end-framework/core/css/button.css";
-/* … muut core-komponentit … */
-@import "../../front-end-framework/theme-default/css/elements.css";
-@import "../../front-end-framework/theme-default/css/button.css";
-/* … muut teemakomponentit … */
-
-@import "site/wordpress.css";
-@import "site/layout.css";</pre>
-	<p>Uudessa sivustossa voi aloittaa koko frameworkilla ja karsia myöhemmin:</p>
+/* geo-seo-ai-tool/styles/main.css: omat lisäykset base.css:n jälkeen */
+@import "../../front-end-framework/theme-default/css/settings.css";
+@import "tokens.css";
+@import "figma-variables.css";
+@import "../../protosite/styles/base.css";
+@import "site/geo.css";</pre>
+	<p>Parent-teema käyttää samaa rakennetta Protosite Design Systemin oletustokeneilla, joten se näyttää yksinäänkin Protosite-sivustolta. Uudessa, frameworkia suoraan käyttävässä sivustossa voi aloittaa koko frameworkilla ja karsia myöhemmin:</p>
 	<pre data-code>@import "../../front-end-framework/theme-default/css/framework.css";
 @import "settings.css";   /* omat --ff-* arvot ja @custom-media */
 @import "site.css";</pre>
-	<div class="note"><strong>Järjestys ratkaisee</strong><p>Core-tiedostot tulevat ennen teematiedostoja, ja komponenttien keskinäinen järjestys noudattaa frameworkin <code>framework.css</code>:ää. Kun lisäät komponentin childiin, lisää se samaan kohtaan kuin framework.css:ssä.</p></div>
+	<div class="note"><strong>Järjestys ratkaisee</strong><p>Core-tiedostot tulevat ennen teematiedostoja, ja komponenttien keskinäinen järjestys noudattaa frameworkin <code>framework.css</code>:ää. Kun lisäät komponentin, lisää se parent-teeman <code>styles/base.css</code>:ään samaan kohtaan kuin framework.css:ssä.</p></div>
 
 	<h3>Build</h3>
 	<pre data-code>npm run build    # minifioitu css/imports.css (epäonnistuu CSS-virheeseen)
 npm run dev      # Browsersync + uudelleenrakennus, kun styles/ tai frameworkin CSS muuttuu
 npm run check-css  # varoittaa :is()-listoista, jotka muuttaisivat spesifisyyttä</pre>
-	<p>Parent-teemassa (<code>protosite</code>) vastaavat komennot ovat <code>npm run build</code> ja <code>npm run dev</code> (build.mjs).</p>
+	<p>Parent-teemassa (<code>protosite</code>) vastaavat komennot ovat <code>npm run build</code>, <code>npm run dev</code> (build.mjs) ja <code>npm run check-css</code>. Lapsiteeman <code>npm run dev</code> seuraa myös parentin <code>styles/</code>-kansiota.</p>
 
 	<h3>JavaScript</h3>
-	<p>Frameworkin JavaScript on ES-moduuleja ilman jQuerya. WordPress rekisteröi ne import mapiin, ja <code>js/main.js</code> käyttää niitä:</p>
-	<pre data-code>// functions.php
-$frameworkModules = get_stylesheet_directory_uri() . $frontendFrameworkPath . '/core/js/modules';
+	<p>Frameworkin JavaScript on ES-moduuleja ilman jQuerya. Parent-teema rekisteröi ne import mapiin, ja sen <code>js/main.js</code> käyttää niitä. Lapsiteema voi korvata tiedoston omalla <code>js/main.js</code>:llä.</p>
+	<pre data-code>// protosite/inc/features.php
+$frameworkModules = get_template_directory_uri() . $frontendFrameworkPath . '/core/js/modules';
 wp_register_script_module('@front-end-framework/animate', $frameworkModules . '/animate.js', [], $version);
 wp_register_script_module('@front-end-framework/drawer', $frameworkModules . '/drawer.js', ['@front-end-framework/animate'], $version);
-wp_enqueue_script_module('protosite-child/main', get_stylesheet_directory_uri() . '/js/main.js',
+wp_enqueue_script_module('protosite/main', get_theme_file_uri('js/main.js'),
 	['@front-end-framework/drawer', /* … */], $version);</pre>
 	<pre data-code>// js/main.js
 import { drawer } from '@front-end-framework/drawer';
@@ -378,7 +378,8 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 		<tbody>
 			<tr><td>Värin, fontin, koon, välin, pyöristyksen tai breakpointin koko sivustolla</td><td>Figman muuttuja → <code>npm run tokens</code></td><td>Sivusto ja editori</td></tr>
 			<tr><td>Frameworkin arvon, jolle ei ole tokenia (esim. painikkeen padding)</td><td><code>--ff-*</code>-muuttuja (childissa vakio tiedostossa <code>build-css-tokens.mjs</code>)</td><td>Sivuston kaikki komponentit</td></tr>
-			<tr><td>Yhden komponentin ulkoasun tällä sivustolla</td><td>Sääntö tiedostoon <code>styles/site/*.css</code></td><td>Vain tämä sivusto</td></tr>
+			<tr><td>Protosite-pohjan ulkoasun (kaikki Protosite-sivustot)</td><td>Parent-teeman <code>styles/site/*.css</code>, sitten <code>npm run build</code> parentissa ja jokaisessa lapsiteemassa</td><td>Kaikki Protosite-sivustot</td></tr>
+			<tr><td>Yhden komponentin ulkoasun vain tällä sivustolla</td><td>Lapsiteeman oma tiedosto <code>base.css</code>:n jälkeen (esim. GEO:n <code>styles/site/geo.css</code>)</td><td>Vain tämä sivusto</td></tr>
 			<tr><td>Komponentin virheen tai yleisen parannuksen</td><td><code>front-end-framework/core/css</code> tai <code>theme-default/css</code></td><td>Kaikki frameworkia käyttävät sivustot</td></tr>
 			<tr><td>Editorin ja lohkojen perustyylin</td><td>theme.jsonin <code>styles</code>-osa (vain <code>var(--wp--…)</code>-viittauksia)</td><td>Editori ja front end</td></tr>
 			<tr><td>Sivun rakenteen (header, footer, sivupohjat, arkistot, haku)</td><td>Site Editor tai <code>templates/*.html</code>, <code>parts/*.html</code> (ks. <a href="#lohkoteema">Lohkoteema</a>)</td><td>Kaikki sivut, jotka käyttävät pohjaa</td></tr>
@@ -388,7 +389,7 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 
 	<h3>Esimerkki: komponentin muokkaus sivustolla</h3>
 	<p>Ylikirjoita frameworkin sääntö sivuston tiedostossa. Käytä muuttujia kiinteiden arvojen sijaan, niin muutos seuraa tokeneita:</p>
-	<pre data-code>/* styles/site/layout.css */
+	<pre data-code>/* lapsiteeman oma tiedosto, esim. styles/site/oma.css (main.css:ssä base.css:n jälkeen) */
 #main .system-message-information {
 	border-radius: var(--wp--custom--radius--md);
 	border-left: 4px solid var(--wp--custom--color--message--information--text);
