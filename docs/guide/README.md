@@ -12,7 +12,8 @@ npm run build        # build-css.mjs (framework bundle for previews) + build.py 
 
 Requires Node 18+ and Python 3. Open `build/protosite-opas.html` in a browser or publish it.
 
-- `template.html`: page layout and the written sections (Figma, setup, customising, commands)
+- `template.html`: page layout and the written sections (Figma, setup, customising, block theme and
+  content: templates, theme blocks, listings and filters, ACF fields, Fluent Forms; commands)
 - `components.py`: one entry per component: description, classes, files, settings, demo HTML
   (shown both as the preview and as the copyable code) and optional JavaScript
 - `build.py`: fills the template; the settings tables are read from `theme-default/css/settings.css`

@@ -151,10 +151,10 @@ td code { white-space: nowrap; }
 
 <header class="top">
 	<div class="top-inner">
-		<div class="eyebrow">protosite.konsepto.fi · front-end · 17.11.2026</div>
+		<div class="eyebrow">protosite.konsepto.fi · front-end · 19.11.2026</div>
 		<h1>Protosite-käyttöopas</h1>
-		<p>Miten Figman design-tokenit päätyvät sivustolle, miten front-end-frameworkin CSS-komponentit otetaan käyttöön ja muokataan, ja mitä komponentteja on käytettävissä.</p>
-		<div class="repos"><span>front-end-framework</span><span>protosite</span><span>protosite-child</span><span>haara: claude-native-css</span></div>
+		<p>Miten Figman design-tokenit päätyvät sivustolle, miten front-end-frameworkin CSS-komponentit otetaan käyttöön ja muokataan, mitä komponentteja on käytettävissä ja miten lohkoteeman sivupohjia, listauksia, kenttiä ja lomakkeita ylläpidetään.</p>
+		<div class="repos"><span>front-end-framework</span><span>protosite</span><span>protosite-child</span><span>framework: claude-native-css</span><span>protosite-child: claude-no-toolset</span></div>
 	</div>
 </header>
 
@@ -169,8 +169,15 @@ td code { white-space: nowrap; }
 			<li class="sub"><a href="#figma-paivitys">Päivitys vaihe vaiheelta</a></li>
 			<li class="sub"><a href="#figma-esimerkki">Esimerkki: radius/md</a></li>
 			<li class="sub"><a href="#figma-komponentit">Figman komponentit</a></li>
+			<li class="sub"><a href="#figma-takaisin">Sivustolta Figmaan</a></li>
 			<li><a href="#kayttoonotto">Käyttöönotto</a></li>
 			<li><a href="#muokkaus">Muokkaaminen</a></li>
+			<li><a href="#lohkoteema">Lohkoteema ja sisältö</a></li>
+			<li class="sub"><a href="#lohkoteema-pohjat">Sivupohjat ja osat</a></li>
+			<li class="sub"><a href="#lohkoteema-lohkot">Teeman lohkot</a></li>
+			<li class="sub"><a href="#listaukset">Listaukset ja suodattimet</a></li>
+			<li class="sub"><a href="#kentat">Kentät ja taksonomiat (ACF)</a></li>
+			<li class="sub"><a href="#lomakkeet">Lomakkeet (Fluent Forms)</a></li>
 			<li><a href="#komponentit">Komponentit</a></li>
 			{{COMP_NAV}}
 			<li><a href="#asetukset">Asetukset</a></li>
@@ -187,7 +194,7 @@ td code { white-space: nowrap; }
 	<div class="layers">
 		<div><small>Figma: Protosite Design System</small><b>Design-tokenit</b><p>Muuttujat (värit, typografia, välit, layout) ja suunnittelun komponentit.</p></div>
 		<div><small>themes/front-end-framework</small><b>Framework</b><p>CSS-komponentit (<code>core/css</code>, <code>theme-default/css</code>) ja JavaScript-moduulit (<code>core/js/modules</code>). Yhteinen kaikille sivustoille.</p></div>
-		<div><small>themes/protosite + protosite-child</small><b>Teemat</b><p>Parent-teema sisältää WordPress-pohjan. Child-teema sisältää Protosite-sivuston tokenit, omat tyylit ja JavaScriptin.</p></div>
+		<div><small>themes/protosite + protosite-child</small><b>Teemat</b><p>Parent-teema sisältää WordPress-pohjan. Child-teema on lohkoteema: siinä ovat Protosite-sivuston tokenit, sivupohjat, omat lohkot, tyylit ja JavaScript.</p></div>
 	</div>
 	<p>Tyylit ovat natiivia CSS:ää (ei LESSiä). Lightning CSS niputtaa tiedostot yhdeksi <code>css/imports.css</code>-tiedostoksi, muuntaa <code>@custom-media</code>-breakpointit ja sisäkkäisen CSS:n selaimille sopivaksi ja minifioi tuloksen. Frameworkin vanha LESS-versio on edelleen tallessa sivustoille, jotka käyttävät sitä.</p>
 </section>
@@ -273,11 +280,21 @@ npm run tokens-check   # varmistaa, että generoidut tiedostot ovat ajan tasalla
 			<tr><td>Menu item, Navigation item</td><td>Desktop/Mobile; Default/Current; alavalikko</td><td><code>#block-navigation-menu</code> (<code>styles/site/layout.css</code>)</td></tr>
 			<tr><td>Site header</td><td>Desktop; Mobile suljettu/auki</td><td><code>#header</code>, drawerit (<code>js/main.js</code>)</td></tr>
 			<tr><td>Site footer</td><td>Desktop, Mobile</td><td><code>#footer</code></td></tr>
-			<tr><td>Service card, Article teaser</td><td>–</td><td>Columns-lohko, Toolset-näkymän nostot</td></tr>
+			<tr><td>Service card, Article teaser</td><td>–</td><td>Columns-lohko, Query Loop -lohkon tiiserit (<code>.listing-teasers</code>)</td></tr>
 			<tr><td>Share buttons</td><td>–</td><td>Social Sharing -lisäosa</td></tr>
 		</tbody>
 	</table></div>
 	<p>Desktop-navigaatio vaihtuu 924 px:ssä (<code>--large</code>) ja mobiiliasettelu alkaa alle 748 px:n (<code>--small</code>). Nämä ovat Figman <code>breakpoint/small</code>- ja <code>breakpoint/large</code>-muuttujat.</p>
+
+	<h3 id="figma-takaisin">Sivustolta Figmaan</h3>
+	<p>Jos tokenin arvoa muutetaan sivuston puolella (theme.json tai Site Editorin tyylit), muutoksen voi viedä takaisin Figmaan. Skripti vertaa nykyisiä arvoja viimeksi generoituun tilaan (<code>design-tokens/theme-tokens.snapshot.json</code>) ja kirjoittaa Figma-skriptin.</p>
+	<pre data-code>npm run tokens:to-figma                    # theme.jsonin muutokset
+npm run tokens:to-figma -- --site-editor   # myös Site Editorissa tallennetut tyylit</pre>
+	<ol class="steps">
+		<li>Skripti listaa muutokset ja kirjoittaa <code>design-tokens/figma-import.generated.js</code>:n. Jos sama token on muuttunut myös Figmassa, se näytetään ristiriitana eikä sitä viedä.</li>
+		<li>Aja skripti Figma MCP:n kautta design system -tiedostoa vastaan (pyydä Claude Codelta). Se on ensin kuivaharjoitus (<code>DRY_RUN = true</code>) ja kertoo, mitä muuttuisi.</li>
+		<li>Kun muutokset näyttävät oikeilta, aja se uudelleen <code>DRY_RUN = false</code>, vie tokenit Figmasta uudelleen ja aja <code>npm run tokens</code>. Silloin Figma, theme.json ja snapshot ovat taas samassa tilassa.</li>
+	</ol>
 </section>
 
 <section id="kayttoonotto">
@@ -290,7 +307,11 @@ npm run tokens-check   # varmistaa, että generoidut tiedostot ovat ajan tasalla
 │   ├── core/js/modules/       drawer.js, navigation-menu.js, accessible-links.js, animate.js
 │   └── core/less/, theme-default/less/   vanha LESS-versio (ei muutoksia)
 ├── protosite/                 parent-teema: styles/main.css -&gt; css/imports.css
-└── protosite-child/           sivusto
+└── protosite-child/           sivusto (lohkoteema)
+    ├── templates/, parts/     sivupohjat ja osat (header, footer)
+    ├── inc/                   teeman lohkot (block-theme.php, content-blocks.php)
+    ├── js/editor-blocks.js    teeman lohkojen editorinäkymä
+    ├── acf-json/              ACF-kentät ja -taksonomia (versionhallinnassa)
     ├── design-tokens/         Figma-vienti ja generaattorit
     ├── theme.json             generoitu token-osa + käsin kirjoitettu styles
     ├── styles/main.css        CSS:n aloituspiste
@@ -357,6 +378,8 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 			<tr><td>Yhden komponentin ulkoasun tällä sivustolla</td><td>Sääntö tiedostoon <code>styles/site/*.css</code></td><td>Vain tämä sivusto</td></tr>
 			<tr><td>Komponentin virheen tai yleisen parannuksen</td><td><code>front-end-framework/core/css</code> tai <code>theme-default/css</code></td><td>Kaikki frameworkia käyttävät sivustot</td></tr>
 			<tr><td>Editorin ja lohkojen perustyylin</td><td>theme.jsonin <code>styles</code>-osa (vain <code>var(--wp--…)</code>-viittauksia)</td><td>Editori ja front end</td></tr>
+			<tr><td>Sivun rakenteen (header, footer, sivupohjat, arkistot, haku)</td><td>Site Editor tai <code>templates/*.html</code>, <code>parts/*.html</code> (ks. <a href="#lohkoteema">Lohkoteema</a>)</td><td>Kaikki sivut, jotka käyttävät pohjaa</td></tr>
+			<tr><td>Logon tai footerin linkit</td><td>Synkronoidut kuviot (Site Editor → Kuviot)</td><td>Kaikki sivut</td></tr>
 		</tbody>
 	</table></div>
 
@@ -402,6 +425,98 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 	</div>
 </section>
 
+<section id="lohkoteema">
+	<h2>Lohkoteema ja sisältö</h2>
+	<p class="lede">protosite-child on lohkoteema: sivupohjat ja osat näkyvät ja ovat muokattavissa Site Editorissa (Ulkoasu → Editori). Sisältösivut, listaukset ja kentät tehdään WordPressin omilla lohkoilla ja ACF:llä. Toolsetia ei enää käytetä.</p>
+
+	<h3 id="lohkoteema-pohjat">Sivupohjat ja osat</h3>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Tiedosto</th><th>Käytetään</th><th>Sisältö</th></tr></thead>
+		<tbody>
+			<tr><td><code>parts/header.html</code>, <code>parts/footer.html</code></td><td>Kaikilla sivuilla</td><td>Logo ja footerin linkit (synkronoidut kuviot), päävalikko (<code>protosite/navigation-menu</code>), hakulomake, haku- ja valikkonapit</td></tr>
+			<tr><td><code>page.html</code></td><td>Sivut</td><td>Murupolku, otsikko, sisältö</td></tr>
+			<tr><td><code>single.html</code></td><td>Artikkelit</td><td>Otsikko, julkaisuaika, sisältö</td></tr>
+			<tr><td><code>page-no-title.html</code></td><td>Valittava: <em>Sivu ilman otsikkoa</em></td><td>Pelkkä sisältö (esim. etusivu)</td></tr>
+			<tr><td><code>page-classic.html</code>, <code>single-classic.html</code></td><td>Valittava: <em>Sivu (klassinen)</em>, <em>Artikkeli (klassinen)</em></td><td>Sama kuin yllä <code>#zone-content</code>-kääreessä</td></tr>
+			<tr><td><code>archive.html</code>, <code>index.html</code></td><td>Kategoriat, avainsanat</td><td>Otsikko "Arkisto: …", tiiserit, sivutus</td></tr>
+			<tr><td><code>search.html</code></td><td>Haku</td><td>Hakutulokset Relevanssin korostetuin ottein, "Tarkoititko"-ehdotus</td></tr>
+			<tr><td><code>404.html</code></td><td>Puuttuva sivu</td><td>Otsikko ja teksti</td></tr>
+		</tbody>
+	</table></div>
+	<p>Sivulle tai artikkelille valitaan muu kuin oletuspohja editorin sivupalkista (Sivupohja). Omat pohjat on lueteltu theme.jsonin <code>customTemplates</code>-kohdassa.</p>
+	<div class="note"><strong>Site Editorissa tehdyt muutokset tallentuvat tietokantaan</strong><p>Kun pohjaa tai osaa muokataan Site Editorissa, muutos ei mene teeman tiedostoihin, vaan tietokantaan ja ohittaa tiedoston. Pysyvät muutokset kannattaa tehdä tiedostoihin (<code>templates/</code>, <code>parts/</code>) ja commitoida. Site Editorin muutokset saa palautettua tiedoston versioon pohjan valikosta (Palauta).</p></div>
+	<p>Sivuston HTML on sama kuin klassisessa teemassa, koska tyylit ja skriptit perustuvat siihen. Siksi pohjissa käytetään kääreinä <code>protosite/element</code>-lohkoa: se tuottaa täsmälleen annetun tagin, id:n ja luokat (esim. <code>&lt;div id="zone-header" class="zone"&gt;</code>). Lohko pitää id:n myös editorissa, joten sivuston tyylit näkyvät Site Editorissa oikein.</p>
+
+	<h3 id="lohkoteema-lohkot">Teeman lohkot</h3>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Lohko</th><th>Mitä tekee</th></tr></thead>
+		<tbody>
+			<tr><td><code>protosite/element</code></td><td>Elementti annetulla tagilla, id:llä ja luokilla sisäkkäisten lohkojen ympärillä</td></tr>
+			<tr><td><code>protosite/page</code></td><td><code>&lt;div id="page"&gt;</code> koko sivun ympärillä</td></tr>
+			<tr><td><code>protosite/widget-area</code></td><td>Klassinen widget-alue (Ulkoasu → Widgetit), esim. jakopainikkeet sisällön alla</td></tr>
+			<tr><td><code>protosite/navigation-menu</code></td><td>Valikko Ulkoasu → Valikot -sivulta frameworkin <code>.navigation-menu-responsive</code>-rakenteella</td></tr>
+			<tr><td><code>protosite/search-form</code></td><td>Sivuston hakulomake</td></tr>
+			<tr><td><code>protosite/breadcrumb</code></td><td>Murupolku nykyisen sivun yläsivuihin</td></tr>
+			<tr><td><code>protosite/post-meta</code></td><td>Sisältötyyppi ("Artikkeli", "Sivu") ja julkaisupäivä; päivämäärän muoto ja ruudunlukijan teksti asetuksista</td></tr>
+			<tr><td><code>protosite/subpages</code></td><td>Nykyisen sivun alasivut sisäkkäisenä listana</td></tr>
+			<tr><td><code>protosite/query-filter</code></td><td>Suodatinlomake Query Loop -lohkon sisällä (ks. alla)</td></tr>
+		</tbody>
+	</table></div>
+	<p>Lohkojen PHP on tiedostoissa <code>inc/block-theme.php</code> ja <code>inc/content-blocks.php</code>, editorinäkymä tiedostossa <code>js/editor-blocks.js</code> (ei buildia).</p>
+
+	<h3 id="listaukset">Listaukset ja suodattimet</h3>
+	<p>Artikkelilistat tehdään WordPressin Query Loop -lohkolla. Sivuston tiiserityyli tulee, kun Post Template -lohkolle annetaan luokka <code>listing listing-teasers</code> ja kohteiden luokat Lisäasetukset → <em>Item classes</em> -kenttään: <code>article-teaser teaser teaser-{type}</code> (<code>{type}</code> = sisältötyyppi).</p>
+	<pre data-code>&lt;!-- wp:query {"queryId":1,"query":{"perPage":6,"postType":"post","order":"desc","orderBy":"date","inherit":false}} --&gt;
+&lt;div class="wp-block-query"&gt;
+  &lt;!-- wp:protosite/query-filter {"controls":[{"taxonomy":"category","display":"radios","label":"Kategoriat","allLabel":"Kaikki","showCount":true}],"submitLabel":"Haku"} /--&gt;
+
+  &lt;!-- wp:post-template {"className":"listing listing-teasers","itemClass":"article-teaser teaser teaser-{type}"} --&gt;
+    &lt;!-- wp:post-featured-image {"isLink":true,"sizeSlug":"full"} /--&gt;
+    &lt;!-- wp:post-title {"level":3,"isLink":true} /--&gt;
+    &lt;!-- wp:protosite/post-meta {"showType":true} /--&gt;
+    &lt;!-- wp:post-excerpt {"excerptLength":12} /--&gt;
+    &lt;!-- wp:read-more {"content":"Lue lisää","className":"link-more"} /--&gt;
+  &lt;!-- /wp:post-template --&gt;
+
+  &lt;!-- wp:query-pagination … /--&gt;
+&lt;/div&gt;
+&lt;!-- /wp:query --&gt;</pre>
+	<p><strong>Suodatinlomake.</strong> <code>protosite/query-filter</code> lisätään Query Loop -lohkon sisään. Suodattimet asetetaan lohkon sivupaneelissa JSON-listana:</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Asetus</th><th>Arvot</th></tr></thead>
+		<tbody>
+			<tr><td><code>taxonomy</code></td><td>Taksonomian nimi, esim. <code>category</code>, <code>post_tag</code></td></tr>
+			<tr><td><code>display</code></td><td><code>radios</code>, <code>checkboxes</code> tai <code>select</code></td></tr>
+			<tr><td><code>label</code>, <code>allLabel</code></td><td>Otsikko ja "kaikki"-vaihtoehdon teksti</td></tr>
+			<tr><td><code>showCount</code>, <code>hideEmpty</code></td><td>Näytä kohteiden määrä; piilota tyhjät termit (oletus kyllä)</td></tr>
+			<tr><td><code>{"search": true, "label": "…"}</code></td><td>Tekstihaku otsikoista</td></tr>
+		</tbody>
+	</table></div>
+	<p>Lisäksi <em>Submit button</em> on lähetysnapin teksti ja <em>Post types</em> listaa useita sisältötyyppejä (Query Loop -lohkoon voi valita vain yhden). Termit järjestetään termien omaan järjestykseen. Suodattimet näkyvät osoitteessa muodossa <code>?filter-category=uutiset</code>, ja sivutus muodossa <code>?query-1-page=2</code>.</p>
+	<p>Arkistoissa ja haussa näytetään kaksi kohdetta sivulla, ja arkistot ovat uusimmasta vanhimpaan (<code>inc/content-blocks.php</code>, <code>pre_get_posts</code>).</p>
+
+	<h3 id="kentat">Kentät ja taksonomiat (ACF)</h3>
+	<p>Lisäkentät ja omat taksonomiat ovat Advanced Custom Fieldsissä. Määrittelyt tallentuvat automaattisesti teeman <code>acf-json/</code>-kansioon, joten ne kulkevat versionhallinnassa ja palvelimille teeman mukana. Kun kenttiä muutetaan ACF:n hallinnassa, commitoi muuttuneet JSON-tiedostot.</p>
+	<div class="table-wrap"><table>
+		<thead><tr><th>Ryhmä / taksonomia</th><th>Missä</th><th>Kentät</th></tr></thead>
+		<tbody>
+			<tr><td>Artikkelin lisätiedot</td><td>Artikkelit</td><td><code>esittelyssa</code> (kyllä/ei), <code>event_date</code> (päivä ja aika)</td></tr>
+			<tr><td>Sivun artikkelit</td><td>Sivut</td><td><code>related_articles</code> (relaatio artikkeleihin)</td></tr>
+			<tr><td>Media categories</td><td>Liitteet</td><td>Taksonomia <code>media-category</code></td></tr>
+		</tbody>
+	</table></div>
+	<p>Arvot luetaan ACF:n funktioilla, esim. <code>get_field('event_date')</code>. Toolsetin tiedot siirrettiin skriptillä <code>tools/migrate-from-toolset.php</code> (<code>wp eval-file … [dry-run]</code>). Toolsetin vanhat tiedot ovat yhä tietokannassa, kunnes lisäosat poistetaan.</p>
+
+	<h3 id="lomakkeet">Lomakkeet (Fluent Forms)</h3>
+	<p>Lomakkeet tehdään Fluent Formsilla (Contact Form 7 on poistettu käytöstä). Lomake lisätään sivulle Fluent Forms -lohkolla. Sivuston lomaketyyli tulee automaattisesti (<code>styles/site/plugins.css</code>):</p>
+	<ul>
+		<li>Kenttien otsikot ovat lihavoituina kenttien yläpuolella, ja kentät ovat 400 px leveitä (mobiilissa koko leveys).</li>
+		<li>Pakollisuustähteä ei näytetä: kirjoita "(pakollinen)" otsikkoon.</li>
+		<li>Lähetä-nappi on harmaa, kunnes ehtojen valintaruutu on valittu.</li>
+	</ul>
+	<p>Valitse lohkon tyyliksi <em>Inherit theme style</em> ja jätä lohkon marginaalit nollaan. Käytä ehtojen tekstin linkeissä suhteellisia osoitteita (<code>/privacy-policy</code>), jotta ne toimivat kaikissa ympäristöissä.</p>
+</section>
+
 <section id="komponentit">
 	<h2>Komponentit</h2>
 	<p>Esikatselut käyttävät frameworkin oikeaa CSS:ää oletusasetuksilla (<code>framework.css</code>). Protosite-sivustolla samat komponentit saavat arvonsa Figman tokeneista, joten pyöristykset ja koot voivat poiketa hieman. Vaihda esikatselun leveydeksi 375 px nähdäksesi pienen näytön (<code>--small</code>) tyylit.</p>
@@ -429,9 +544,11 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 			<tr><td><code>npm run build</code></td><td>protosite-child, protosite</td><td>Minifioitu css/imports.css</td></tr>
 			<tr><td><code>npm run dev</code></td><td>protosite-child, protosite</td><td>Uudelleenrakennus muutoksista (childissa myös Browsersync)</td></tr>
 			<tr><td><code>npm run check-css</code></td><td>protosite-child</td><td>Etsii spesifisyyttä muuttavat <code>:is()</code>-listat</td></tr>
+			<tr><td><code>npm run tokens:to-figma</code></td><td>protosite-child</td><td>Sivuston token-muutokset takaisin Figmaan (ks. <a href="#figma-takaisin">Sivustolta Figmaan</a>)</td></tr>
+			<tr><td><code>wp eval-file wp-content/themes/protosite-child/tools/migrate-from-toolset.php [dry-run]</code></td><td>sivuston juuri</td><td>Toolsetin kentät, relaatiot, sisältöpohjat ja näkymät ACF:ään ja lohkoihin (kerran)</td></tr>
 		</tbody>
 	</table></div>
-	<p>Lisätietoa: <code>front-end-framework/README.md</code>, <code>protosite-child/design-tokens/README.md</code>, <code>protosite-child/styles/README.md</code>.</p>
+	<p>Lisätietoa: <code>front-end-framework/README.md</code>, <code>protosite-child/README.md</code> (lohkoteema, ACF), <code>protosite-child/design-tokens/README.md</code>, <code>protosite-child/styles/README.md</code>.</p>
 </section>
 
 </main>
