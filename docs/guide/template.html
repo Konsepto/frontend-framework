@@ -306,11 +306,14 @@ npm run tokens:to-figma -- --site-editor   # myös Site Editorissa tallennetut t
 │   ├── theme-default/css/     oletusteeman ulkoasu + settings.css + framework.css
 │   ├── core/js/modules/       drawer.js, navigation-menu.js, accessible-links.js, animate.js
 │   └── core/less/, theme-default/less/   vanha LESS-versio (ei muutoksia)
-├── protosite/                 parent-teema: styles/main.css -&gt; css/imports.css
-└── protosite-child/           sivusto (lohkoteema)
-    ├── templates/, parts/     sivupohjat ja osat (header, footer)
-    ├── inc/                   teeman lohkot (block-theme.php, content-blocks.php)
-    ├── js/editor-blocks.js    teeman lohkojen editorinäkymä
+├── protosite/                 parent-teema (lohkoteema)
+│   ├── templates/             sivupohjat (page, single, archive, search, 404 …)
+│   ├── parts/                 header ja footer widget-alueina (lapsiteema voi korvata)
+│   ├── inc/                   teeman lohkot (block-theme.php, content-blocks.php)
+│   ├── js/editor-blocks.js    teeman lohkojen editorinäkymä
+│   └── theme.json             sivupohjien ja osien rekisteröinti
+└── protosite-child/           sivusto
+    ├── parts/                 oma header ja footer natiiveina lohkoina
     ├── acf-json/              ACF-kentät ja -taksonomia (versionhallinnassa)
     ├── design-tokens/         Figma-vienti ja generaattorit
     ├── theme.json             generoitu token-osa + käsin kirjoitettu styles
@@ -427,13 +430,13 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 
 <section id="lohkoteema">
 	<h2>Lohkoteema ja sisältö</h2>
-	<p class="lede">protosite-child on lohkoteema: sivupohjat ja osat näkyvät ja ovat muokattavissa Site Editorissa (Ulkoasu → Editori). Sisältösivut, listaukset ja kentät tehdään WordPressin omilla lohkoilla ja ACF:llä. Toolsetia ei enää käytetä.</p>
+	<p class="lede">Protosite on lohkoteema: sivupohjat ja osat näkyvät ja ovat muokattavissa Site Editorissa (Ulkoasu → Editori). Sivupohjat ja teeman lohkot ovat parent-teemassa <code>protosite</code>, joten kaikki lapsiteemat (protosite-child, geo-seo-ai-tool) perivät ne. Lapsiteema korvaa pohjan tai osan lisäämällä samannimisen tiedoston omaan <code>templates/</code>- tai <code>parts/</code>-kansioonsa. Sisältösivut, listaukset ja kentät tehdään WordPressin omilla lohkoilla ja ACF:llä. Toolsetia ei enää käytetä.</p>
 
 	<h3 id="lohkoteema-pohjat">Sivupohjat ja osat</h3>
 	<div class="table-wrap"><table>
 		<thead><tr><th>Tiedosto</th><th>Käytetään</th><th>Sisältö</th></tr></thead>
 		<tbody>
-			<tr><td><code>parts/header.html</code>, <code>parts/footer.html</code></td><td>Kaikilla sivuilla</td><td>Logo ja footerin linkit (synkronoidut kuviot), päävalikko (<code>protosite/navigation-menu</code>), hakulomake, haku- ja valikkonapit</td></tr>
+			<tr><td><code>parts/header.html</code>, <code>parts/footer.html</code></td><td>Kaikilla sivuilla</td><td>Parentissa header- ja footer-widget-alueet. protosite-childissa omat osat: logo ja footerin linkit (synkronoidut kuviot), päävalikko (<code>protosite/navigation-menu</code>), hakulomake, haku- ja valikkonapit</td></tr>
 			<tr><td><code>page.html</code></td><td>Sivut</td><td>Murupolku, otsikko, sisältö</td></tr>
 			<tr><td><code>single.html</code></td><td>Artikkelit</td><td>Otsikko, julkaisuaika, sisältö</td></tr>
 			<tr><td><code>page-no-title.html</code></td><td>Valittava: <em>Sivu ilman otsikkoa</em></td><td>Pelkkä sisältö (esim. etusivu)</td></tr>
@@ -462,7 +465,7 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 			<tr><td><code>protosite/query-filter</code></td><td>Suodatinlomake Query Loop -lohkon sisällä (ks. alla)</td></tr>
 		</tbody>
 	</table></div>
-	<p>Lohkojen PHP on tiedostoissa <code>inc/block-theme.php</code> ja <code>inc/content-blocks.php</code>, editorinäkymä tiedostossa <code>js/editor-blocks.js</code> (ei buildia).</p>
+	<p>Lohkojen PHP on parent-teeman tiedostoissa <code>inc/block-theme.php</code> ja <code>inc/content-blocks.php</code>, editorinäkymä tiedostossa <code>js/editor-blocks.js</code> (ei buildia).</p>
 
 	<h3 id="listaukset">Listaukset ja suodattimet</h3>
 	<p>Artikkelilistat tehdään WordPressin Query Loop -lohkolla. Sivuston tiiserityyli tulee, kun Post Template -lohkolle annetaan luokka <code>listing listing-teasers</code> ja kohteiden luokat Lisäasetukset → <em>Item classes</em> -kenttään: <code>article-teaser teaser teaser-{type}</code> (<code>{type}</code> = sisältötyyppi).</p>
@@ -493,7 +496,7 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 		</tbody>
 	</table></div>
 	<p>Lisäksi <em>Submit button</em> on lähetysnapin teksti ja <em>Post types</em> listaa useita sisältötyyppejä (Query Loop -lohkoon voi valita vain yhden). Termit järjestetään termien omaan järjestykseen. Suodattimet näkyvät osoitteessa muodossa <code>?filter-category=uutiset</code>, ja sivutus muodossa <code>?query-1-page=2</code>.</p>
-	<p>Arkistoissa ja haussa näytetään kaksi kohdetta sivulla, ja arkistot ovat uusimmasta vanhimpaan (<code>inc/content-blocks.php</code>, <code>pre_get_posts</code>).</p>
+	<p>protosite-childissa arkistoissa ja haussa näytetään kaksi kohdetta sivulla, ja arkistot ovat uusimmasta vanhimpaan (childin <code>functions.php</code>, <code>pre_get_posts</code>). Muut sivustot käyttävät WordPressin lukuasetuksia.</p>
 
 	<h3 id="kentat">Kentät ja taksonomiat (ACF)</h3>
 	<p>Lisäkentät ja omat taksonomiat ovat Advanced Custom Fieldsissä. Määrittelyt tallentuvat automaattisesti teeman <code>acf-json/</code>-kansioon, joten ne kulkevat versionhallinnassa ja palvelimille teeman mukana. Kun kenttiä muutetaan ACF:n hallinnassa, commitoi muuttuneet JSON-tiedostot.</p>
