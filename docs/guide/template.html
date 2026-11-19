@@ -505,7 +505,7 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 			<tr><td>Media categories</td><td>Liitteet</td><td>Taksonomia <code>media-category</code></td></tr>
 		</tbody>
 	</table></div>
-	<p>Arvot luetaan ACF:n funktioilla, esim. <code>get_field('event_date')</code>. Toolsetin tiedot siirrettiin skriptillä <code>tools/migrate-from-toolset.php</code> (<code>wp eval-file … [dry-run]</code>). Toolsetin vanhat tiedot ovat yhä tietokannassa, kunnes lisäosat poistetaan.</p>
+	<p>Arvot luetaan ACF:n funktioilla, esim. <code>get_field('event_date')</code>. Toolsetin tiedot siirrettiin skriptillä <code>tools/migrate-from-toolset.php</code> (<code>wp eval-file … [dry-run]</code>), ja Toolsetin jäänteet on sen jälkeen poistettu tietokannasta. Skripti on mukana muiden Toolset-sivustojen siirtoa varten.</p>
 
 	<h3 id="lomakkeet">Lomakkeet (Fluent Forms)</h3>
 	<p>Lomakkeet tehdään Fluent Formsilla (Contact Form 7 on poistettu käytöstä). Lomake lisätään sivulle Fluent Forms -lohkolla. Sivuston lomaketyyli tulee automaattisesti (<code>styles/site/plugins.css</code>):</p>
@@ -545,7 +545,7 @@ drawer(document.querySelector('#block-search-form'), { group: 'header' });</pre>
 			<tr><td><code>npm run dev</code></td><td>protosite-child, protosite</td><td>Uudelleenrakennus muutoksista (childissa myös Browsersync)</td></tr>
 			<tr><td><code>npm run check-css</code></td><td>protosite-child</td><td>Etsii spesifisyyttä muuttavat <code>:is()</code>-listat</td></tr>
 			<tr><td><code>npm run tokens:to-figma</code></td><td>protosite-child</td><td>Sivuston token-muutokset takaisin Figmaan (ks. <a href="#figma-takaisin">Sivustolta Figmaan</a>)</td></tr>
-			<tr><td><code>wp eval-file wp-content/themes/protosite-child/tools/migrate-from-toolset.php [dry-run]</code></td><td>sivuston juuri</td><td>Toolsetin kentät, relaatiot, sisältöpohjat ja näkymät ACF:ään ja lohkoihin (kerran)</td></tr>
+			<tr><td><code>wp eval-file wp-content/themes/protosite-child/tools/migrate-from-toolset.php [dry-run]</code></td><td>sivuston juuri</td><td>Toolset-sivuston kentät, relaatiot, sisältöpohjat ja näkymät ACF:ään ja lohkoihin (kerran, ennen Toolset-tietojen poistoa)</td></tr>
 		</tbody>
 	</table></div>
 	<p>Lisätietoa: <code>front-end-framework/README.md</code>, <code>protosite-child/README.md</code> (lohkoteema, ACF), <code>protosite-child/design-tokens/README.md</code>, <code>protosite-child/styles/README.md</code>.</p>
