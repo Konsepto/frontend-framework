@@ -1,42 +1,24 @@
 /*!
 
 Front-end Framework Debugging Script
-Version: 1.1 (2022-05-16 20:00)
+Version: 2.0 (2026-11-20)
 Package: Konsepto Front-end Framework
 Author: Mikko Paltamaa / Konsepto
 Website: https://konsepto.fi
 License: The MIT License
 
-This script adds certain debugging tools that you see at the bottom right of the page when the debugging mode is enabled.
+This script adds certain debugging tools that you see at the bottom right of the page when the
+debugging mode is enabled (Protosite: define('PROTOSITE_DEV', true) in wp-config.php). The styles
+are in theme-default/css/debug.css, loaded together with this script.
 
-Note that this file must be included before LESS.js!
-
-Also note that in order to watch mode to work, you must have something like this in you .htaccess file: 
-
-# Disable .less file caching in browsers (they should not be used in production)
-<filesMatch "\.less$">
-	Header set Cache-Control "no-cache"
-</filesMatch>
-
-Otherwise the .less files will come from the browser's cache even in watch mode.
+Tools: client size display, grid layout mode, large text mode, mark image dimensions and reload
+stylesheets. Version 2.0 removed the LESS.js options and the LESS watch mode (no more LESS.js in
+the browser) and no longer clears localStorage on every page load.
 
 */
 
 "use strict";
 
-
-// Variables
-
-// Set the LESS JS mode on
-var LESS_JS = true;
-	
-	
-// Functions
-
-// ...
-
-
-// Execution
 
 
 // Add protective wrapper
@@ -60,47 +42,6 @@ var LESS_JS = true;
 	// https://caniuse.com/#feat=console-basic
 	window.console = window.console || {log: function(a) {}};
 		
-	// If local storage clear method is available
-	if (typeof localStorage.clear === 'function') {
-		// Clear any files from local storage (just to be sure)
-		// https://developer.mozilla.org/en-US/docs/Web/API/Storage/clear
-		localStorage.clear();
-	}
-
-	// http://lesscss.org/usage/#using-less-in-the-browser-options
-	var less = {
-		// To enable watch mode, option 'env' must be set to development
-		// Environment to run may be either development or production (default)
-		env: 'development', 
-		// The amount of time (in milliseconds) between polls while in watch mode.
-		// Default: 1000 (Set a more sensible polling interval!!!)
-		poll: 15000, 
-		// Set LESS to work asynchronously, which improves the speed a lot
-		// Default: false (true makes the page display faster but without styles, which is not good)
-		async: false, 
-		// Whether to request the import asynchronously when in a page with a file protocol.
-		// Default: false (not sure which is better)
-		fileAsync: true, 
-		// Whether to use the per session file cache. This caches less files so that you can call modifyVars and it will not retrieve all the less files again. If you use the watcher or call refresh with reload set to true, then the cache will be cleared before running.
-		// Default: true (previously false in before v2; no need for any file cache while on watch mode)
-		useFileCache: false, 
-		// Set the method of error reporting when compilation fails
-		// Options: html|console|function; Default: html
-		errorReporting: 'html', 
-		// The amount of logging in the javascript console. Note: If you are in the production environment you will not get any logging.
-		// 2 - Information and errors, 1 - Errors, 0 - Nothing; Default: 2
-		logLevel: 2, 
-		// Add source line information to the output css file
-		// Options: ''| 'comments'|'mediaquery'|'all' Default: ''
-		dumpLineNumbers: 'all'
-		/*
-		// Set options in a global less object before loading the less.js script
-		globalVars: {
-			version: "'" + Math.round((new Date()).getTime() / 1000) + "'"
-		}
-		*/
-	};
-	
 	// Execute when the document is ready
 	$(function () {
 		
@@ -215,55 +156,17 @@ var LESS_JS = true;
 	
 		// Add reload stylesheets button functionality
 		$('#debug-tools').append(
-			$('<button id="button-reload-stylesheets" title="Reload linked stylesheets (but no LESS files)"><span class="screen-reader">Reload linked stylesheets (but no LESS files)</span></button>').on('click', function (e) {
+			$('<button id="button-reload-stylesheets" title="Reload linked stylesheets"><span class="screen-reader">Reload linked stylesheets</span></button>').on('click', function (e) {
 				console.log('Reloading linked stylesheets.');
-				// If local storage clear method is available
-				if (typeof localStorage.clear === 'function') {
-					// Clear any files from local storage (just to be sure)
-					// https://developer.mozilla.org/en-US/docs/Web/API/Storage/clear
-					localStorage.clear();
-				}
-				// For each link
-				$('link[type="text/css"][href]').each(function() {
-					var urlParts = $(this).attr('href').split('?');
-					url = urlParts[0] + '?version=' + Math.round((new Date()).getTime() / 1000);
-					$(this).attr('href', url);
+				// Add a timestamp parameter to each stylesheet link so that the browser fetches it again
+				$('link[rel="stylesheet"][href]').each(function () {
+					var url = new URL($(this).attr('href'), document.baseURI);
+					url.searchParams.set('reload', Date.now());
+					$(this).attr('href', url.href);
 				});
 				e.preventDefault();
 			})
 		);
-		
-		// If LESS.js methods are available
-		if (typeof less.watch === 'function' && typeof less.refresh === 'function') {
-			
-			// Add LESS watch mode button functionality
-			$('#debug-tools').append(
-				$('<button id="button-less-watch-mode-mode" title="Toggle LESS watch mode"><span class="screen-reader">Toggle LESS watch mode</span></button>').on('click', function (e) {
-					$('html').toggleClass('less-watch-mode');
-					if ($('html').hasClass('less-watch-mode')) {
-						console.log('Refreshing LESS files (it may take a while).');
-						// If local storage clear method is available
-						if (typeof localStorage.clear === 'function') {
-							// Clear any files from local storage (just to be sure)
-							// https://developer.mozilla.org/en-US/docs/Web/API/Storage/clear
-							localStorage.clear();
-						}
-						// Request a refresh immediately instead of polling interval
-						less.refresh(true);
-						// Start watch mode
-						less.watch();
-						console.log('Watching for LESS file changes for every ' + (less.options.poll / 1000) + ' seconds.');
-					}
-					else {
-						// End watch mode
-						less.unwatch();
-						console.log('Not watching for LESS file changes anymore.');
-					}
-					e.preventDefault();
-				})
-			);
-			
-		}
 		
 	});
 	
